@@ -137,6 +137,7 @@ gtk_widget_show(mainwindow);
 g_signal_connect(XXX_GTK_OBJECT(mainwindow), "destroy", G_CALLBACK(quit_callback), "WM destroy");
 
 #ifndef __MINGW32__
+#ifndef MAC_INTEGRATION
 #ifdef GDK_WINDOWING_WAYLAND
 if(GDK_IS_WAYLAND_DISPLAY(gdk_display_get_default()))
         {
@@ -178,6 +179,7 @@ if(!twinwayland)
 	g_signal_connect(XXX_GTK_OBJECT(xsocket[1]), "plug-removed", G_CALLBACK(plug_removed), NULL);
 	gtk_paned_pack2 (GTK_PANED (vpan), xsocket[1], TRUE, FALSE);
 	}
+#endif
 #endif
 
 #ifdef __MINGW32__
