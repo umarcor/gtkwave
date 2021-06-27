@@ -27,6 +27,7 @@
 
 #include "wave_locale.h"
 
+#include <assert.h>
 #include <sys/time.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -430,7 +431,7 @@ if(shmid >=0)
 				if(use_embedded)
 					{
 #ifdef MAC_INTEGRATION
-					sprintf(buf2, "%x", gtk_socket_get_id (GTK_SOCKET(xsocket[0])));
+					assert(!"not implemented");
 #else
 					sprintf(buf2, "%lx", (long)gtk_socket_get_id (GTK_SOCKET(xsocket[0])));
 #endif
@@ -468,7 +469,7 @@ if(shmid >=0)
 			if(use_embedded)
 				{
 #ifdef MAC_INTEGRATION
-				sprintf(buf2, "%x", gtk_socket_get_id (GTK_SOCKET(xsocket[1])));
+				assert(!"not implemented 2");
 #else
 				sprintf(buf2, "%lx", (long)gtk_socket_get_id (GTK_SOCKET(xsocket[1])));
 #endif
