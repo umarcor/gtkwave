@@ -1,0 +1,726 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="GTKWave User Interface" href="user-interface.html" /><link rel="prev" title="Compiling and Installing GTKWave" href="compiling.html" />
+
+    <!-- Generated with Sphinx 7.3.7 and Furo 2024.04.27 -->
+        <title>Quick Start - GTKWave documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=437aa6ec" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">GTKWave  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">GTKWave  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling and Installing GTKWave</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-interface.html">GTKWave User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="menu.html">GTKWave Menu Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tcl.html">Tcl Command Syntax</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="vcd-recoding.html">VCD Recoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lxt-file-format.html">LXT File Format</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Man pages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="man/evcd2vcd.1.html">evcd2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/fst2vcd.1.html">fst2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/fstminer.1.html">fstminer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/gtkwave.1.html">gtkwave</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/gtkwaverc.5.html">gtkwaverc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/lxt2miner.1.html">lxt2miner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/lxt2vcd.1.html">lxt2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/rtlbrowse.1.html">rtlbrowse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/shmidcat.1.html">shmidcat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/twinwave.1.html">twinwave</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vcd2fst.1.html">vcd2fst</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vcd2lxt.1.html">vcd2lxt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vcd2lxt2.1.html">vcd2lxt2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vcd2vzt.1.html">vcd2vzt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vzt2vcd.1.html">vzt2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vztminer.1.html">vztminer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/xml2stems.1.html">xml2stems</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="quick-start">
+<h1>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">¶</a></h1>
+<section id="sample-design">
+<h2>Sample Design<a class="headerlink" href="#sample-design" title="Link to this heading">¶</a></h2>
+<p>In the <em>examples/</em> directory of the source code distribition a sample
+Verilog design and testbench for a DES encryptor can be found as
+<em>des.v</em>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>10 :/home/bybell/gtkwave-3.0.0pre21/examples&gt; ls -al
+total 132
+drwxrwxr-x 2 bybell bybell 4096 Apr 30 14:12 .
+drwxr-xr-x 8 bybell bybell 4096 Apr 29 22:05 ..
+-rw-rw-r-- 1 bybell bybell 187 Apr 29 22:09 des.sav
+-rw-r--r-- 1 bybell bybell 47995 Apr 29 22:05 des.v
+-rw-rw-r-- 1 bybell bybell 68801 Apr 29 22:06 des.vzt
+</pre></div>
+</div>
+<p>If you have a Verilog simulator handy, you can simulate the design to
+create a VCD file. To try the example in Icarus Verilog
+(<a class="reference external" href="http://www.icarus.com/">http://www.icarus.com</a>), type the following:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/tmp/gtkwave-3.0.0/examples&gt; **iverilog des.v &amp;&amp; a.out**
+VCD info: dumpfile des.vcd opened for output.
+/tmp/gtkwave-3.0.0/examples&gt; **ls -la des.vcd**
+-rw-rw-r-- 1 bybell bybell 3465481 Apr 30 13:39 des.vcd
+</pre></div>
+</div>
+<p>If you do not have a simulator readily available, you can expand the
+<em>des.vzt</em> file into <em>des.vcd</em> by typing the following:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/tmp/gtkwave-3.0.0/examples&gt; vzt2vcd des.vzt &gt;des.vcd
+VZTLOAD | 1432 facilities
+VZTLOAD | Total value bits: 22921
+VZTLOAD | Read 1 block header OK
+VZTLOAD | [0] start time
+VZTLOAD | [704] end time
+VZTLOAD |
+VZTLOAD | block [0] processing 0 / 704
+/tmp/gtkwave-3.0.0/examples&gt; ls -la des.vcd
+-rw-rw-r-- 1 bybell bybell 3456247 Apr 30 13:42 des.vcd
+</pre></div>
+</div>
+<p>You will notice that the generated VCD file is about fifty times larger
+than the VZT file. This illustrates the compressibility of VCD files and
+the space saving advantages of using the database formats that GTKWave
+supports. Normally we would not want to work with VCD as GTKWave is
+forced to process the whole file rather than access only the data
+needed, but in the next section we will show how to invoke GTKWave such
+that VCD files are automatically converted into LXT2 ones.</p>
+<p>Next, let’s create a stems file that allows us to bring up RTLBrowse.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/tmp/gtkwave-3.0.0/examples&gt; verilator -Wno-fatal des.v -xml-only
+--bbox-sys &amp;&amp; xml2stems obj_dir/Vdes.xml des.stems
+/tmp/gtkwave-3.0.0/examples&gt; ls -la des.stems
+-rw-rw-r-- 1 bybell bybell 4044 Apr 30 13:50 des.stems
+</pre></div>
+</div>
+<p>Stems files only need to be generated when the source code undergoes
+file layout and/or hierarchy changes.</p>
+<p>Now that we have a VCD file and a stems file, we can bring up the
+viewer.</p>
+</section>
+<section id="launching-gtkwave">
+<h2>Launching GTKWave<a class="headerlink" href="#launching-gtkwave" title="Link to this heading">¶</a></h2>
+<p>We already have a VZT file available, but to illustrate the automatic
+conversion of VCD files, let’s use the <code class="docutils literal notranslate"><span class="pre">-o</span></code> option. The <code class="docutils literal notranslate"><span class="pre">-t</span></code> option is used
+to specify the stems file. The .sav file is a “save file” that contains
+GTKWave scope state.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/tmp/gtkwave-3.0.0/examples&gt; gtkwave -o -t des.stems des.vcd
+des.sav
+GTKWave Analyzer v3.3.18 (w)1999-2010 BSI
+FSTLOAD | Processing 1432 facs.
+FSTLOAD | Built 1287 signals and 145 aliases.
+FSTLOAD | Building facility hierarchy tree.
+FSTLOAD | Sorting facility hierarchy tree.
+</pre></div>
+</div>
+<figure class="align-default" id="id1">
+<img alt="The main window with viewer state loaded from a save file" src="_images/quickstart1.png" />
+<figcaption>
+<p><span class="caption-text">The main window with viewer state loaded from a save file</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>In some cases, for example if the dumpfile format is
+LXT2, you will see two sets of loader messages. This is normal as
+RTLBrowse is launched as an external process in order to keep its
+operations from bogging down the viewer. After these messages scroll by,
+the GTKWave main window and an RTLBrowse hierarchy window will appear.
+We are now ready to start experimenting with various features of the
+wave viewer and RTLBrowse.</p>
+<p>The RTLBrowse window will come up as seen in on page, however none of
+the tree nodes will be opened yet.</p>
+</section>
+<section id="displaying-waveforms">
+<h2>Displaying Waveforms<a class="headerlink" href="#displaying-waveforms" title="Link to this heading">¶</a></h2>
+<p>In the preceding section, the viewer was brought up with a save file so
+when the viewer did appear, the main window already had signals present
+as seen in on page . All the signals in a model do not appear on their
+own as this would be unwieldy for large models. Instead, it is up to the
+user to import signals manually. An exception to this exists for VCD files, see
+the definition of the <a class="reference internal" href="#anchor-6"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">enable_vcd_autosave</span></code> <em>.gtkwaverc</em> variable</span></a>.
+That said, several requesters exist for importing signals into the main window.</p>
+<section id="signal-search">
+<h3>Signal Search<a class="headerlink" href="#signal-search" title="Link to this heading">¶</a></h3>
+<figure class="align-default" id="id2">
+<img alt="The Signal Search (regular expression search) Requester" src="_images/quickstart2.png" />
+<figcaption>
+<p><span class="caption-text">The Signal Search (regular expression search) Requester</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The signal search requester accepts a search string as a POSIX regular
+expression. Any signals found in the dumpfile that match that regular
+expression are listed in the Matches box and may be individually or
+multiply selected and imported into the viewer window. The regular
+expression can be modified in one of four ways: WRange, WStrand, Range,
+and Strand. No modification is possible with None. This optionally
+matches the string you enter in the search string above with a Verilog
+format range (signal[7:0]), a strand (signal.1, signal.0), or with no
+suffix. The “W” modifier for “Range” and “Strand” explicitly matches on
+word boundaries. (addr matches unit.freezeaddr[63:0] for “Range” but
+only unit.addr[63:0] for “WRange” since addr has to be on a word
+boundary.) Note that when “None” is selected, the search string may be
+located anywhere in the signal name.</p>
+<p>Append will add the selected signals to end of the display on the main
+window.</p>
+<p>Insert will add selected signals after last highlighted signal on the
+main window.</p>
+<p>Replace will replace highlighted signals on the main window with signals
+selected.</p>
+</section>
+<section id="hierarchy-search">
+<h3>Hierarchy Search<a class="headerlink" href="#hierarchy-search" title="Link to this heading">¶</a></h3>
+<figure class="align-default" id="id3">
+<img alt="The Hierarchy Search Requester" src="_images/quickstart3.png" />
+<figcaption>
+<p><span class="caption-text">The Hierarchy Search Requester</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The hierarchy search requester provides a view of the hierarchy in a
+format similar to the current working directory of a file in a file
+system on a computer. The Signal Hierarchy box contains the current
+hierarchy and the Children box contain all of the signals in that
+immediate level of hierarchy and all of the component instantiation
+names for that level of hierarchy (denoted by a “(+)” prefix). To
+navigate down a level of hierarchy, click on an item with a “(+)”
+prefix. To move up a level of hierarchy, click on the “..” line.</p>
+<p>Selecting individual items allow you to import traces singly when the
+Append, Insert, or Replace buttons are clicked. Not selecting anything
+will do a “deep import” such that all the child signals are imported.
+Use of that feature is not recommended for very large designs.</p>
+<p>Note that is is possible to modify the display order such that
+components and signals are intermixed in this gadget rather than being
+separated such that all the components for a given level of hierarchy
+are listed alphabetically at the top and all signals are listed
+alphabetically at the bottom. In order to do this, toggle the Search
+submenu item Search Hierarchy Grouping as described on page
+<a class="reference internal" href="#anchor-18"><span class="xref myst">43</span></a>.</p>
+</section>
+<section id="tree-search">
+<h3>Tree Search<a class="headerlink" href="#tree-search" title="Link to this heading">¶</a></h3>
+<p>The Tree Search Requester is the requester that most users will feel
+comfortable using and is also the requester that can optionally be
+embedded in the main window on versions of GTK greater than or equal to
+2.4. See on page for an example of this.</p>
+<p>The Tree Search Requester is composed of a top tree selection box, a
+signals box, and a POSIX regular expression filter. The tree selection
+box is used to navigate at the hierarchy level. Click on an item in
+order to show the signals at that level of hierarchy. In the figure on
+page , the “top” level of hierarchy is selected and the signals box
+shows what signals are available at that level of hierarchy. Signals may
+be individually or multiply selected and can be dragged and dropped into
+the signal window. In addition, a POSIX filter can be specified that
+allows the selective filtering of signal names at a level of hierarchy
+which is handy for finding a specific signal at a level of hierarchy
+that is very large (e.g., in a synthesized netlist).</p>
+<figure class="align-default" id="id4">
+<img alt="The Signal Search Tree Requester" src="_images/quickstart4.png" />
+<figcaption>
+<p><span class="caption-text">The Signal Search Tree Requester</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="signal-save-files">
+<h3>Signal Save Files<a class="headerlink" href="#signal-save-files" title="Link to this heading">¶</a></h3>
+<p>The signals show in the main window can be saved to a file so they can
+automatically be imported without reselection the next time the viewer
+is started. In order to save signals to a save file, select the File
+submenu option Write Save File (As). Save files can also be loaded at
+any time by selecting the Read Save File option.</p>
+</section>
+<section id="pattern-search">
+<h3>Pattern Search<a class="headerlink" href="#pattern-search" title="Link to this heading">¶</a></h3>
+<p>Values, not only nets may be searched on and marked in the wave window.
+In order to do this, select one or more nets in the signal window and
+then click on the Search submenu option Pattern Search. A Pattern Search
+Requester will then appear that will allow various types of search
+operations for the signals that have been selected.</p>
+<p>The following is an example of a Pattern Search Requester being used to
+mark the rising edges for the clock signal in a simulation model.</p>
+<figure class="align-default" id="id5">
+<img alt="The Pattern Search Requester" src="_images/quickstart5.png" />
+<figcaption>
+<p><span class="caption-text">The Pattern Search Requester</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The edges as they are marked by the configuration of
+the Requester in Figure can be seen in on page .</p>
+<p>To remove pattern marks, either select another pattern or select the
+View submenu option Remove Pattern Marks. Note that pattern marks save
+to the save file and that the actual pattern search criteria is saved,
+not the absolute times of the individual marks themselves.</p>
+<p>Search criteria for individual nets can be edge or value based. For
+“String” searches (the entry box to the right of the search type box
+which in the case above is marked “Rising Edge”), note that is is no
+longer required that you must press Enter for the string in order to
+commit the value to the search.</p>
+</section>
+<section id="alias-files-and-attaching-external-disassemblers">
+<h3>Alias Files and Attaching External Disassemblers<a class="headerlink" href="#alias-files-and-attaching-external-disassemblers" title="Link to this heading">¶</a></h3>
+<p>The viewer supports signal aliasing through both plaintext filters and
+through external program filters. Note that signal aliasing is a strict
+one-to-one correspondence so the value represented in the viewer must
+exactly represent what format your filter expects. (e.g., binary,
+hexadecimal, with leading base markers, etc.) For your convenience, the
+comparisons are case insensitive.</p>
+<p>For text filters, the viewer looks at an ASCII text file of the
+following format:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>#
+# this is a comment
+#
+00 Idle
+01 Advance
+10 Stop
+11 Reset
+</pre></div>
+</div>
+<p>The first non-whitespace item is treated as a literal value that would
+normally be printed by the viewer and the remaining items on the line
+are substitution text. Any time this text is encountered if the filter
+is active, it will replace the left-hand side text with the right-hand
+side. Leading and trailing whitespaces are removed from the right-hand
+side item.</p>
+<p>To turn on the filter:</p>
+<ol class="arabic simple">
+<li><p>Highlight the signals you want filtered</p></li>
+<li><p>Edit-&gt;Data Format-&gt;Translate Filter File-&gt;Enable and Select</p></li>
+<li><p>Add Filter to List</p></li>
+<li><p>Click on filter filename</p></li>
+<li><p>Select filter filename from list</p></li>
+<li><p>OK</p></li>
+</ol>
+<p>To turn off the filter:</p>
+<ol class="arabic simple">
+<li><p>Highlight the signals you want unfiltered.</p></li>
+<li><p>Edit-&gt;Data Format-&gt;Translate Filter File-&gt;Disable</p></li>
+</ol>
+<p>!!! note
+Filter configurations load and save properly to and from save files.</p>
+<p>An external process that accepts one line in from stdin and returns with
+data on stdout can be used as a process filter. An example of this are
+disassemblers. The following sample code would show how to interface
+with a disassembler function in C:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">feof</span><span class="p">(</span><span class="n">stdin</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="n">buf</span><span class="p">[</span><span class="mi">1025</span><span class="p">],</span><span class="w"> </span><span class="n">buf2</span><span class="p">[</span><span class="mi">1025</span><span class="p">];</span>
+<span class="w">        </span><span class="n">buf</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">fscanf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">buf</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">buf</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">hx</span><span class="p">;</span>
+<span class="w">            </span><span class="n">sscanf</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%x&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">hx</span><span class="p">);</span>
+<span class="w">            </span><span class="n">ppc_dasm_one</span><span class="p">(</span><span class="n">buf2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">hx</span><span class="p">);</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">buf2</span><span class="p">);</span>
+<span class="w">            </span><span class="n">fflush</span><span class="p">(</span><span class="n">stdout</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">     </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">#!c</span> <span class="pre">fflush(stdout)</span></code> is necessary, otherwise <em>gtkwave</em> will
+hang. Also note that every line of input needs to generate a line of
+output or the viewer will hang too.</p>
+<p>To turn on the filter:</p>
+<ol class="arabic simple">
+<li><p>Highlight the signals you want filtered</p></li>
+<li><p>Edit-&gt;Data Format-&gt;Translate Filter Process-&gt;Enable and Select</p></li>
+<li><p>Add Proc Filter to List</p></li>
+<li><p>Click on filter filename</p></li>
+<li><p>Select filter filename from list</p></li>
+<li><p>OK</p></li>
+</ol>
+<p>To turn off the filter:</p>
+<ol class="arabic simple">
+<li><p>Highlight the signals you want unfiltered.</p></li>
+<li><p>Edit-&gt;Data Format-&gt;Translate Filter Process-&gt;Disable</p></li>
+</ol>
+<p>Note: In order to use the filter to modify the background color of a
+trace, you can prefix the return string to stdout with the X11 color
+name surrounded by ‘?’ characters as follows:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>?CadetBlue?isync
+?red?xor r0,r0,r0
+?lavender?lwz r2,0(r7)
+</pre></div>
+</div>
+<p>Legal color names may be found in the <code class="docutils literal notranslate"><span class="pre">rgb.c</span></code> file in the source code
+distribution.</p>
+</section>
+</section>
+<section id="transaction-filters">
+<h2>Transaction Filters<a class="headerlink" href="#transaction-filters" title="Link to this heading">¶</a></h2>
+<p>Either single traces or grouped vector data (created by Combine Down
+(F4) on some signals) can be used to signify a transaction that can be
+parsed by an external process.</p>
+<p>An external process that can accept a simplified VCD file from stdin and
+return with trace data on stdout can be used as a transaction filter. An
+example of the VCD file received from stdin is the following:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$comment data_start 0x124c0798 $end
+$comment val[7:0] $end
+$timescale 1ms $end
+$comment min_time 0 $end
+$comment max_time 348927 $end
+$comment max_seqn 1 $end
+$scope module top $end
+$comment seqn 1 top.val[7:0] $end
+$var wire 8 1 val[7:0] $end
+$upscope $end
+$enddefinitions $end
+$dumpvars
+#0
+b10000000 1
+#1
+b10000101 1
+#2
+b10001010 1
+...
+#348927
+b110010 1
+$comment data_end 0x124c0798 $end
+</pre></div>
+</div>
+<p>To aid in processing and parsing, some extra comments are added to the
+VCD file:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">data_start</span></code>, a value to match against data end to know that all trace
+data has been received</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_time</span></code>, the start time of the wave data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_time</span></code>, the ending time of the wave data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_seqn</span></code>, indicates the relative ordering of the trace data being
+presented. This can be used to provide “anonymous” signal name matching</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">seqn</span></code>, gives the “flat earth” signal name</p></li>
+</ul>
+<p>Note that the VCD identifies are numbers starting from 1. These are to
+be correlated with the <code class="docutils literal notranslate"><span class="pre">max_seqn</span></code>count.</p>
+<p>An example of data generated on stdout after all data has been received
+is as follows:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$name Decoded Data
+#0
+#186608 ?darkblue?sync
+MA196608 Sync Mark
+#196860
+MB196864 Num Blocks
+#196864 ?gray24?04
+#197116
+MC197120 Hdr 0
+#197120 ?purple3?04
+#197372
+$next
+$name Another Trace
+#0
+#10000 This is a test!
+#200000
+$finish
+</pre></div>
+</div>
+<p>Time values with no data after them are rendered as a horizontal “z”
+bar.</p>
+<p>Lines that start with M are used to place the markers A-Z.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$name</span></code> indicates the name to give to the trace.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$next</span></code> indicated that more trace data follows for a new trace.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$finish</span></code> is used to signal to gtkwave that there is no more trace data.</p></li>
+</ul>
+<p>The data received by gtkwave will be used to generate transaction traces
+in the viewer. In order to make traces created by <code class="docutils literal notranslate"><span class="pre">$next</span></code> visible, insert
+blank lines under the trace that the transaction filter has been added.</p>
+<p>To turn on the filter:</p>
+<ol class="arabic simple">
+<li><p>Highlight the signals you want filtered</p></li>
+<li><p>Edit-&gt;Data Format-&gt;Transaction Filter Process-&gt;Enable and Select</p></li>
+<li><p>Add Transaction Filter to List</p></li>
+<li><p>Click on filter filename</p></li>
+<li><p>Select filter filename from list</p></li>
+<li><p>OK</p></li>
+</ol>
+<p>To turn off the filter:</p>
+<ol class="arabic simple">
+<li><p>Highlight the signals you want unfiltered.</p></li>
+<li><p>Edit-&gt;Data Format-&gt;Transaction Filter Process-&gt;Disable</p></li>
+</ol>
+<p>Note: In order to use the filter to modify the background color of a
+trace, you can prefix the return string to stdout with the X11 color
+name surrounded by ‘?’ characters as follows:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>?CadetBlue?isync
+?red?xor r0,r0,r0
+?lavender?lwz r2,0(r7)
+</pre></div>
+</div>
+<p>Legal color names may be found in the rgb.c file in the source code
+distribution.</p>
+</section>
+<section id="debugging-the-source-code">
+<h2>Debugging the Source Code<a class="headerlink" href="#debugging-the-source-code" title="Link to this heading">¶</a></h2>
+<p>See the description for RTLBrowse on page <a class="reference internal" href="#rtlbrowse"><span class="xref myst">30</span></a>. More
+features are planned to be added in future releases.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="user-interface.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">GTKWave User Interface</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="compiling.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Compiling and Installing GTKWave</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, GTKWave Authors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Quick Start</a><ul>
+<li><a class="reference internal" href="#sample-design">Sample Design</a></li>
+<li><a class="reference internal" href="#launching-gtkwave">Launching GTKWave</a></li>
+<li><a class="reference internal" href="#displaying-waveforms">Displaying Waveforms</a><ul>
+<li><a class="reference internal" href="#signal-search">Signal Search</a></li>
+<li><a class="reference internal" href="#hierarchy-search">Hierarchy Search</a></li>
+<li><a class="reference internal" href="#tree-search">Tree Search</a></li>
+<li><a class="reference internal" href="#signal-save-files">Signal Save Files</a></li>
+<li><a class="reference internal" href="#pattern-search">Pattern Search</a></li>
+<li><a class="reference internal" href="#alias-files-and-attaching-external-disassemblers">Alias Files and Attaching External Disassemblers</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#transaction-filters">Transaction Filters</a></li>
+<li><a class="reference internal" href="#debugging-the-source-code">Debugging the Source Code</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=4e2eecee"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    </body>
+</html>

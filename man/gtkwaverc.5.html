@@ -1,0 +1,811 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="lxt2miner" href="lxt2miner.1.html" /><link rel="prev" title="gtkwave" href="gtkwave.1.html" />
+
+    <!-- Generated with Sphinx 7.3.7 and Furo 2024.04.27 -->
+        <title>gtkwaverc - GTKWave documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=437aa6ec" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">GTKWave  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">GTKWave  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compiling.html">Compiling and Installing GTKWave</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-interface.html">GTKWave User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../menu.html">GTKWave Menu Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tcl.html">Tcl Command Syntax</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../vcd-recoding.html">VCD Recoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxt-file-format.html">LXT File Format</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Man pages</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="evcd2vcd.1.html">evcd2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fst2vcd.1.html">fst2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fstminer.1.html">fstminer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtkwave.1.html">gtkwave</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">gtkwaverc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lxt2miner.1.html">lxt2miner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lxt2vcd.1.html">lxt2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rtlbrowse.1.html">rtlbrowse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shmidcat.1.html">shmidcat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="twinwave.1.html">twinwave</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vcd2fst.1.html">vcd2fst</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vcd2lxt.1.html">vcd2lxt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vcd2lxt2.1.html">vcd2lxt2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vcd2vzt.1.html">vcd2vzt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vzt2vcd.1.html">vzt2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vztminer.1.html">vztminer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xml2stems.1.html">xml2stems</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="gtkwaverc">
+<h1>gtkwaverc<a class="headerlink" href="#gtkwaverc" title="Link to this heading">¶</a></h1>
+<section id="name">
+<h2>NAME<a class="headerlink" href="#name" title="Link to this heading">¶</a></h2>
+<p>gtkwaverc - GTKWave Configuration File</p>
+</section>
+<section id="syntax">
+<h2>SYNTAX<a class="headerlink" href="#syntax" title="Link to this heading">¶</a></h2>
+<p>option &lt;<em>value</em>&gt;</p>
+<p>The configuration file is a series of option and value pairs. Comment lines marked with an initial ‘#’ character are permissible. Blank lines are ignored.</p>
+<p>:</p>
+</section>
+<section id="description">
+<h2>DESCRIPTION<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
+<p>Configuration file for <em>gtkwave</em>(1). The search path for the
+configuration file (if unspecified) is the current working directory
+followed by the user’s home directory.</p>
+</section>
+<section id="options">
+<h2>OPTIONS<a class="headerlink" href="#options" title="Link to this heading">¶</a></h2>
+<dl class="simple myst">
+<dt><strong>accel</strong> &lt;<em>”pathvalue” accelerator</em>&gt;</dt><dd><p>This allows replacement of menu accelerator keys. See the .gtkwaverc
+file in the source distribution for examples on pathvalue and
+accelerator syntax. The special accelerator value of <em>(null)</em> means
+that no accelerator is bound to the menu item.</p>
+</dd>
+<dt><strong>alt_hier_delimeter</strong> &lt;<em>value</em>&gt;</dt><dd><p>This allows another character in addition to the hier_delimeter to
+be used to delimit levels in the hierarchy for VCD. Only the first
+character in the value is significant. Note that this is normally
+off. The intended use is to resolve the hierarchies of netlist based
+models that often contain slashes to delimit hierarchy inside of
+$var statements.</p>
+</dd>
+<dt><strong>alt_wheel_mode</strong> &lt;<em>value</em>&gt;</dt><dd><p>Default is on. Scrollwheel alone pans along a quarter at a time
+rather than a full page, so you don’t get lost. Ctrl+wheel zooms
+in/out around the mouse cursor position, not the marker position.
+Alt+wheel edges left/right based on the currently selected signal.
+This makes measuring deltas easier.</p>
+</dd>
+<dt><strong>analog_redraw_skip_count</strong> &lt;<em>value</em>&gt;</dt><dd><p>Specifies how many overlapping analog segments can be drawn for a
+given X position onscreen. (Default: 20) If there are gaps in analog
+traces, this value is too low.</p>
+</dd>
+<dt><strong>append_vcd_hier</strong> &lt;<em>value</em>&gt;</dt><dd><p>Allows the specification of a prefix hierarchy for VCD files. This
+can be done in “pieces,” so that multiple layers of hierarchy are
+prepended to symbol names with the most significant addition
+occurring first (see .gtkwaverc in the examples/vcd directory). The
+intended use of this is to have the ability to add “project”
+prefixes which allow easier selection of everything from the tree
+hierarchy.</p>
+</dd>
+<dt><strong>atomic_vectors</strong> &lt;<em>value</em>&gt;</dt><dd><p>Speeds up vcd loading and takes up less memory. This option is
+deprecated; it is currently the default.</p>
+</dd>
+<dt><strong>autocoalesce</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value enables autocoalescing of VCD vectors when
+applicable. This may be toggled dynamically during wave viewer
+usage.</p>
+</dd>
+<dt><strong>autocoalesce_reversal</strong> &lt;<em>value</em>&gt;</dt><dd><p>causes split vectors to be reconstructed in reverse order (only if
+autocoalesce is also active).</p>
+</dd>
+<dt><strong>autoname_bundles</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates that GTKWave will create its own bundle
+names rather than prompting the user for them.</p>
+</dd>
+<dt><strong>clipboard_mouseover</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates that when mouseover is enabled, all values
+generated for the tooltips will be automatically copied into the
+clipboard so they may be pasted into other programs such as text
+editors, etc.</p>
+</dd>
+<dt><strong>color_0</strong> &lt;<em>value</em>&gt;</dt><dd><p>trace color when 0.</p>
+</dd>
+<dt><strong>color_1</strong> &lt;<em>value</em>&gt;</dt><dd><p>trace color when 1.</p>
+</dd>
+<dt><strong>color_1fill</strong> &lt;<em>value</em>&gt;</dt><dd><p>trace color (inside of box) when 1.</p>
+</dd>
+<dt><strong>color_back</strong> &lt;<em>value</em>&gt;</dt><dd><p>background color.</p>
+</dd>
+<dt><strong>color_baseline</strong> &lt;<em>value</em>&gt;</dt><dd><p>middle mouse button marker color.</p>
+</dd>
+<dt><strong>color_black</strong> &lt;<em>value</em>&gt;</dt><dd><p>color value for “black” in signal window.</p>
+</dd>
+<dt><strong>color_brkred</strong> &lt;<em>value</em>&gt;</dt><dd><p>brick red color for comments.</p>
+</dd>
+<dt><strong>color_dash</strong> &lt;<em>value</em>&gt;</dt><dd><p>trace color when don’t care (“-“).</p>
+</dd>
+<dt><strong>color_dashfill</strong> &lt;<em>value</em>&gt;</dt><dd><p>trace color (inside of box) when don’t care (“-“).</p>
+</dd>
+<dt><strong>color_dkblue</strong> &lt;<em>value</em>&gt;</dt><dd><p>color value for “dark blue” in signal window.</p>
+</dd>
+<dt><strong>color_dkgray</strong> &lt;<em>value</em>&gt;</dt><dd><p>color value for “dark gray” in signal window.</p>
+</dd>
+<dt><strong>color_gmstrd</strong> &lt;<em>value</em>&gt;</dt><dd><p>color value for trace groupings.</p>
+</dd>
+<dt><strong>color_grid</strong> &lt;<em>value</em>&gt;</dt><dd><p>grid color (use Alt-G/Shift-Alt-G to show/hide grid). This is also
+the color used for <strong>highlight_wavewindow</strong> when enabled.</p>
+</dd>
+<dt><strong>color_grid2</strong> &lt;<em>value</em>&gt;</dt><dd><p>grid color for secondary pattern search.</p>
+</dd>
+<dt><strong>color_high</strong> &lt;<em>value</em>&gt;</dt><dd><p>trace color when high (“H”).</p>
+</dd>
+<dt><strong>color_highfill</strong> &lt;<em>value</em>&gt;</dt><dd><p>trace color (inside of box) when high (“H”).</p>
+</dd>
+<dt><strong>color_low</strong> &lt;<em>value</em>&gt;</dt><dd><p>trace color when low (“L”).</p>
+</dd>
+<dt><strong>color_ltblue</strong> &lt;<em>value</em>&gt;</dt><dd><p>color for shadowed traces.</p>
+</dd>
+<dt><strong>color_ltgray</strong> &lt;<em>value</em>&gt;</dt><dd><p>color value for “light gray” in signal window.</p>
+</dd>
+<dt><strong>color_mark</strong> &lt;<em>value</em>&gt;</dt><dd><p>color of the named markers.</p>
+</dd>
+<dt><strong>color_mdgray</strong> &lt;<em>value</em>&gt;</dt><dd><p>color value for “medium gray” in signal window.</p>
+</dd>
+<dt><strong>color_mid</strong> &lt;<em>value</em>&gt;</dt><dd><p>trace color when floating (“Z”).</p>
+</dd>
+<dt><strong>color_normal</strong> &lt;<em>value</em>&gt;</dt><dd><p>color value for “normal” GTK state in signal window.</p>
+</dd>
+<dt><strong>color_time</strong> &lt;<em>value</em>&gt;</dt><dd><p>text color for timebar.</p>
+</dd>
+<dt><strong>color_timeb</strong> &lt;<em>value</em>&gt;</dt><dd><p>text color for timebar’s background.</p>
+</dd>
+<dt><strong>color_trans</strong> &lt;<em>value</em>&gt;</dt><dd><p>trace color when transitioning.</p>
+</dd>
+<dt><strong>color_u</strong> &lt;<em>value</em>&gt;</dt><dd><p>trace color when undefined (“U”).</p>
+</dd>
+<dt><strong>color_ufill</strong> &lt;<em>value</em>&gt;</dt><dd><p>trace color (inside of box) when undefined (“U”).</p>
+</dd>
+<dt><strong>color_umark</strong> &lt;<em>value</em>&gt;</dt><dd><p>color of the unnamed (primary) marker.</p>
+</dd>
+<dt><strong>color_value</strong> &lt;<em>value</em>&gt;</dt><dd><p>text color for vector values.</p>
+</dd>
+<dt><strong>color_vbox</strong> &lt;<em>value</em>&gt;</dt><dd><p>vector color (horizontal).</p>
+</dd>
+<dt><strong>color_vtrans</strong> &lt;<em>value</em>&gt;</dt><dd><p>vector color (verticals/transitions).</p>
+</dd>
+<dt><strong>color_w</strong> &lt;<em>value</em>&gt;</dt><dd><p>trace color when weak (“W”).</p>
+</dd>
+<dt><strong>color_wfill</strong> &lt;<em>value</em>&gt;</dt><dd><p>trace color (inside of box) when weak (“W”).</p>
+</dd>
+<dt><strong>color_white</strong> &lt;<em>value</em>&gt;</dt><dd><p>color value for “white” in signal window.</p>
+</dd>
+<dt><strong>color_x</strong> &lt;<em>value</em>&gt;</dt><dd><p>trace color when undefined (“X”) (collision for VHDL).</p>
+</dd>
+<dt><strong>color_xfill</strong> &lt;<em>value</em>&gt;</dt><dd><p>trace color (inside of box) when undefined (“X”) (collision for
+VHDL).</p>
+</dd>
+<dt><strong>constant_marker_update</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates that the values for traces listed in the
+signal window are to be updated constantly when the left mouse
+button is being held down rather than only when it is first pressed
+then when released (which is the default).</p>
+</dd>
+<dt><strong>context_tabposition</strong> &lt;<em>value</em>&gt;</dt><dd><p>Use zero for tabbed viewing with named tabs at the top. Nonzero
+places numerically indexed tabs at the left.</p>
+</dd>
+<dt><strong>convert_to_reals</strong> &lt;<em>value</em>&gt;</dt><dd><p>Converts all integer and parameter VCD declarations to real-valued
+ones when set to a nonzero/yes value. The positive aspect of this is
+that integers and parameters will take up less space in memory and
+will automatically display in decimal format. The negative aspect of
+this is that integers and parameters will only be displayable as
+decimals and can’t be bit reversed, inverted, etc.</p>
+</dd>
+<dt><strong>cursor_snap</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates the number of pixels the marker should
+snap to for the nearest signal transition.</p>
+</dd>
+<dt><strong>dbl_mant_dig_overrides</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates that if a simulation’s max time value
+exceeds double floating point mantissa size, then do not exit the
+viewer. The early exit occurs to prevent potential GUI problems with
+scrollbars, etc. Default is 0 = exit.</p>
+</dd>
+<dt><strong>disable_ae2_alias</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates that the AE2 loader is to ignore the
+aliasdb keyword and is not to construct facility aliases.</p>
+</dd>
+<dt><strong>disable_auto_comphier</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates that the loaders that support compressed
+hierarchies should not automatically turn on compression if the
+threshold count of signals (500000) has been reached.</p>
+</dd>
+<dt><strong>disable_empty_gui</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates that if gtkwave is invoked without a
+dumpfile name, then an empty gtkwave session is to be suppressed.
+Default is a zero value: to bring up an empty session which needs a
+file loaded or dragged into it.</p>
+</dd>
+<dt><strong>disable_mouseover</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates that signal/value tooltip pop up bubbles
+on mouse button presses should be disabled in the value window. A
+zero value indicates that value tooltips should be active (default
+is disabled).</p>
+</dd>
+<dt><strong>disable_tooltips</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates that tooltip pop up bubbles should be
+disabled. A zero value indicates that tooltips should be active
+(default).</p>
+</dd>
+<dt><strong>do_initial_zoom_fit</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates that the trace should initially be
+crunched to fit the screen. A zero value indicates that the initial
+zoom should be zero (default).</p>
+</dd>
+<dt><strong>dragzoom_threshold</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates the number of pixels in the x direction
+the marker must move in order for a dragzoom to be triggered. This
+is largely to handle noisy input devices.</p>
+</dd>
+<dt><strong>dynamic_resizing</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates that dynamic resizing should be initially
+enabled (default). A zero value indicates that dynamic resizing
+should be initially disabled.</p>
+</dd>
+<dt><strong>editor</strong> &lt;<em>”value”</em>&gt;</dt><dd><p>This is used to specify a string (quotes mandatory) for when gtkwave
+invokes a text editor (e.g., Open Source Definition). Examples are:
+editor “vimx -g +%d %s”, editor “gedit +%d %s”, editor “emacs
++%d %s”, and for OSX, editor “mate -l %d %s”. The %d may be
+combined with other characters in a string such as +, etc. The %s
+argument must stand by itself. Note that if this rc variable is not
+set, then the environment variable GTKWAVE_EDITOR will be consulted
+next, then finally gedit will be used (if found).</p>
+</dd>
+<dt><strong>enable_fast_exit</strong> &lt;<em>value</em>&gt;</dt><dd><p>Allows exit without bringing up a confirmation requester. The
+default is nonzero/yes.</p>
+</dd>
+<dt><strong>enable_ghost_marker</strong> &lt;<em>value</em>&gt;</dt><dd><p>lets the user turn on/off the ghost marker during primary marker
+dragging. Default is enabled.</p>
+</dd>
+<dt><strong>enable_horiz_grid</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates that when grid drawing is enabled,
+horizontal lines are to be drawn. This is the default.</p>
+</dd>
+<dt><strong>enable_vcd_autosave</strong> &lt;<em>value</em>&gt;</dt><dd><p>causes the vcd loader to automatically generate a .sav file
+(vcd_autosave.sav ) in the cwd if a save file is not specified on
+the command line. Note that this mirrors the VCD $var defs and no
+attempt is made to coalesce split bitvectors back together.</p>
+</dd>
+<dt><strong>enable_vert_grid</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates that when grid drawing is enabled,
+vertical lines are to be drawn. This is the default. Note that all
+possible combinations of enable_horiz_grid and enable_vert_grid
+values are acceptable.</p>
+</dd>
+<dt><strong>fill_waveform</strong> &lt;<em>value</em>&gt;</dt><dd><p>A zero value indicates that the waveform should not be filled for
+1/H values. This is the default.</p>
+</dd>
+<dt><strong>fontname_logfile</strong> &lt;<em>value</em>&gt;</dt><dd><p>When followed by an argument, this indicates the name of the X11
+font that you wish to use for the logfile browser. You may generate
+appropriate fontnames using the xfontsel program.</p>
+</dd>
+<dt><strong>fontname_signals</strong> &lt;<em>value</em>&gt;</dt><dd><p>When followed by an argument, this indicates the name of the X11
+font that you wish to use for signals. You may generate appropriate
+fontnames using the xfontsel program.</p>
+</dd>
+<dt><strong>fontname_waves</strong> &lt;<em>value</em>&gt;</dt><dd><p>When followed by an argument, this indicates the name of the X11
+font that you wish to use for waves. You may generate appropriate
+fontnames using the xfontsel program. Note that the signal font must
+be taller than the wave font or the viewer will complain then
+terminate.</p>
+</dd>
+<dt><strong>force_toolbars</strong> &lt;<em>value</em>&gt;</dt><dd><p>When enabled, this forces everything above the signal and wave
+windows to be rendered as toolbars. This allows for them to be
+detached which allows for more usable wave viewer space. By default
+this is off.</p>
+</dd>
+<dt><strong>hide_sst</strong> &lt;<em>value</em>&gt;</dt><dd><p>Hides the Signal Search Tree widget for GTK2.4 and greater such that
+it is not embedded into the main viewer window. It is still
+reachable as an external widget through the menus.</p>
+</dd>
+<dt><strong>hier_delimeter</strong> &lt;<em>value</em>&gt;</dt><dd><p>This allows characters other than ‘/’ to be used to delimit levels
+in the hierarchy. Only the first character in the value is
+significant.</p>
+</dd>
+<dt><strong>hier_grouping</strong> &lt;<em>value</em>&gt;</dt><dd><p>For the tree widgets, this allows the hierarchies to be grouped in a
+single place rather than spread among the netnames.</p>
+</dd>
+<dt><strong>hier_ignore_escapes</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates that the signal pane ignores escapes in
+identifiers when determining the hierarchy maximum depth. Default is
+disabled so that escapes are examined.</p>
+</dd>
+<dt><strong>hier_max_level</strong> &lt;<em>value</em>&gt;</dt><dd><p>Sets the maximum hierarchy depth (from the right side) to display
+for trace names. Note that a value of zero displays the full
+hierarchy name.</p>
+</dd>
+<dt><strong>highlight_wavewindow</strong> &lt;<em>value</em>&gt;</dt><dd><p>When enabled, this causes traces highlighted in the signal window
+also to be highlighted in the wave window.</p>
+</dd>
+<dt><strong>hpane_pack</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates that the horizontal pane should be
+constructed using the gtk_paned_pack functions (default and
+recommended). A zero value indicates that gtk_paned_add will be used
+instead.</p>
+</dd>
+<dt><strong>ignore_savefile_pane_pos</strong> &lt;<em>value</em>&gt;</dt><dd><p>If nonzero, specifies that the pane position attributes (i.e.,
+signal window width size, SST is expanded, etc.) are to be ignored
+during savefile loading and is to be skipped during saving. Default
+is that the attribute is used.</p>
+</dd>
+<dt><strong>ignore_savefile_pos</strong> &lt;<em>value</em>&gt;</dt><dd><p>If nonzero, specifies that the window position attribute is to be
+ignored during savefile loading and is to be skipped during saving.
+Default is that the position attribute is used.</p>
+</dd>
+<dt><strong>ignore_savefile_size</strong> &lt;<em>value</em>&gt;</dt><dd><p>If nonzero, specifies that the window size attribute is to be
+ignored during savefile loading and is to be skipped during saving.
+Default is that the size attribute is used.</p>
+</dd>
+<dt><strong>initial_signal_window_width</strong> &lt;<em>value</em>&gt;</dt><dd><p>Sets the creation width for the signal pane on GUI initialization.
+Also sets another potential minimum value for dynamic resizing.</p>
+</dd>
+<dt><strong>initial_window_x</strong> &lt;<em>value</em>&gt;</dt><dd><p>Sets the size of the initial width of the wave viewer window. Values
+less than or equal to zero will set the initial width equal to -1
+which will let GTK determine the minimum size.</p>
+</dd>
+<dt><strong>initial_window_xpos</strong> &lt;<em>value</em>&gt;</dt><dd><p>Sets the size of the initial x coordinate of the wave viewer window.
+-1 will let the window manager determine the position.</p>
+</dd>
+<dt><strong>initial_window_y</strong> &lt;<em>value</em>&gt;</dt><dd><p>Sets the size of the initial height of the wave viewer window.
+Values less than or equal to zero will set the initial width equal
+to -1 which will let GTK determine the minimum size.</p>
+</dd>
+<dt><strong>initial_window_ypos</strong> &lt;<em>value</em>&gt;</dt><dd><p>Sets the size of the initial y coordinate of the wave viewer window.
+-1 will let the window manager determine the position.</p>
+</dd>
+<dt><strong>keep_xz_colors</strong> &lt;<em>value</em>&gt;</dt><dd><p>When nonzero, indicates that the original color scheme for non 0/1
+signal values is to be used when Color Format overrides are in
+effect. Default is off.</p>
+</dd>
+<dt><strong>left_justify_sigs</strong> &lt;<em>value</em>&gt;</dt><dd><p>When nonzero, indicates that the signal window signal name
+justification should default to left, else the justification is to
+the right (default).</p>
+</dd>
+<dt><strong>lxt_clock_compress_to_z</strong> &lt;<em>value</em>&gt;</dt><dd><p>For LXT (not LXT2) allows clocks to compress to a ‘z’ value so
+that regular/periodic value changes may be noted.</p>
+</dd>
+<dt><strong>lz_removal</strong> &lt;<em>value</em>&gt;</dt><dd><p>When nonzero, suppresses the display of leading zeros on
+non-filtered traces. This has no effect on filtered traces.</p>
+</dd>
+<dt><strong>max_fsdb_trees</strong> &lt;<em>value</em>&gt;</dt><dd><p>sets the maximum number of hierarchy and signal trees to process for
+an FSDB file. Default = 0 = unlimited. The intent of this is to work
+around sim environments that accidentally call fsdbDumpVars multiple
+times.</p>
+</dd>
+<dt><strong>page_divisor</strong> &lt;<em>value</em>&gt;</dt><dd><p>Sets the scroll amount for page left and right operations. (The
+buttons, not the hscrollbar.) Values over 1.0 are taken as 1/x and
+values equal to and less than 1.0 are taken literally. (i.e., 2
+gives a half-page scroll and .67 gives 2/3). The default is 1.0.</p>
+</dd>
+<dt><strong>ps_maxveclen</strong> &lt;<em>value</em>&gt;</dt><dd><p>sets the maximum number of characters that can be printed for a
+value in the signal window portion of a postscript file (not
+including the net name itself). Legal values are 4 through 66
+(default).</p>
+</dd>
+<dt><strong>ruler_origin</strong> &lt;<em>value</em>&gt;</dt><dd><p>sets the zero origin for alternate time tick marks.</p>
+</dd>
+<dt><strong>ruler_step</strong> &lt;<em>value</em>&gt;</dt><dd><p>sets the left/right step value for the alternate time tick marks
+from the origin. When this value is zero, alternate time tick marks
+are disabled.</p>
+</dd>
+<dt><strong>scale_to_time_dimension</strong> &lt;<em>value</em>&gt;</dt><dd><p>The value can be any of the characters m, u, n, f, p, or s, which
+indicates which time dimension to convert the time values to. The
+default for this is * which means that time dimension conversion is
+disabled.</p>
+</dd>
+<dt><strong>show_base_symbols</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value (default) indicates that the numeric base symbols
+for hexadecimal (‘$’), binary (‘%’), and octal (‘#’) should
+be rendered. Otherwise they will be omitted.</p>
+</dd>
+<dt><strong>show_grid</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value (default) indicates that a grid should be drawn
+behind the traces. A zero indicates that no grid should be drawn.</p>
+</dd>
+<dt><strong>splash_disable</strong> &lt;<em>value</em>&gt;</dt><dd><p>Turning this off enables the splash screen with the GTKWave mascot
+when loading a trace. Default is on.</p>
+</dd>
+<dt><strong>sst_dbl_action_type</strong> &lt;<em>value</em>&gt;</dt><dd><p>Allows double-clicking to be active in the SST signals pane with the
+following actions possible: insert (default), replace, append,
+prepend, none. The value specified for the action is case
+insensitive and only the first letter is required. Invalid action
+types default to none.</p>
+</dd>
+<dt><strong>sst_dynamic_filter</strong> &lt;<em>value</em>&gt;</dt><dd><p>When true (default) allows the SST dialog signal filter to filter
+signals while keys are being pressed, otherwise enter must be
+pressed to cause the filter to go active.</p>
+</dd>
+<dt><strong>sst_expanded</strong> &lt;<em>value</em>&gt;</dt><dd><p>When true allows the SST dialog (when not hidden) to come up already
+expanded.</p>
+</dd>
+<dt><strong>strace_repeat_count</strong> &lt;<em>value</em>&gt;</dt><dd><p>Determines how many times that edge search and pattern search will
+iterate on a search. This allows, for example, skipping ahead 10
+clock edges instead of 1.</p>
+</dd>
+<dt><strong>use_big_fonts</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates that any text rendered into the wave
+window will use fonts that are four points larger in size than
+normal. This can enhance readability. A zero value indicates that
+normal font sizes should be used.</p>
+</dd>
+<dt><strong>use_fat_lines</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates that any lines rendered into the wave
+window will be two pixels wide instead of a single pixel in width.
+This can enhance readability. A zero value indicates that normal
+line widths should be used.</p>
+</dd>
+<dt><strong>use_frequency_delta</strong> &lt;<em>value</em>&gt;</dt><dd><p>allows you to switch between the delta time and frequency display in
+the upper right corner of the main window when measuring distances
+between markers. Default behavior is that the delta time is
+displayed (off).</p>
+</dd>
+<dt><strong>use_gestures</strong> &lt;<em>value</em>&gt;</dt><dd><p>if supported by the GTK version will enable gestures such as swipe
+in the wave window. The default is that this feature is enabled if a
+touch screen is available (value is “maybe”). Values of on or off
+are also permissible.</p>
+</dd>
+<dt><strong>use_full_precision</strong> &lt;<em>value</em>&gt;</dt><dd><p>does not round time values when the number of ticks per pixel
+onscreen is greater than 10 when active. The default is that this
+feature is disabled.</p>
+</dd>
+<dt><strong>use_maxtime_display</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates that the maximum time will be displayed in
+the upper right corner of the screen. Otherwise, the current primary
+(unnamed) marker time will be displayed. This can be toggled at any
+time with the Toggle Max-Marker menu option.</p>
+</dd>
+<dt><strong>use_nonprop_fonts</strong> &lt;<em>value</em>&gt;</dt><dd><p>Allows accelerated redraws of the signalwindow that can be done
+because the font width is constant. Default is off.</p>
+</dd>
+<dt><strong>use_pango_fonts</strong> &lt;<em>value</em>&gt;</dt><dd><p>Uses anti-aliased pango fonts (GTK2) rather than bitmapped X11 ones.
+Default is on.</p>
+</dd>
+<dt><strong>use_roundcaps</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates that vector traces should be drawn with
+rounded caps rather than perpendicular ones. The default for this is
+zero.</p>
+</dd>
+<dt><strong>use_scrollbar_only</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates that the page, shift, fetch, and discard
+buttons should not be drawn (i.e., time manipulations should be
+through the scrollbar only rather than front panel buttons). The
+default for this is zero.</p>
+</dd>
+<dt><strong>use_scrollwheel_as_y</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates that the scroll wheel on the mouse should
+be used to scroll the signals up and down rather than scrolling the
+time value from left to right.</p>
+</dd>
+<dt><strong>use_standard_clicking</strong> &lt;<em>value</em>&gt;</dt><dd><p>This option no longer has any effect in gtkwave: normal GTK click
+semantics are used in the signalwindow.</p>
+</dd>
+<dt><strong>use_standard_trace_select</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value keeps the currently selected traces from deselecting
+on mouse button press. This allows drag and drop to function more
+smoothly. As this behavior is not how GTK normally functions, it is
+by default disabled.</p>
+</dd>
+<dt><strong>use_toolbutton_interface</strong> &lt;<em>value</em>&gt;</dt><dd><p>A nonzero value indicates that a toolbar with buttons should be at
+the top of the screen instead of the traditional style gtkwave
+button groups. Default is on.</p>
+</dd>
+<dt><strong>vcd_explicit_zero_subscripts</strong> &lt;<em>value</em>&gt;</dt><dd><p>indicates that signal names should be stored internally as
+name.bitnumber when enabled. When disabled, a more “normal”
+ordering of name[bitnumber] is used. Note that when disabled, the
+Bundle Up and Bundle Down options are disabled in the Signal Search
+Regexp, Signal Search Hierarchy, and Signal Search Tree options.
+This is necessary as the internal data structures for signals are
+represented with one “less” level of hierarchy than when enabled
+and those functions would not work properly. This should not be an
+issue if atomic_vectors are enabled. Default for
+vcd_explicit_zero_subscripts is disabled.</p>
+</dd>
+<dt><strong>vcd_preserve_glitches</strong> &lt;<em>value</em>&gt;</dt><dd><p>indicates that any repeat equal values for a net spanning different
+time values in the VCD/FST file are not to be compressed into a
+single value change but should remain in order to allow glitches to
+be present for this case. Default for vcd_preserve_glitches is
+disabled.</p>
+</dd>
+<dt><strong>vcd_preserve_glitches_real</strong> &lt;<em>value</em>&gt;</dt><dd><p>indicates that any repeat equal values for a real net spanning
+different time values in the VCD/FST file are not to be compressed
+into a single value change but should remain for this case. Default
+for vcd_preserve_glitches is disabled. The intended use is for when
+viewing analog interpolated data such that removing duplicate values
+would incorrectly deform the interpolation.</p>
+</dd>
+<dt><strong>vcd_warning_filesize</strong> &lt;<em>value</em>&gt;</dt><dd><p>produces a warning message if the VCD filesize is greater than the
+argument’s size in MB. Set to zero to disable this.</p>
+</dd>
+<dt><strong>vector_padding</strong> &lt;<em>value</em>&gt;</dt><dd><p>indicates the number of pixels of extra whitespace that should be
+added to any strings for the purpose of calculating text in vectors.
+Permissible values are 0 to 16 with the default being 4.</p>
+</dd>
+<dt><strong>vlist_compression</strong> &lt;<em>value</em>&gt;</dt><dd><p>indicates the value to pass to zlib during vlist processing (which
+is used in the VCD recoder). -1 disables compression, 0-9 correspond
+to the value zlib expects. 4 is default.</p>
+</dd>
+<dt><strong>vlist_prepack</strong> &lt;<em>value</em>&gt;</dt><dd><p>indicates that the VCD recoder should pre-compress data going into
+the value change vlists in order to reduce memory usage. This is
+done before potential zlib packing. Default is off.</p>
+</dd>
+<dt><strong>vlist_spill</strong> &lt;<em>value</em>&gt;</dt><dd><p>indicates that the VCD recoder should spill all generated vlists to
+a tempfile on disk in order to reduce memory usage. Default is off.</p>
+</dd>
+<dt><strong>wave_scrolling</strong> &lt;<em>value</em>&gt;</dt><dd><p>a nonzero value enables scrolling by dragging the marker off the
+left or right sides of the wave window. A zero value disables it.</p>
+</dd>
+<dt><strong>zoom_base</strong> &lt;<em>value</em>&gt;</dt><dd><p>allows setting of the zoom base with a value between 1.5 and 10.0.
+Default is 2.0.</p>
+</dd>
+<dt><strong>zoom_center</strong> &lt;<em>value</em>&gt;</dt><dd><p>a nonzero value enables center zooming, a zero value disables it.</p>
+</dd>
+<dt><strong>zoom_dynamic</strong> &lt;<em>value</em>&gt;</dt><dd><p>a nonzero value enables dynamic full zooming when using the partial
+VCD (incremental) loader, a zero value disables it.</p>
+</dd>
+<dt><strong>zoom_dynamic_end</strong> &lt;<em>value</em>&gt;</dt><dd><p>a nonzero value enables dynamic zoom to the end when using the
+partial VCD (incremental) loader, a zero value disables it.</p>
+</dd>
+<dt><strong>zoom_pow10_snap</strong> &lt;<em>value</em>&gt;</dt><dd><p>corresponds to the Zoom Pow10 Snap menu option. Default for this is
+disabled (zero).</p>
+</dd>
+</dl>
+</section>
+<section id="authors">
+<h2>AUTHORS<a class="headerlink" href="#authors" title="Link to this heading">¶</a></h2>
+<p>Anthony Bybell &lt;bybell&#64;rocketmail.com&gt;</p>
+</section>
+<section id="see-also">
+<h2>SEE ALSO<a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h2>
+<p><em>gtkwave</em>(1)</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="lxt2miner.1.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">lxt2miner</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="gtkwave.1.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">gtkwave</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, GTKWave Authors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">gtkwaverc</a><ul>
+<li><a class="reference internal" href="#name">NAME</a></li>
+<li><a class="reference internal" href="#syntax">SYNTAX</a></li>
+<li><a class="reference internal" href="#description">DESCRIPTION</a></li>
+<li><a class="reference internal" href="#options">OPTIONS</a></li>
+<li><a class="reference internal" href="#authors">AUTHORS</a></li>
+<li><a class="reference internal" href="#see-also">SEE ALSO</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=4e2eecee"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    </body>
+</html>

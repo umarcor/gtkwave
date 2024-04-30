@@ -1,0 +1,1182 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="VCD Recoding" href="vcd-recoding.html" /><link rel="prev" title="GTKWave Menu Functions" href="menu.html" />
+
+    <!-- Generated with Sphinx 7.3.7 and Furo 2024.04.27 -->
+        <title>Tcl Command Syntax - GTKWave documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=437aa6ec" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">GTKWave  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">GTKWave  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling and Installing GTKWave</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-interface.html">GTKWave User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="menu.html">GTKWave Menu Functions</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Tcl Command Syntax</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="vcd-recoding.html">VCD Recoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lxt-file-format.html">LXT File Format</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Man pages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="man/evcd2vcd.1.html">evcd2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/fst2vcd.1.html">fst2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/fstminer.1.html">fstminer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/gtkwave.1.html">gtkwave</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/gtkwaverc.5.html">gtkwaverc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/lxt2miner.1.html">lxt2miner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/lxt2vcd.1.html">lxt2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/rtlbrowse.1.html">rtlbrowse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/shmidcat.1.html">shmidcat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/twinwave.1.html">twinwave</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vcd2fst.1.html">vcd2fst</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vcd2lxt.1.html">vcd2lxt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vcd2lxt2.1.html">vcd2lxt2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vcd2vzt.1.html">vcd2vzt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vzt2vcd.1.html">vzt2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vztminer.1.html">vztminer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/xml2stems.1.html">xml2stems</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="tcl-command-syntax">
+<h1>Tcl Command Syntax<a class="headerlink" href="#tcl-command-syntax" title="Link to this heading">¶</a></h1>
+<section id="tcl-commands">
+<h2>Tcl Commands<a class="headerlink" href="#tcl-commands" title="Link to this heading">¶</a></h2>
+<p>Besides being able to access the menu options (e.g.,
+<code class="docutils literal notranslate"><span class="pre">gtkwave::/File/Quit</span></code>), within Tcl scripts there are more commands
+available for manipulating the viewer.</p>
+<dl class="simple myst">
+<dt><code class="docutils literal notranslate"><span class="pre">addCommentTracesFromList</span></code>: adds comment traces to the viewer</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>num_found<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>addCommentTracesFromList<span class="w"> </span>list<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id1" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>clk48<span class="w"> </span><span class="k">[</span><span class="nb">list</span><span class="k">]</span>
+<span class="nb">lappend</span><span class="w"> </span>clk48<span class="w"> </span><span class="s2">&quot;$facname1&quot;</span>
+<span class="nb">lappend</span><span class="w"> </span>clk48<span class="w"> </span><span class="s2">&quot;$facname2&quot;</span>
+<span class="nv">...</span>
+<span class="k">set</span><span class="w"> </span>num_added<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>addCommentTracesFromList<span class="w"> </span><span class="nv">$clk48</span><span class="w"> </span><span class="k">]</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">addSignalsFromList</span></code>: adds signals to the viewer</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>num_found<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>addSignalsFromList<span class="w"> </span>list<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>clk48<span class="w"> </span><span class="k">[</span><span class="nb">list</span><span class="k">]</span>
+<span class="nb">lappend</span><span class="w"> </span>clk48<span class="w"> </span><span class="s2">&quot;$facname1&quot;</span>
+<span class="nb">lappend</span><span class="w"> </span>clk48<span class="w"> </span><span class="s2">&quot;$facname2&quot;</span>
+<span class="nv">...</span>
+<span class="k">set</span><span class="w"> </span>num_added<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>addSignalsFromList<span class="w"> </span><span class="nv">$clk48</span><span class="w"> </span><span class="k">]</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">deleteSignalsFromList</span></code>: deletes signals from the viewer.</dt><dd><p>This deletes only the first instance found unless the signal is specified multiple times in the list.</p>
+<p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>num_deleted<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>deleteSignalsFromList<span class="w"> </span>list<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>clk48<span class="w"> </span><span class="k">[</span><span class="nb">list</span><span class="k">]</span>
+<span class="nb">lappend</span><span class="w"> </span>clk48<span class="w"> </span><span class="s2">&quot;$facname1&quot;</span>
+<span class="nb">lappend</span><span class="w"> </span>clk48<span class="w"> </span><span class="s2">&quot;$facname2&quot;</span>
+<span class="nv">...</span>
+<span class="k">set</span><span class="w"> </span>num_deleted<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>deleteSignalsFromList<span class="w"> </span><span class="nv">$clk48</span><span class="w"> </span><span class="k">]</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">deleteSignalsFromListIncludingDuplicates</span></code>: deletes signals from the viewer.</dt><dd><p>This deletes all the instances found so there is no need to specify the same signal multiple times in the list.</p>
+<p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>num_deleted<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>deleteSignalsFromListIncludingDuplicates<span class="w"> </span>list<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id4" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>clk48<span class="w"> </span><span class="k">[</span><span class="nb">list</span><span class="k">]</span>
+<span class="nb">lappend</span><span class="w"> </span>clk48<span class="w"> </span><span class="s2">&quot;$facname1&quot;</span>
+<span class="nb">lappend</span><span class="w"> </span>clk48<span class="w"> </span><span class="s2">&quot;$facname2&quot;</span>
+<span class="nv">...</span>
+<span class="k">set</span><span class="w"> </span>num_deleted<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>deleteSignalsFromListIncludingDuplicates<span class="w"> </span><span class="nv">$clk48</span><span class="w"> </span><span class="k">]</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">findNextEdge</span></code>: advances the marker to the next edge for highlighted signals</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>marker_time<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>findNextEdge<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id5" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="nv">gtkwave</span><span class="o">::</span>highlightSignalsFromList<span class="w"> </span><span class="s2">&quot;top.clk&quot;</span>
+<span class="k">set</span><span class="w"> </span>time_value<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>findNextEdge<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;time_value: $time_value&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">findPrevEdge</span></code>: moves the marker to the previous edge for highlighted signals</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>marker_time<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>findPrevEdge<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id6" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="nv">gtkwave</span><span class="o">::</span>highlightSignalsFromList<span class="w"> </span><span class="s2">&quot;top.clk&quot;</span>
+<span class="k">set</span><span class="w"> </span>time_value<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>findPrevEdge<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;time_value: $time_value&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">forceOpenTreeNode</span></code>: forces open one tree node in the Signal Search Tree and closes the rest.</dt><dd><p>If upper levels are not open, the tree will remain
+closed however once the upper levels are opened, the hierarchy specified
+will become open. If path is missing or is an empty string, the function
+returns the current hierarchy path selected by the SST or -1 in case of
+error.</p>
+<p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>forceOpenTreeNode<span class="w"> </span>hierarchy_path</code></p>
+<p>Returned value:<br />
+<code class="docutils literal notranslate"><span class="pre">0</span></code> - success<br />
+<code class="docutils literal notranslate"><span class="pre">1</span></code> - path not found in the tree<br />
+<code class="docutils literal notranslate"><span class="pre">-1</span></code> - SST tree does not exist</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id7" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>path<span class="w"> </span>tb.HDT.cpu
+<span class="k">switch</span><span class="w"> </span><span class="o">--</span><span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwavetcl</span><span class="o">::</span>forceOpenTreeNode<span class="w"> </span><span class="nv">$path</span><span class="w"> </span><span class="k">]</span><span class="w"> </span><span class="k">{</span>
+<span class="w">    </span><span class="nv">-1</span><span class="w"> </span><span class="k">{</span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;Error: SST is not supported here&quot;</span><span class="k">}</span>
+<span class="w">    </span><span class="nv">1</span><span class="w"> </span><span class="k">{</span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;Error: &#39;$path&#39; was not recorder to dump file&quot;</span><span class="k">}</span>
+<span class="w">    </span><span class="nv">0</span><span class="w"> </span><span class="k">{}</span>
+<span class="k">}</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getArgv</span></code>: returns a list of arguments which were used to start gtkwave from the command line</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>argvlist<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getArgv<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id8" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>argvs<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getArgv<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$argvs&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getBaselineMarker</span></code>: returns the numeric value of the baseline marker time</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>baseline_time<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getBaselineMarker<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id9" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>baseline<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getBaselineMarker<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$baseline&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getDisplayedSignals</span></code>: returns a list of all signals currently on display</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>display_list<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getDisplayedSignals<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id10" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>display_list<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getDisplayedSignals<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$display_list&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getDumpFileName</span></code>: returns the filename for the loaded dumpfile</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>loaded_file_name<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getDumpFileName<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id11" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>nfacs<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getNumFacs<span class="w"> </span><span class="k">]</span>
+<span class="k">set</span><span class="w"> </span>dumpname<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getDumpFileName<span class="w"> </span><span class="k">]</span>
+<span class="k">set</span><span class="w"> </span>dmt<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getDumpType<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;number of signals in dumpfile &#39;$dumpname&#39; of type $dmt: $nfacs&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getDumpType</span></code>: returns the dump type as a string (VCD, PVCD, LXT, LXT2, GHW, VZT)</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>dump_type<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getDumpType<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id12">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id12" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>nfacs<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getNumFacs<span class="w"> </span><span class="k">]</span>
+<span class="k">set</span><span class="w"> </span>dumpname<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getDumpFileName<span class="w"> </span><span class="k">]</span>
+<span class="k">set</span><span class="w"> </span>dmt<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getDumpType<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;number of signals in dumpfile &#39;$dumpname&#39; of type $dmt: $nfacs&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getFacName</span></code>: returns a string for the facility name which corresponds to a given facility number</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>fac_name<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getFacName<span class="w"> </span>fac_number<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id13" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>nfacs<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getNumFacs<span class="w"> </span><span class="k">]</span>
+<span class="k">for</span><span class="w"> </span><span class="k">{set</span><span class="w"> </span>i<span class="w"> </span><span class="mi">0</span><span class="k">}</span><span class="w"> </span><span class="k">{</span><span class="nv">$i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nv">$nfacs</span><span class="w"> </span><span class="k">}</span><span class="w"> </span><span class="k">{</span><span class="nb">incr</span><span class="w"> </span>i<span class="k">}</span><span class="w"> </span><span class="k">{</span>
+<span class="w">    </span><span class="k">set</span><span class="w"> </span>facname<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getFacName<span class="w"> </span><span class="nv">$i</span><span class="w"> </span><span class="k">]</span>
+<span class="w">    </span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$i: $facname&quot;</span>
+<span class="k">}</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getFacDir</span></code>: returns a string for the direction which corresponds to a given facility number</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>fac_dir<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getFacDir<span class="w"> </span>fac_number<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id14">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id14" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>nfacs<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getNumFacs<span class="w"> </span><span class="k">]</span>
+<span class="k">for</span><span class="w"> </span><span class="k">{set</span><span class="w"> </span>i<span class="w"> </span><span class="mi">0</span><span class="k">}</span><span class="w"> </span><span class="k">{</span><span class="nv">$i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nv">$nfacs</span><span class="w"> </span><span class="k">}</span><span class="w"> </span><span class="k">{</span><span class="nb">incr</span><span class="w"> </span>i<span class="k">}</span><span class="w"> </span><span class="k">{</span>
+<span class="w">    </span><span class="k">set</span><span class="w"> </span>facdir<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getFacDir<span class="w"> </span><span class="nv">$i</span><span class="w"> </span><span class="k">]</span>
+<span class="w">    </span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$i: $facdir&quot;</span>
+<span class="k">}</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getFacVtype</span></code>: returns a string for the variable type which corresponds to a given facility number</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>fac_vtype<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getFacVtype<span class="w"> </span>fac_number<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id15">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id15" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>nfacs<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getNumFacs<span class="w"> </span><span class="k">]</span>
+<span class="k">for</span><span class="w"> </span><span class="k">{set</span><span class="w"> </span>i<span class="w"> </span><span class="mi">0</span><span class="k">}</span><span class="w"> </span><span class="k">{</span><span class="nv">$i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nv">$nfacs</span><span class="w"> </span><span class="k">}</span><span class="w"> </span><span class="k">{</span><span class="nb">incr</span><span class="w"> </span>i<span class="k">}</span><span class="w"> </span><span class="k">{</span>
+<span class="w">    </span><span class="k">set</span><span class="w"> </span>facvtype<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getFacVtype<span class="w"> </span><span class="nv">$i</span><span class="w"> </span><span class="k">]</span>
+<span class="w">    </span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$i: $facvtype&quot;</span>
+<span class="k">}</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getFacDtype</span></code>: returns a string for the data type which corresponds to a given facility number</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>fac_dtype<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getFacDtype<span class="w"> </span>fac_number<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id16">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id16" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>nfacs<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getNumFacs<span class="w"> </span><span class="k">]</span>
+<span class="k">for</span><span class="w"> </span><span class="k">{set</span><span class="w"> </span>i<span class="w"> </span><span class="mi">0</span><span class="k">}</span><span class="w"> </span><span class="k">{</span><span class="nv">$i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nv">$nfacs</span><span class="w"> </span><span class="k">}</span><span class="w"> </span><span class="k">{</span><span class="nb">incr</span><span class="w"> </span>i<span class="k">}</span><span class="w"> </span><span class="k">{</span>
+<span class="w">    </span><span class="k">set</span><span class="w"> </span>facdtype<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getFacDtype<span class="w"> </span><span class="nv">$i</span><span class="w"> </span><span class="k">]</span>
+<span class="w">    </span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$i: $facdtype&quot;</span>
+<span class="k">}</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getFontHeight</span></code>: returns the font height for signal names</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>font_height<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getFontHeight<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id17">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id17" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>font_height<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getFontHeight<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$font_height&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getFromEntry</span></code>: returns the time value string in the “From:” box.</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>from_entry<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getFromEntry<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id18">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id18" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>from_entry<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getFromEntry<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$from_entry&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getHierMaxLevel</span></code>: returns the max hier value which is set in the viewer</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>hier_max_level<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getHierMaxLevel<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id19">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id19" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>max_level<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getHierMaxLevel<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$max_level&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getLeftJustifySigs</span></code>: returns 1 if signals are left justified, else 0</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>left_justify<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getLeftJustifySigs<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id20">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id20" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>justify<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getLeftJustifySigs<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$justify&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getLongestName</span></code>: returns number of characters of the longest name in the dumpfile</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>longestname_len<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getLongestName<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id21">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id21" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>longest<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getLongestName<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$longest&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getMarker</span></code>: returns the numeric value of the primary marker position</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>marker_time<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getMarker<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id22">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id22" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>marker_time<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getMarker<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$marker_time&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getMaxTime</span></code>: returns the numeric value of the last time value in the dumpfile</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>max_time<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getMaxTime<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id23">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id23" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>max_time<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getMaxTime<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$max_time&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getMinTime</span></code>: returns the numeric value of the first time value in the dumpfile</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>min_time<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getMinTime<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id24">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id24" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>min_time<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getMinTime<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$min_time&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getNamedMarker</span></code>: returns the numeric value of the named marker position</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>time_value<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getNamedMarker<span class="w"> </span>which<span class="w"> </span><span class="k">]</span></code>
+such that which = A-Z or a-z</p>
+<div class="literal-block-wrapper docutils container" id="id25">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id25" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>marker_time<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getNamedMarker<span class="w"> </span>A<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$marker_time&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getNumFacs</span></code>: returns the number of facilities encountered in the dumpfile</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>numfacs<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getNumFacs<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id26">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id26" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>nfacs<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getNumFacs<span class="w"> </span><span class="k">]</span>
+<span class="k">set</span><span class="w"> </span>dumpname<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getDumpFileName<span class="w"> </span><span class="k">]</span>
+<span class="k">set</span><span class="w"> </span>dmt<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getDumpType<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;number of signals in dumpfile &#39;$dumpname&#39; of type $dmt: $nfacs&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getNumTabs</span></code>: returns the number of tabs shown on the viewer</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>numtabs<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getNumTabs<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id27">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id27" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>ntabs<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getNumTabs<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;number of tabs: $ntabs&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getPixelsUnitTime</span></code>: returns the number of pixels per unit time</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>pxut<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getPixelsUnitTime<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id28">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id28" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>pxut<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getPixelsUnitTime<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$pxut&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getSaveFileName</span></code>: returns the save filename</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>save_file_name<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getSaveFileName<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id29">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id29" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>savename<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getSaveFileName<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$savename&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getStemsFileName</span></code>: returns the stems filename</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>stems_file_name<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getStemsFileName<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id30">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id30" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>stemsname<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getStemsFileName<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$stemsname&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getTimeDimension</span></code>: returns the first character of the time units that the trace was saved in (e.g., “u” for us, “n” for “ns”, “s” for sec, etc.)</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>dimension_first_char<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getTimeDimension<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id31">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id31" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>dimch<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getTimeDimension<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$dimch&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getTimeZero</span></code>: returns the numeric value for what represents the time #0 in the dumpfile. This is only of interest if the $timezero directive is encountered in the dumpfile.</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>zero_time<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getTimeZero<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id32">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id32" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>zero_time<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getTimeZero<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$zero_time&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getToEntry</span></code>: returns the time value string in the “To:” box.</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>to_entry<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getToEntry<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id33">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id33" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>to_entry<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getFromEntry<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$to_entry&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getTotalNumTraces</span></code>: returns the total number of traces that are being displayed currently</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>total_traces<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getTotalNumTraces<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id34">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id34" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>totnum<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getTotalNumTraces<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$totnum&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getTraceFlagsFromIndex</span></code>: returns the decimal value of the sum of all flags for a given trace</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>flags<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getTraceFlagsFromIndex<span class="w"> </span>trace_number<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id35">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id35" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>tflags<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getTraceFlagsFromIndex<span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$tflags&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getTraceFlagsFromName</span></code>: returns the decimal value of the sum of all flags for a given trace</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>flags<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getTraceFlagsFromName<span class="w"> </span>trace_name<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id36">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id36" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>tflags<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getTraceFlagsFromName<span class="w"> </span><span class="k">{</span><span class="nv">top.des.k1x</span><span class="k">[</span><span class="nv">1</span><span class="o">:</span><span class="mi">48</span><span class="k">]}</span><span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$tflags&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getTraceNameFromIndex</span></code>: returns the name of a trace when given the index value</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>trace_name<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getTraceNameFromIndex<span class="w"> </span>trace_number<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id37">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id37" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>tname<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getTraceNameFromIndex<span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$tname&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getTraceScrollbarRowValue</span></code>: returns the scrollbar value (which corresponds to the trace index for the topmost trace on screen)</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>scroller_value<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getTraceScrollbarRowValue<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id38">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id38" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>scroller<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getTraceScrollbarRowValue<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$scroller&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getTraceValueAtMarkerFromIndex</span></code>: returns the value under the marker for the trace numbered trace index</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>ascii_value<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getTraceValueAtMarkerFromIndex<span class="w"> </span>trace_number<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id39">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id39" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>tvi<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getTraceValueAtMarkerFromIndex<span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$tvi&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getTraceValueAtMarkerFromName</span></code>: returns the value under the primary marker for the given trace name</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>ascii_value<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getTraceValueAtMarkerFromName<span class="w"> </span>fac_name<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id40">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id40" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>tvn<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getTraceValueAtMarkerFromName<span class="w"> </span><span class="k">{</span><span class="nv">top.des.k2x</span><span class="k">[</span><span class="nv">1</span><span class="o">:</span><span class="mi">48</span><span class="k">]}</span><span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$tvn&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getTraceValueAtNamedMarkerFromName</span></code>: returns the value under the named marker for the given trace name</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>ascii_value<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getTraceValueAtNamedMarkerFromName<span class="w"> </span>which<span class="w"> </span>fac_name<span class="w"> </span><span class="k">]</span></code>
+such that which = A-Z or a-z</p>
+<div class="literal-block-wrapper docutils container" id="id41">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id41" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>tvn<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getTraceValueAtNamedMarkerFromName<span class="w"> </span>A<span class="w"> </span><span class="k">{</span><span class="nv">top.des.k2x</span><span class="k">[</span><span class="nv">1</span><span class="o">:</span><span class="mi">48</span><span class="k">]}</span><span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$tvn&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getUnitTimePixels</span></code>: returns the number of time units per pixel</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>utpx<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getUnitTimePixels<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id42">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id42" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>utpx<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getUnitTimePixels<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$utpx&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getVisibleNumTraces</span></code>: returns number of non-collapsed traces</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>num_visible_traces<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getVisibleNumTraces<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id43">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id43" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>nvt<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getVisibleNumTraces<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$nvt&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getWaveHeight</span></code>: returns the height of the wave window in pixels</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>wave_height<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getWaveHeight<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id44">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id44" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>wht<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getWaveHeight<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$wht&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getWaveWidth</span></code>: returns the width of the wave window in pixels</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>wave_width<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getWaveWidth<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id45">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id45" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>wwt<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getWaveWidth<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$wwt&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getWindowEndTime</span></code>: returns the end time of the wave window</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>end_time_value<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getWindowEndTime<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id46">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id46" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>wet<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getWindowEndTime<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$wet&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getWindowStartTime</span></code>: returns the start time of the wave window</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>start_time_value<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getWindowStartTime<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id47">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id47" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>wst<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getWindowStartTime<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$wst&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">getZoomFactor</span></code>: returns the zoom factor of the wave window</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>zoom_value<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getZoomFactor<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id48">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id48" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>zf<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>getZoomFactor<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$zf&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">highlightSignalsFromList</span></code>: highlights the facilities contained in the list argument</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>num_highlighted<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>highlightSignalsFromList<span class="w"> </span>list<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id49">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id49" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>clk48<span class="w"> </span><span class="k">[</span><span class="nb">list</span><span class="k">]</span>
+
+<span class="nb">lappend</span><span class="w"> </span>clk48<span class="w"> </span><span class="s2">&quot;$facname1&quot;</span>
+<span class="nb">lappend</span><span class="w"> </span>clk48<span class="w"> </span><span class="s2">&quot;$facname2&quot;</span>
+<span class="nv">...</span>
+<span class="k">set</span><span class="w"> </span>num_highlighted<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>highlightSignalsFromList<span class="w"> </span><span class="nv">$clk48</span><span class="w"> </span><span class="k">]</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">installFileFilter</span></code>: installs file filter number which across all highlighted traces. Using zero for which removes the filter.</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>num_updated<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>installFileFilter<span class="w"> </span>which<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id50">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id50" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>num_updated<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>installFileFilter<span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$num_updated&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">installProcFilter</span></code>: installs process filter number which across all highlighted traces. Using zero for which removes the filter.</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>num_updated<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>installProcFilter<span class="w"> </span>which<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id51">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id51" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>num_updated<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>installProcFilter<span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$num_updated&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">installTransFilter</span></code>: installs transaction process filter number which across all highlighted traces. Using zero for which removes the filter.</dt><dd><p>Syntax: set num_updated [ gtkwave::installTransFilter which ]</p>
+<div class="literal-block-wrapper docutils container" id="id52">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id52" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>num_updated<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>installTransFilter<span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$num_updated&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">loadFile</span></code>: loads a new file</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>loadFile<span class="w"> </span>filename</code></p>
+<div class="literal-block-wrapper docutils container" id="id53">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id53" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="nv">gtkwave</span><span class="o">::</span>loadFile<span class="w"> </span><span class="s2">&quot;$filename&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">nop</span></code>: calls the GTK main loop in order to update the gtkwave GUI</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>nop</code></p>
+<div class="literal-block-wrapper docutils container" id="id54">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id54" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="nv">gtkwave</span><span class="o">::</span>nop
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">presentWindow</span></code>: raises the main window in the stacking order or deiconifies it</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>presentWindow</code></p>
+<div class="literal-block-wrapper docutils container" id="id55">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id55" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="nv">gtkwave</span><span class="o">::</span>presentWindow
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">reLoadFile</span></code>: reloads the current active file</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>reLoadFile</code></p>
+<div class="literal-block-wrapper docutils container" id="id56">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id56" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="nv">gtkwave</span><span class="o">::</span>reLoadFile
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">setBaselineMarker</span></code>: sets the time for the baseline marker (-1 removes it)</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>setBaselineMarker<span class="w"> </span>time_value</code></p>
+<div class="literal-block-wrapper docutils container" id="id57">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id57" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="nv">gtkwave</span><span class="o">::</span>setBaselineMarker<span class="w"> </span><span class="mi">128</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">setCurrentTranslateEnums</span></code>: sets the enum list to function as the current translate file and returns the corresponding which value to be used with gtkwave::installFileFilter. As a real file is not used, the results of this are not recreated when a save file is loaded or if the waveform is reloaded.</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>which_f<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>setCurrentTranslateEnums<span class="w"> </span>elist<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id58">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id58" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>enums<span class="w"> </span><span class="k">[</span><span class="nb">list</span><span class="k">]</span>
+
+<span class="nb">lappend</span><span class="w"> </span>enums<span class="w"> </span><span class="mo">0000000000000000</span><span class="w"> </span>IDLE
+<span class="nb">lappend</span><span class="w"> </span>enums<span class="w"> </span>FFFFFFFFFFFFFFFF<span class="w"> </span>BUSY
+<span class="nb">lappend</span><span class="w"> </span>enums<span class="w"> </span><span class="mi">3000000000000000</span><span class="w"> </span>OTHER
+<span class="nb">lappend</span><span class="w"> </span>enums<span class="w"> </span><span class="mo">01234567</span><span class="mi">89</span>ABCDEF<span class="w"> </span>HEXSTATE
+<span class="nb">lappend</span><span class="w"> </span>enums<span class="w"> </span><span class="mi">1111111111111111</span><span class="w"> </span><span class="s2">&quot;All 1s&quot;</span>
+
+<span class="k">set</span><span class="w"> </span>which_f<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>setCurrentTranslateFile<span class="w"> </span><span class="nv">$enums</span><span class="w"> </span><span class="k">]</span>
+
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$which_f&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">setCurrentTranslateFile</span></code>: sets the filename to the current translate file and returns the corresponding which value to be used with gtkwave::installFileFilter.</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>which_f<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>setCurrentTranslateFile<span class="w"> </span>filename<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id59">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id59" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>which_f<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>setCurrentTranslateFile<span class="w"> </span>.<span class="o">/</span>zzz.txt<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$which_f&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">setCurrentTranslateProc</span></code>: sets the filename to the current translate process (executable) and returns the corresponding which value to be used with gtkwave::installProcFilter.</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>which_f<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>setCurrentTranslateProc<span class="w"> </span>filename<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id60">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id60" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>which_f<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>setCurrentTranslateProc<span class="w"> </span>.<span class="o">/</span>zzz.exe<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$which_f&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">setCurrentTranslateTransProc</span></code>: sets the filename to the current transaction translate process (executable) and returns the corresponding which value to be used with gtkwave::installTransFilter.</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>which_f<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>setCurrentTranslateTransProc<span class="w"> </span>filename<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id61">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id61" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>which_f<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>setCurrentTranslateTransProc<span class="w"> </span>.<span class="o">/</span>zzz.exe<span class="w"> </span><span class="k">]</span>
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$which_f&quot;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">setFromEntry</span></code>: sets the time in the “From:” box.</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>setFromEntry<span class="w"> </span>time_value</code></p>
+<div class="literal-block-wrapper docutils container" id="id62">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id62" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="nv">gtkwave</span><span class="o">::</span>setFromEntry<span class="w"> </span><span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">setLeftJustifySigs</span></code>: turns left justification for signal names on or off</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>setLeftJustifySigs<span class="w"> </span>on_off_value</code></p>
+<div class="literal-block-wrapper docutils container" id="id63">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id63" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="nv">gtkwave</span><span class="o">::</span>setLeftJustifySigs<span class="w"> </span>on
+<span class="nv">gtkwave</span><span class="o">::</span>setLeftJustifySigs<span class="w"> </span>off
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">setMarker</span></code>: sets the time for the primary marker (-1 removes it)</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>setMarker<span class="w"> </span>time_value</code></p>
+<div class="literal-block-wrapper docutils container" id="id64">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id64" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="nv">gtkwave</span><span class="o">::</span>setMarker<span class="w"> </span><span class="mi">128</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">setNamedMarker</span></code>: sets named marker A-Z (a-z) to a given time value and optionally renames the marker text to a string (-1 removes the marker)</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>setNamedMarker<span class="w"> </span>which<span class="w"> </span>time_value<span class="w"> </span><span class="k">[</span><span class="nb">string</span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id65">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id65" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="nv">gtkwave</span><span class="o">::</span>setNamedMarker<span class="w"> </span>A<span class="w"> </span><span class="mi">400</span><span class="w"> </span><span class="s2">&quot;Example Named Marker&quot;</span>
+<span class="nv">gtkwave</span><span class="o">::</span>setNamedMarker<span class="w"> </span>A<span class="w"> </span><span class="mi">400</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">setTabActive</span></code>: sets the active tab in the viewer (0..getNumTabs-1)</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>setTabActive<span class="w"> </span>which</code></p>
+<div class="literal-block-wrapper docutils container" id="id66">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id66" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="nv">gtkwave</span><span class="o">::</span>setTabActive<span class="w"> </span><span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">setToEntry</span></code>: sets the time in the “To:” box.</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>setToEntry<span class="w"> </span>time_value</code></p>
+<div class="literal-block-wrapper docutils container" id="id67">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id67" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="nv">gtkwave</span><span class="o">::</span>setToEntry<span class="w"> </span><span class="mi">600</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">setTraceHighlightFromIndex</span></code>: highlights or unhighlights the specified trace</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>setTraceHighlightFromIndex<span class="w"> </span>trace_index<span class="w"> </span>on_off</code></p>
+<div class="literal-block-wrapper docutils container" id="id68">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id68" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="nv">gtkwave</span><span class="o">::</span>setTraceHighlightFromIndex<span class="w"> </span><span class="mi">2</span><span class="w"> </span>on
+<span class="nv">gtkwave</span><span class="o">::</span>setTraceHighlightFromIndex<span class="w"> </span><span class="mi">2</span><span class="w"> </span>off
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">setTraceHighlightFromNameMatch</span></code>: highlights or unhighlights the specified trace</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>setTraceHighlightFromNameMatch<span class="w"> </span>fac_name<span class="w"> </span>on_off</code></p>
+<div class="literal-block-wrapper docutils container" id="id69">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id69" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="nv">gtkwave</span><span class="o">::</span>setTraceHighlightFromNameMatch<span class="w"> </span>top.des.clk<span class="w"> </span>on
+<span class="nv">gtkwave</span><span class="o">::</span>setTraceHighlightFromNameMatch<span class="w"> </span>top.clk<span class="w"> </span>off
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">setTraceScrollbarRowValue</span></code>: sets the scrollbar for traces a number of traces down from the very top</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>setTraceScrollbarRowValue<span class="w"> </span>scroller_value</code></p>
+<div class="literal-block-wrapper docutils container" id="id70">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id70" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="nv">gtkwave</span><span class="o">::</span>setTraceScrollbarRowValue<span class="w"> </span><span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">setWindowStartTime</span></code>: scrolls the traces such that the start time is at the left margin (as long as the zoom level permits this)</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>setWindowStartTime<span class="w"> </span>start_time</code></p>
+<div class="literal-block-wrapper docutils container" id="id71">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id71" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="nv">gtkwave</span><span class="o">::</span>setWindowStartTime<span class="w"> </span><span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">setZoomFactor</span></code>: sets the zoom factor for the trace data (i.e., how compressed it is with respect to time)</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>setZoomFactor<span class="w"> </span>zoom_value</code></p>
+<div class="literal-block-wrapper docutils container" id="id72">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id72" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="nv">gtkwave</span><span class="o">::</span>setZoomFactor<span class="w"> </span><span class="o">-</span><span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">setZoomRangeTimes</span></code>: sets the visible time range for the trace data</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>setZoomRangeTimes<span class="w"> </span>time1<span class="w"> </span>time2</code></p>
+<div class="literal-block-wrapper docutils container" id="id73">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id73" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="nv">gtkwave</span><span class="o">::</span>setZoomRangeTimes<span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="mi">217</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">showSignal</span></code>: sets the scrollbar for traces a number of traces down from the very top (0), center (1), or bottom (2)</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>setTraceScrollbarRowValue<span class="w"> </span>scroller_value<span class="w"> </span>position</code></p>
+<div class="literal-block-wrapper docutils container" id="id74">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id74" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="nv">gtkwave</span><span class="o">::</span>setTraceScrollbarRowValue<span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">signalChangeList</span></code>: returns time and value changes for the signals indicated by the argument names</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>signalChangeList<span class="w"> </span>signal_name<span class="w"> </span>options</code></p>
+<p>Where <em>options</em> is are one or more of the following:</p>
+<ul class="simple">
+<li><p><em>-start_time</em> start-time (default 0)</p></li>
+<li><p><em>-end_time</em> end-time (default last sample in dump file)</p></li>
+<li><p><em>-max</em> maximum-number-of-samples (default 0x7fffffff)</p></li>
+<li><p><em>-dir</em> forward|backward (default forward)</p></li>
+</ul>
+<p>The function returns a Tcl list of value changes for the <em>signal-name</em>
+starting at <em>start-time</em> and ending at <em>end-time</em> or an empty list in
+any other case.</p>
+<p>Even members of the list hold the time of change and odd members hold
+the value that is associated with the time the precedes it. Values are
+given as strings in the base of the signal.</p>
+<p>If <em>signal-name</em> is not present then the first highlighted signal is
+taken.</p>
+<p>Length of the list is defined by both <em>end-time</em> and <em>max</em>, whichever
+comes first.</p>
+<p>To specify backward search, <em>end-time</em> should be smaller than
+<em>start-time</em> or <em>dir</em> should have the value of <em>backward</em> and <em>end-time</em>
+is not defined.</p>
+<p>A conflict between timing (start/end-time) and direction
+(forward/backward) returns an empty list.</p>
+<p>Examples:</p>
+<ol class="arabic simple">
+<li><p>prints the first 100 changes of the signal tb.HDT.cpu.CS starting at time 10000</p></li>
+</ol>
+<div class="literal-block-wrapper docutils container" id="id75">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id75" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>signal<span class="w"> </span>tb.HDT.cpu.CS
+<span class="k">set</span><span class="w"> </span>start_time<span class="w"> </span><span class="mi">10000</span>
+<span class="k">foreach</span><span class="w"> </span><span class="k">{</span><span class="nb">time</span><span class="w"> </span>value<span class="k">}</span><span class="w"> </span><span class="k">[</span><span class="nv">gtkwave</span><span class="o">::</span>signalChangeList<span class="w"> </span><span class="nv">$signal</span><span class="w"> </span><span class="o">-</span>start_time<span class="w"> </span><span class="nv">$start_time</span><span class="w"> </span><span class="o">-</span>max<span class="w"> </span><span class="mi">100</span><span class="k">]</span><span class="w"> </span><span class="k">{</span>
+<span class="w">    </span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;Time: $time value: $value&quot;</span>
+<span class="k">}</span>
+</pre></div>
+</div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>retrieve the value of tb.HDT.cpu.CS at time 123456</p></li>
+</ol>
+<div class="literal-block-wrapper docutils container" id="id76">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id76" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="nb">lassign</span><span class="w"> </span><span class="k">[</span><span class="nv">gtkwave</span><span class="o">::</span>signalChangeList<span class="w"> </span>tb.HDT.cpu.CS<span class="w"> </span><span class="o">-</span>start_time<span class="w"> </span><span class="mi">123456</span><span class="w"> </span><span class="o">-</span>max<span class="w"> </span><span class="mi">1</span><span class="k">]</span><span class="w"> </span>dont_care<span class="w"> </span>value<span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">unhighlightSignalsFromList</span></code>: unhighlights the facilities contained in the list argument</dt><dd><p>Syntax: <code class="code docutils literal highlight highlight-tcl"><span class="k">set</span><span class="w"> </span>num_unhighlighted<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>unhighlightSignalsFromList<span class="w"> </span>list<span class="w"> </span><span class="k">]</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id77">
+<div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id77" title="Link to this code">¶</a></div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>clk48<span class="w"> </span><span class="k">[</span><span class="nb">list</span><span class="k">]</span>
+<span class="nb">lappend</span><span class="w"> </span>clk48<span class="w"> </span><span class="s2">&quot;$facname1&quot;</span>
+<span class="nb">lappend</span><span class="w"> </span>clk48<span class="w"> </span><span class="s2">&quot;$facname2&quot;</span>
+<span class="nv">...</span>
+<span class="k">set</span><span class="w"> </span>num_highlighted<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nv">gtkwave</span><span class="o">::</span>unhighlightSignalsFromList<span class="w"> </span><span class="nv">$clk48</span><span class="w"> </span><span class="k">]</span>
+</pre></div>
+</div>
+</div>
+</dd>
+</dl>
+</section>
+<section id="tcl-callbacks">
+<h2>Tcl Callbacks<a class="headerlink" href="#tcl-callbacks" title="Link to this heading">¶</a></h2>
+<p>When gtkwave performs various functions, global callback variables
+prepended with <code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span></code> are modified within the Tcl interpreter. By
+using the trace write feature in Tcl, scripts can achieve a very tight
+integration with gtkwave. Global variables which may be used to register
+callback procedures are as follows:</p>
+<p><code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>cbCloseTabNumber</code> contains the value returned is the number of
+the tab which is going to be closed, starting from zero. As this is set
+before the tab actually closes, scripts can interrogate for further
+information.</p>
+<p><code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>cbCloseTraceGroup</code> contains the name of the expanded trace or
+trace group being closed.</p>
+<p><code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>cbCurrentActiveTab</code> contains the number of the tab currently
+selected. Note that when new tabs are being created, this callback
+sometimes will oscillate between the old and new tab number, finally
+settling on the new tab being created.</p>
+<p><code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>cbError</code> contains an error string such as “reload failed”,
+“gtkwave::loadFile prohibited in callback”, “gtkwave::reLoadFile
+prohibited in callback”, or “gtkwave::setTabActive prohibited in
+callback”.</p>
+<p><code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>cbFromEntryUpdated</code> contains the value stored in the “From:”
+widget when it is updated.</p>
+<p><code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>cbOpenTraceGroup</code> contains the name of a trace being expanded or
+trace group being opened.</p>
+<p><code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>cbQuitProgram</code> contains the tab number which initiated a Quit
+operation. Tabs are numbered starting from zero.</p>
+<p><code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>cbReloadBegin</code> contains the name of a trace being reloaded. This
+is called at the start of a reload sequence.</p>
+<p><code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>cbReloadEnd</code> contains the name of a trace being reloaded. This
+is called at the end of a reload sequence.</p>
+<p><code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>cbStatusText</code> contains the status text which goes to stderr.</p>
+<p><code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>cbTimerPeriod</code> contains the timer period in milliseconds
+(default is 250), and this callback is invoked every timer period
+expiration. If Tcl code modifies this value, the timer period can be
+changed dynamically.</p>
+<p><code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>cbToEntryUpdated</code> contains the value stored in the “To:” widget
+when it is updated.</p>
+<p><code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>cbTracesUpdated</code> contains the total number of traces. This is
+called when traces are added, deleted, etc. from the viewer.</p>
+<p><code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>cbTreeCollapse</code> contains the flattened hierarchical name of the
+SST tree node being collapsed.</p>
+<p><code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>cbTreeExpand</code> contains the flattened hierarchical name of the
+SST tree node being expanded.</p>
+<p><code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>cbTreeSelect</code> contains the flattened hierarchical name of the
+SST tree node being selected.</p>
+<p><code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>cbTreeSigDoubleClick</code> contains the name of the signal being
+double-clicked in the signals section of the SST.</p>
+<p><code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>cbTreeSigSelect</code> contains the name of the signal being selected
+in the signals section of the SST.</p>
+<p><code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>cbTreeSigUnselect</code> contains the name of the signal being
+unselected in the signals section of the SST.</p>
+<p><code class="code docutils literal highlight highlight-tcl"><span class="nv">gtkwave</span><span class="o">::</span>cbTreeUnselect</code> contains the flattened hierarchical name of the
+SST tree node being unselected.</p>
+<p>An example Tcl script follows to illustrate usage.</p>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">proc</span><span class="w"> </span>tracer<span class="w"> </span><span class="k">{</span><span class="nv">varname</span><span class="w"> </span>args<span class="k">}</span><span class="w"> </span><span class="k">{</span>
+<span class="w">    </span><span class="k">upvar</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="nv">$varname</span><span class="w"> </span>var
+<span class="w">    </span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;$varname was updated to be \&quot;$var\&quot;&quot;</span>
+<span class="k">}</span>
+
+<span class="k">proc</span><span class="w"> </span>tracer_error<span class="w"> </span><span class="k">{</span><span class="nv">varname</span><span class="w"> </span>args<span class="k">}</span><span class="w"> </span><span class="k">{</span>
+<span class="w">    </span><span class="k">upvar</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="nv">$varname</span><span class="w"> </span>var
+<span class="w">    </span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;*** ERROR: $varname was updated to be \&quot;$var\&quot;&quot;</span>
+<span class="k">}</span>
+
+<span class="k">set</span><span class="w"> </span>ie<span class="w"> </span><span class="k">[</span><span class="w"> </span><span class="nb">info</span><span class="w"> </span>exists<span class="w"> </span>tracer_defined<span class="w"> </span><span class="k">]</span>
+
+<span class="k">if</span><span class="w"> </span><span class="k">{</span><span class="w"> </span><span class="nv">$ie</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="k">}</span><span class="w"> </span><span class="k">{</span>
+<span class="w">    </span><span class="k">set</span><span class="w"> </span>tracer_defined<span class="w"> </span><span class="mi">1</span>
+
+<span class="w">    </span><span class="k">trace</span><span class="w"> </span>add<span class="w"> </span>variable<span class="w"> </span>gtkwave::cbTreeExpand
+<span class="w">        </span><span class="nv">write</span><span class="w"> </span><span class="s2">&quot;tracer gtkwave::cbTreeExpand&quot;</span>
+
+<span class="w">    </span><span class="k">trace</span><span class="w"> </span>add<span class="w"> </span>variable<span class="w"> </span>gtkwave::cbTreeCollapse
+<span class="w">        </span><span class="nv">write</span><span class="w"> </span><span class="s2">&quot;tracer gtkwave::cbTreeCollapse&quot;</span>
+
+<span class="w">    </span><span class="k">trace</span><span class="w"> </span>add<span class="w"> </span>variable<span class="w"> </span>gtkwave::cbTreeSelect
+<span class="w">        </span><span class="nv">write</span><span class="w"> </span><span class="s2">&quot;tracer gtkwave::cbTreeSelect&quot;</span>
+
+<span class="w">    </span><span class="k">trace</span><span class="w"> </span>add<span class="w"> </span>variable<span class="w"> </span>gtkwave::cbTreeUnselect
+<span class="w">        </span><span class="nv">write</span><span class="w"> </span><span class="s2">&quot;tracer gtkwave::cbTreeUnselect&quot;</span>
+
+<span class="w">    </span><span class="k">trace</span><span class="w"> </span>add<span class="w"> </span>variable<span class="w"> </span>gtkwave::cbTreeSigSelect
+<span class="w">        </span><span class="nv">write</span><span class="w"> </span><span class="s2">&quot;tracer gtkwave::cbTreeSigSelect&quot;</span>
+
+<span class="w">    </span><span class="k">trace</span><span class="w"> </span>add<span class="w"> </span>variable<span class="w"> </span>gtkwave::cbTreeSigUnselect
+<span class="w">        </span><span class="nv">write</span><span class="w"> </span><span class="s2">&quot;tracer gtkwave::cbTreeSigUnselect&quot;</span>
+
+<span class="w">    </span><span class="k">trace</span><span class="w"> </span>add<span class="w"> </span>variable<span class="w"> </span>gtkwave::cbTreeSigDoubleClick
+<span class="w">        </span><span class="nv">write</span><span class="w"> </span><span class="s2">&quot;tracer gtkwave::cbTreeSigDoubleClick&quot;</span>
+<span class="k">}</span>
+
+<span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;Exiting script!&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="vcd-recoding.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">VCD Recoding</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="menu.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">GTKWave Menu Functions</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, GTKWave Authors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Tcl Command Syntax</a><ul>
+<li><a class="reference internal" href="#tcl-commands">Tcl Commands</a></li>
+<li><a class="reference internal" href="#tcl-callbacks">Tcl Callbacks</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=4e2eecee"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    </body>
+</html>

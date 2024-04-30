@@ -1,0 +1,459 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="LXT File Format" href="lxt-file-format.html" /><link rel="prev" title="Tcl Command Syntax" href="tcl.html" />
+
+    <!-- Generated with Sphinx 7.3.7 and Furo 2024.04.27 -->
+        <title>VCD Recoding - GTKWave documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=437aa6ec" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">GTKWave  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">GTKWave  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling and Installing GTKWave</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-interface.html">GTKWave User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="menu.html">GTKWave Menu Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tcl.html">Tcl Command Syntax</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">VCD Recoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lxt-file-format.html">LXT File Format</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Man pages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="man/evcd2vcd.1.html">evcd2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/fst2vcd.1.html">fst2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/fstminer.1.html">fstminer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/gtkwave.1.html">gtkwave</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/gtkwaverc.5.html">gtkwaverc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/lxt2miner.1.html">lxt2miner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/lxt2vcd.1.html">lxt2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/rtlbrowse.1.html">rtlbrowse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/shmidcat.1.html">shmidcat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/twinwave.1.html">twinwave</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vcd2fst.1.html">vcd2fst</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vcd2lxt.1.html">vcd2lxt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vcd2lxt2.1.html">vcd2lxt2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vcd2vzt.1.html">vcd2vzt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vzt2vcd.1.html">vzt2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vztminer.1.html">vztminer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/xml2stems.1.html">xml2stems</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="vcd-recoding">
+<h1>VCD Recoding<a class="headerlink" href="#vcd-recoding" title="Link to this heading">¶</a></h1>
+<section id="vlist-recoding-stategy">
+<h2>VList Recoding Stategy<a class="headerlink" href="#vlist-recoding-stategy" title="Link to this heading">¶</a></h2>
+<p>VCD files can now be recoded in gtkwave on a per-signal basis using a
+modified form of VList. The VList structure used by gtkwave is as
+follows:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">vlist_t</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">vlist_t</span><span class="w"> </span><span class="o">*</span><span class="n">next</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">siz</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">offs</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">elem_siz</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The elem_siz is always equal to 1 byte. For the first structure, the siz
+field is 1. For the next one, it will be 2, then 4, and so forth. Given
+this doubling property, this structure allows a dynamically growing
+<em>indexable</em> array. The offs field is a pointer to the next element to be
+written to the array. It starts at zero. When the offs value is equal to
+siz, another VList is prepended in front of the existing one. Note that
+the siz number of elements are allocated directly after the vlist_t
+structure, so the first element can be found by skipping sizeof(vlist_t)
+bytes from the start of the vlist_t structure.</p>
+<p>When a new vlist_t is prepended in front of an old one, a compaction of
+the data elements following the old vlist_t is attempted with zlib when
+the number of bytes to compact is 64 or greater. If the compaction
+results in a savings of space, the uncompressed vlist_t is discarded and
+the compressed one is kept. To signify that a particular vlist_t is
+compressed, the offs field is negated. (Thus, when accessing the list
+later, a negative offset indicates that the vlist_t structure in
+question is compressed.) Note that for a given VList, it is possible
+that there will be both compressed and uncompressed vlist_t structures,
+and this will have to be taken into account when they are accessed
+later.</p>
+<p>When a vlist_t is finalized (i.e., when no more elements are to be added
+to it), a compression is attempted. If that fails (i.e., not appreciable
+size savings), a naive truncation of the unused bytes
+(siz-offs)*elem_siz is done. Given the nature of the data in this list,
+compression usually succeeds.</p>
+<p>These VList structures remain dormant in memory in their (possibly)
+compressed form until they are needed to be accessed. At that time they
+are decompressed (if required), traversed, and destroyed as they will no
+longer be needed. The actual data contained in the memory area following
+the vlist_t structures to represent VHDL/Verilog value changes will now
+be described.</p>
+</section>
+<section id="time-encoding">
+<h2>Time Encoding<a class="headerlink" href="#time-encoding" title="Link to this heading">¶</a></h2>
+<p>Along with the value changes, an uncompressed VList of 64-bit integers
+is also generated as time values are parsed from the VCD file. (i.e.,
+lines of the form “#1000”) As the time values are added to that VList,
+a numerical index (zeroth, first, second) is maintained separately that
+indicates what the current time index is.</p>
+<p>The reason for maintaining a list of indices is so that value changes
+can be encoded as relative distances in this list rather than actual
+64-bit integers.</p>
+</section>
+<section id="single-bit-encoding">
+<h2>Single-bit Encoding<a class="headerlink" href="#single-bit-encoding" title="Link to this heading">¶</a></h2>
+<p>Single bit value changes are encoded as a variable length integer of the
+format (delta&lt;&lt;2)|(zero_one_bit&lt;&lt;1) when the value is zero or one,
+or (delta&lt;&lt;4)|rcv_bit_value for all other bit values.</p>
+<p>The “delta” value represents how many timesteps in the VCD file have
+taken place since the previous value change for a signal. Look at the
+following for an example:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>#1000 clk = 0 index = n
+#1001 n + 1
+#1010 n + 2
+#1013 n + 3
+#1100 clk = 1 n + 4
+</pre></div>
+</div>
+<p>…so for the value change on clk at time #1100, the delta is 4.</p>
+<p>The rcv_bit_value when the bit value is not zero or one is encoded as
+the position numbered 0-7 in the string “XZHUWL-?” multiplied by 2
+with one added to the result. (i.e., 1, 3, 5, 7, 9, 11, 13, 15)</p>
+<p>The variable length integer is generated with the following algorithm.
+It shifts the value out seven bits at a time and sets the high bit on
+the last byte of the variable length integer:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">;</span><span class="w"> </span><span class="c1">// value</span>
+<span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pnt</span><span class="p">;</span><span class="w"> </span><span class="c1">// destination pointer</span>
+<span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">nxt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="o">&gt;&gt;</span><span class="mi">7</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="o">*</span><span class="p">(</span><span class="n">pnt</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="o">&amp;</span><span class="mh">0x7f</span><span class="p">);</span>
+<span class="w">    </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nxt</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="o">*</span><span class="n">pnt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="o">&amp;</span><span class="mh">0x7f</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mh">0x80</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Using this scheme, most value changes can be encoded in one or two
+(uncompressed) bytes. For the example above, the tuple (4, ‘1’)
+encodes into an integer as:</p>
+<p>(4&lt;&lt;2) | (1&lt;&lt;1) = 0x12</p>
+<p>As a variable length integer, it is stored as a single (uncompressed)
+byte 0x92.</p>
+</section>
+<section id="multi-bit-encoding">
+<h2>Multi-bit Encoding<a class="headerlink" href="#multi-bit-encoding" title="Link to this heading">¶</a></h2>
+<p>Multiple bits are encoded as a variable length integer representing the
+time delta (without any left shifting), and immediately after that a
+reformatted string is encoded as packed nybbles against the MVL9 string
+“0XZ1HUWL-”. As multi-bit strings can be of any length, the value of
+15 is used to signify the end of string marker. An example:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>#1000 val = 1010 index = n
+#1001 n + 1
+#1010 n + 2
+#1013 n + 3
+#1100 val = 1zz0 n + 4
+</pre></div>
+</div>
+<p>Thus, the tuple (4, “1ZZ0”) at time #1100 is encoded bytewise as:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0x84 [variable length integer for delta of 4]
+0x32 [&quot;1Z&quot;: &quot;0XZ1HUWL-&quot;[3], &quot;0XZ1HUWL-&quot;[2]]
+0x20 [&quot;Z0&quot;: &quot;0XZ1HUWL-&quot;[2], &quot;0XZ1HUWL-&quot;[0]]
+0xf0 [end of string marker + nybble pad to byte boundary]
+</pre></div>
+</div>
+<p>For longer strings, this provides a 2:1 space compaction prior to calling zlib.</p>
+</section>
+<section id="reals-and-string-encoding">
+<h2>Reals and String Encoding<a class="headerlink" href="#reals-and-string-encoding" title="Link to this heading">¶</a></h2>
+<p>They are stored simply as (delta, null terminated string) without any
+re-encoding of the real or string from its ASCII representation. So for
+the value (4, “3.14159”), it is encoded bytewise as</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0x84 [variable length integer for delta of 4]
+0x33 0x2e 0x31 0x34 0x31 0x35 0x39 0x00 [&quot;3.14159&quot; with null
+termination]
+</pre></div>
+</div>
+</section>
+<section id="final-notes-on-vcd-recoding">
+<h2>Final Notes on VCD Recoding<a class="headerlink" href="#final-notes-on-vcd-recoding" title="Link to this heading">¶</a></h2>
+<p>Even with zlib compression disabled (which gtkwave allows for
+performance), the memory usage savings are substantial. There are
+several reasons for this:</p>
+<ul class="simple">
+<li><p>Storing VCD identifiers is completely unnecessary as the value
+change data is routed to its appropriate VList. Hence, the
+identifier implicitly is represented by the VList itself.</p></li>
+<li><p>Single-bit changes can be represented in only one or two bytes in
+most cases.</p></li>
+<li><p>Multi-bit changes can be represented with slightly less than half
+the amount of memory required normally (as the VCD identifier is no
+longer required).</p></li>
+<li><p>The amount of “next” pointers required per-VList is lg(n bytes).
+This allows a low overhead even when having a large number of active
+growable VList “streams” in memory at once.</p></li>
+<li><p>VList truncation when the lists are finalized at the end of the VCD
+file read ensure that unused VList space is returned to the
+operating system.</p></li>
+</ul>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="lxt-file-format.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">LXT File Format</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="tcl.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Tcl Command Syntax</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, GTKWave Authors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">VCD Recoding</a><ul>
+<li><a class="reference internal" href="#vlist-recoding-stategy">VList Recoding Stategy</a></li>
+<li><a class="reference internal" href="#time-encoding">Time Encoding</a></li>
+<li><a class="reference internal" href="#single-bit-encoding">Single-bit Encoding</a></li>
+<li><a class="reference internal" href="#multi-bit-encoding">Multi-bit Encoding</a></li>
+<li><a class="reference internal" href="#reals-and-string-encoding">Reals and String Encoding</a></li>
+<li><a class="reference internal" href="#final-notes-on-vcd-recoding">Final Notes on VCD Recoding</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=4e2eecee"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    </body>
+</html>

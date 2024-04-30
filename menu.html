@@ -1,0 +1,778 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Tcl Command Syntax" href="tcl.html" /><link rel="prev" title="GTKWave User Interface" href="user-interface.html" />
+
+    <!-- Generated with Sphinx 7.3.7 and Furo 2024.04.27 -->
+        <title>GTKWave Menu Functions - GTKWave documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=437aa6ec" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">GTKWave  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">GTKWave  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling and Installing GTKWave</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-interface.html">GTKWave User Interface</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">GTKWave Menu Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tcl.html">Tcl Command Syntax</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="vcd-recoding.html">VCD Recoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lxt-file-format.html">LXT File Format</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Man pages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="man/evcd2vcd.1.html">evcd2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/fst2vcd.1.html">fst2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/fstminer.1.html">fstminer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/gtkwave.1.html">gtkwave</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/gtkwaverc.5.html">gtkwaverc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/lxt2miner.1.html">lxt2miner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/lxt2vcd.1.html">lxt2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/rtlbrowse.1.html">rtlbrowse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/shmidcat.1.html">shmidcat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/twinwave.1.html">twinwave</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vcd2fst.1.html">vcd2fst</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vcd2lxt.1.html">vcd2lxt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vcd2lxt2.1.html">vcd2lxt2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vcd2vzt.1.html">vcd2vzt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vzt2vcd.1.html">vzt2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vztminer.1.html">vztminer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/xml2stems.1.html">xml2stems</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="gtkwave-menu-functions">
+<h1>GTKWave Menu Functions<a class="headerlink" href="#gtkwave-menu-functions" title="Link to this heading">¶</a></h1>
+<section id="file">
+<h2>File<a class="headerlink" href="#file" title="Link to this heading">¶</a></h2>
+<p>The File submenu contains various items related to the accessing of
+files, printing, and application respawning and exiting.</p>
+<dl class="simple myst">
+<dt><code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">New</span> <span class="pre">Viewer</span></code></dt><dd><p><em>Open New Viewer</em> will open a file requester that will ask for the name of a VCD or AET file to view. This will fork off a new viewer process.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">New</span> <span class="pre">Tab</span></code></dt><dd><p><em>Open New Tab</em> will open a file requester that will ask for the name of a VCD or AET file to view. This will create a tabbed page.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Reload</span> <span class="pre">Current</span> <span class="pre">Waveform</span></code></dt><dd><p><em>Reload Current Waveform</em> will reload the currently displayed waveform from a potentially updated file. Note that this menu option will only be displayed if the current waveform type supports reloading. (i.e., it is not sourced from standard input or from shared memory)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Export-Write</span> <span class="pre">VCD</span> <span class="pre">File</span> <span class="pre">As</span></code></dt><dd><p><em>Export-Write VCD File As</em> will open a file requester that will ask for the name of a VCD dumpfile. The contents of the dumpfile generated will be the vcd representation of the traces onscreen that can be seen by manipulating the signal and wavewindow scrollbars. The data saved corresponds to the trace information needed to allow viewing when used in tandem with the corresponding GTKWave save file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Export-Write</span> <span class="pre">LXT</span> <span class="pre">File</span> <span class="pre">As</span></code></dt><dd><p><em>Export-Write LXT File As</em> will open a file requester that will ask for the name of an LXT dumpfile. The contents of the dumpfile generated will be the vcd representation of the traces onscreen that can be seen by manipulating the signal and wavewindow scrollbars. The data saved corresponds to the trace information needed to allow viewing when used in tandem with the corresponding GTKWave save file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Export-Write</span> <span class="pre">TIM</span> <span class="pre">File</span> <span class="pre">As</span></code></dt><dd><p><em>Export-Write TIM File As</em> will open a file requester that will ask for the name of a TimingAnalyzer .tim file. The contents of the file generated will be the representation of the traces onscreen. If the baseline and primary marker are set, the time range written to the file will be between the two markers, otherwise it will be the entire time range.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Close</span></code></dt><dd><p><em>Close</em> immediately closes the current tab if multiple tabs exist or exits GTKWave after an additional confirmation requester is given the OK to quit.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Print</span> <span class="pre">To</span> <span class="pre">File</span></code></dt><dd><p><em>Print To File</em> will open up a requester that will allow you to select print options (PS or MIF; Letter, A4, or Legal; Full or Minimal). After selecting the options you want, a file requester will ask for the name of the output file to generate that reflects the current main window display’s contents.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Grab</span> <span class="pre">To</span> <span class="pre">File</span></code></dt><dd><p><em>Grab To File</em> will open a file requester that will ask for the name to be used for a PNG format image grab of the main GTKWave window. Note that if the main window is covered by other windows or is partially offscreen, the grabbed image might not appear properly.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Read</span> <span class="pre">Save</span> <span class="pre">File</span></code></dt><dd><p><em>Read Save File</em> will open a file requester that will ask for the name of a GTKWave save file. The contents of the save file will determine which traces and vectors as well as their format (binary, decimal, hex, reverse, etc.) are to be appended to the display. Note that the marker positional data and zoom factor present in the save file will replace any current settings.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Write</span> <span class="pre">Save</span> <span class="pre">File</span></code></dt><dd><p><em>Write Save File</em> will invoke Write Save File As if no save file name has been specified previously. Otherwise it will write the save file data without prompting.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Write</span> <span class="pre">Save</span> <span class="pre">File</span> <span class="pre">As</span></code></dt><dd><p><em>Write Save File As</em> will open a file requester that will ask for the name of a GTKWave save file. The contents of the save file generated will be the traces as well as their format (binary, decimal, hex, reverse, etc.) which are currently a part of the display. Marker positional data and the zoom factor are also a part of the save file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Read</span> <span class="pre">Logfile</span></code></dt><dd><p><em>Read Logfile</em> will open a file requester that will ask for the name of a plaintext simulation log. By clicking on the numbers in the logfile, the marker will jump to the appropriate time value in the wave window.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Read</span> <span class="pre">Verilog</span> <span class="pre">Stemsfile</span></code></dt><dd><p><em>Read Verilog Stemsfile</em> will open a file requester that will ask for the name of a Verilog stemsfile. This will then launch an RTL browser and allow source code annotation based on the primary marker position.  Stems files are generated by xml2stems. Please see its manpage for syntax and more information on stems file generation.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Read</span> <span class="pre">Script</span> <span class="pre">File</span></code></dt><dd><p><em>Read Script File</em> will open a file requester that will ask for the name of a Tcl script to run. This menu option itself is not callable by Tcl scripts.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Quit</span></code></dt><dd><p><em>Quit</em> exits GTKWave.</p>
+</dd>
+</dl>
+</section>
+<section id="edit">
+<h2>Edit<a class="headerlink" href="#edit" title="Link to this heading">¶</a></h2>
+<p>The Edit submenu is used to perform sorts on net names, perform various
+utility functions such as attaching disassemblers and other external
+programs to GTKWave, and to change the data representation of values in
+the wave subwindow.</p>
+<dl class="simple myst">
+<dt><code class="docutils literal notranslate"><span class="pre">Set</span> <span class="pre">Max</span> <span class="pre">Hier</span></code></dt><dd><p><em>Set Max Hier</em> sets the maximum hierarchy depth (counting from the right with bit numbers or ranges ignored) that is displayable for trace names.  Zero indicates that no truncation will be performed (default). Note that any aliased signals (prefix of a “+”) will not have truncated names.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Toggle</span> <span class="pre">Trace</span> <span class="pre">Hier</span></code></dt><dd><p><em>Toggle Trace Hier</em> toggles the maximum hierarchy depth from zero to whatever was previously set.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Insert</span> <span class="pre">Blank</span></code></dt><dd><p><em>Insert Blank</em> inserts a blank trace after the last highlighted trace.  If no traces are highlighted, the blank is inserted after the last trace.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Insert</span> <span class="pre">Comment</span></code></dt><dd><p><em>Insert Comment</em> inserts a comment trace after the last highlighted trace. If no traces are highlighted, the comment is inserted after the last trace.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Insert</span> <span class="pre">Analog</span> <span class="pre">Height</span> <span class="pre">Extension</span></code></dt><dd><p><em>Insert Analog Height Extension</em> inserts a blank analog extension trace after the last highlighted trace. If no traces are highlighted, the blank is inserted after the last trace. This type of trace is used to increase the height of analog traces.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Alias</span> <span class="pre">Highlighted</span> <span class="pre">Trace</span></code></dt><dd><p><em>Alias Highlighted Trace</em> only works when at least one trace has been highlighted. With this function, you will be prompted for an alias name for the first highlighted trace. After successfully aliasing a trace, the aliased trace will be unhighlighted. Single bits will be marked with a leading “+” and vectors will have no such designation. The purpose of this is to provide a fast method of determining which trace names are real and which ones are aliases.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Remove</span> <span class="pre">Highlighted</span> <span class="pre">Aliases</span></code></dt><dd><p><em>Remove Highlighted Aliases</em> only works when at least one trace has been highlighted. Any aliased traces will have their names restored to their original names. As vectors get their names from aliases, vector aliases will not be removed.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Cut</span></code></dt><dd><p><em>Cut</em> removes highlighted signals from the display and places them in an offscreen cut buffer for later Paste operations. Cut implicitly destroys the previous contents of the cut buffer.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Copy</span></code></dt><dd><p><em>Copy</em> copies highlighted signals from the display and places them in an offscreen cut/copy buffer for later Paste operations. Copy implicitly destroys the previous contents of the cut/copy buffer.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Paste</span></code></dt><dd><p><em>Paste</em> pastes signals from an offscreen cut buffer and places them in a group after the last highlighted signal, or at the end of the display if no signal is highlighted.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Delete</span></code></dt><dd><p><em>Delete</em> removes highlighted signals from the display and discards them without affecting the previous contents of the cut/copy buffer.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Expand</span></code></dt><dd><p><em>Expand</em> decomposes the highlighted signals into their individual bits.  The resulting bits are converted to traces and inserted after the last highlighted trace. The original unexpanded traces will be placed in the cut buffer. It will function seemingly randomly when used upon real valued single-bit traces. When used upon multi-bit vectors that contain real valued traces, those traces will expand to their normal “correct” values, not individual bits.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Combine</span> <span class="pre">Down</span></code></dt><dd><p><em>Combine Down</em> coalesces the highlighted signals into a single vector named “&lt;Vector&gt;” in a top to bottom fashion placed after the last highlighted trace. The original traces will be placed in the cut buffer.  It will function seemingly randomly when used upon real valued single-bit traces.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Combine</span> <span class="pre">Up</span></code></dt><dd><p><em>Combine Up</em> coalesces the highlighted signals into a single vector named “&lt;Vector&gt;” in a bottom to top fashion placed after the last highlighted trace. The original traces will be placed in the cut buffer.  It will function seemingly randomly when used upon real valued single-bit traces.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-Hex</span></code></dt><dd><p><em>Data Format-Hex</em> will step through all highlighted traces and ensure that vectors with this qualifier will be displayed with hexadecimal values.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-Decimal</span></code></dt><dd><p><em>Data Format-Decimal</em> will step through all highlighted traces and ensure that vectors with this qualifier will be displayed with decimal values.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-Signed</span></code></dt><dd><p><em>Data Format-Signed</em> will step through all highlighted traces and ensure that vectors with this qualifier will be displayed as sign extended decimal values.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-Binary</span></code></dt><dd><p><em>Data Format-Binary</em> will step through all highlighted traces and ensure that vectors with this qualifier will be displayed with binary values.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-Octal</span></code></dt><dd><p><em>Data Format-Octal</em> will step through all highlighted traces and ensure that vectors with this qualifier will be displayed with octal values.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-ASCII</span></code></dt><dd><p><em>Data Format-ASCII</em> will step through all highlighted traces and ensure that vectors with this qualifier will be displayed with ASCII values.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-Time</span></code></dt><dd><p><em>Data Format-Time</em> will step through all highlighted traces and ensure that bits and vectors with this qualifier will display as time values.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-Enum</span></code></dt><dd><p><em>Data Format-Enum</em> will step through all highlighted traces and ensure that bits and vectors with this qualifier will display as enum values, provided such values were dumped into file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-BitsToReal</span></code></dt><dd><p><em>Data Format-BitsToReal</em> will step through all highlighted traces and ensure that vectors with this qualifier will be displayed with Real values. Note that this only works for 64-bit values and that ones of other sizes will display as binary.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-RealToBits-On</span></code></dt><dd><p><em>Data Format-RealToBits-On</em> will step through all highlighted traces and ensure that Real vectors with this qualifier will be displayed as Hex values. Note that this only works for Real quantities and other ones will remain to be displayed as binary. This is a pre-filter so it is possible to invert, reverse, apply Decimal, etc. It will not be possible however to expand those values into their constituent bits.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-RealToBits-Off</span></code></dt><dd><p><em>Data Format-RealToBits-Off</em> will step through all highlighted traces and ensure that the RealToBits qualifier is removed from those traces.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-Right</span> <span class="pre">Justify-On</span></code></dt><dd><p><em>Data Format-Right Justify-On</em> will step through all highlighted traces and ensure that vectors with this qualifier will be displayed right justified.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-Right</span> <span class="pre">Justify-Off</span></code></dt><dd><p><em>Data Format-Right Justify-Off</em> will step through all highlighted traces and ensure that vectors with this qualifier will not be displayed right justified.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-Invert-On</span></code></dt><dd><p><em>Data Format-Invert-On</em> will step through all highlighted traces and ensure that bits and vectors with this qualifier will be displayed with 1’s and 0’s inverted.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-Invert-Off</span></code></dt><dd><p><em>Data Format-Invert-Off</em> will step through all highlighted traces and ensure that bits and vectors with this qualifier will not be displayed with 1’s and 0’s inverted.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-Reverse</span> <span class="pre">Bits-On</span></code></dt><dd><p><em>Data Format-Reverse Bits-On</em> will step through all highlighted traces and ensure that vectors with this qualifier will be displayed in reversed bit order.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-Reverse</span> <span class="pre">Bits-Off</span></code></dt><dd><p><em>Data Format-Reverse Bits-Off</em> will step through all highlighted traces and ensure that vectors with this qualifier will not be displayed in reversed bit order.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-Popcnt-On</span></code></dt><dd><p><em>Data Format-Popcnt-On</em> will step through all highlighted traces and ensure that bits and vectors with this qualifier will be displayed after going through a population count conversion. This is a filter which sits before other Data Format options such as hex, etc.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-Popcnt-Off</span></code></dt><dd><p><em>Data Format-Popcnt-Off</em> will step through all highlighted traces and ensure that bits and vectors with this qualifier will be displayed with normal encoding.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-Fixed</span> <span class="pre">Point</span> <span class="pre">Shift-On</span></code></dt><dd><p><em>Data Format-Fixed Point Shift-On</em> will step through all highlighted traces and ensure that bits and vectors with this qualifier will be right shifted prior to being displayed as Signed Decimal or Decimal values.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-Fixed</span> <span class="pre">Point</span> <span class="pre">Shift-Off</span></code></dt><dd><p><em>Data Format-Fixed Point Shift-Off</em> will step through all highlighted traces and ensure that bits and vectors with this qualifier will not be right shifted prior to being displayed as Signed Decimal or Decimal values.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-Fixed</span> <span class="pre">Point</span> <span class="pre">Shift-Specify</span></code></dt><dd><p><em>Data Format-Fixed Point Shift-Specify</em> will open up a requester to specify a shift count then will step through all highlighted traces and ensure that bits and vectors with this qualifier will be right shifted prior to being displayed as Signed Decimal or Decimal values.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Color</span> <span class="pre">Format-Normal</span></code></dt><dd><p><em>Color Format-Normal</em> uses normal waveform colorings for all selected traces.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Color</span> <span class="pre">Format-Red</span></code></dt><dd><p><em>Color Format-Red</em> uses red waveform colorings for all selected traces.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Color</span> <span class="pre">Format-Orange</span></code></dt><dd><p><em>Color Format-Orange</em> uses orange waveform colorings for all selected traces.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Color</span> <span class="pre">Format-Yellow</span></code></dt><dd><p><em>Color Format-Yellow</em> uses yellow waveform colorings for all selected traces.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Color</span> <span class="pre">Format-Green</span></code></dt><dd><p><em>Color Format-Green</em> uses green waveform colorings for all selected traces.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Color</span> <span class="pre">Format-Blue</span></code></dt><dd><p><em>Color Format-Blue</em> uses blue waveform colorings for all selected traces.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Color</span> <span class="pre">Format-Indigo</span></code></dt><dd><p><em>Color Format-Indigo</em> uses indigo waveform colorings for all selected traces.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Color</span> <span class="pre">Format-Violet</span></code></dt><dd><p><em>Color Format-Violet</em> uses violet waveform colorings for all selected traces.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Color</span> <span class="pre">Format-Cycle</span></code></dt><dd><p><em>Color Format-Cycle</em> uses cycling waveform colorings for all selected traces.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Color</span> <span class="pre">Format-Keep</span> <span class="pre">xz</span> <span class="pre">Colors</span></code></dt><dd><p><em>Color Format-Keep xz Colors</em> when enabled keeps the old non 0/1 signal value colors when a user specifies a color override by using Edit/Color Format.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Translate</span> <span class="pre">Filter</span> <span class="pre">File</span> <span class="pre">Disable</span></code></dt><dd><p><em>Translate Filter File Disable</em> will remove translation filtering used to reconstruct enums for marked traces.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Translate</span> <span class="pre">Filter</span> <span class="pre">File</span></code></dt><dd><p><em>Translate Filter File</em> will enable translation on marked traces using a filter file. A requester will appear to get the filter filename.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Translate</span> <span class="pre">Filter</span> <span class="pre">Process</span> <span class="pre">Disable</span></code></dt><dd><p><em>Translate Filter Process Disable</em> will remove translation filtering used to reconstruct enums for marked traces.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Translate</span> <span class="pre">Filter</span> <span class="pre">Process</span></code></dt><dd><p><em>Translate Filter Process</em> will enable translation on marked traces using a filter process. A requester will appear to get the filter filename.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Transaction</span> <span class="pre">Filter</span> <span class="pre">Process</span></code></dt><dd><p><em>Transaction Filter Process</em> will enable transaction filtering on marked traces using a filter process. A requester will appear to get the filter filename.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Transaction</span> <span class="pre">Filter</span> <span class="pre">Process</span> <span class="pre">Disable</span></code></dt><dd><p><em>Transaction Filter Process Disable</em> will remove transaction filtering.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Analog</span> <span class="pre">Off</span></code></dt><dd><p><em>Analog Off</em> causes the waveform data for all currently highlighted traces to be displayed as normal.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Analog</span> <span class="pre">Step</span></code></dt><dd><p><em>Analog Step</em> causes the waveform data for all currently highlighted traces to be displayed as stepwise analog waveform.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Analog</span> <span class="pre">Interpolate</span></code></dt><dd><p><em>Analog Interpolate</em> causes the waveform data for all currently highlighted traces to be displayed as interpolated analog waveform.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Analog</span> <span class="pre">Resizing-Screen</span> <span class="pre">Data</span></code></dt><dd><p><em>Analog Resizing-Screen Data</em> causes the waveform data for all currently highlighted traces to be displayed such that the y-value scaling maximizes the on-screen trace data so if fills the whole trace width at all times.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Analog</span> <span class="pre">Resizing-All</span> <span class="pre">Data</span></code></dt><dd><p><em>Analog Resizing-All Data</em> causes the waveform data for all currently highlighted traces to be displayed such that the y-value scaling maximizes the on-screen trace data so if fills the whole trace width only when fully zoomed out. (i.e., the scale used goes across all trace data)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-Range</span> <span class="pre">Fill</span> <span class="pre">With</span> <span class="pre">0s</span></code></dt><dd><p><em>Data Format-Range Fill With 0s</em> will step through all highlighted traces and ensure that vectors with this qualifier will be displayed as if the bitrange of the MSB or LSB as appropriate goes to zero. Zero bits will be filled in for the missing bits.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-Range</span> <span class="pre">Fill</span> <span class="pre">With</span> <span class="pre">1s</span> </code></dt><dd><p>*Data Format-Range Fill With 1s *will step through all highlighted traces and ensure that vectors with this qualifier will be displayed as if the bitrange of the MSB or LSB as appropriate goes to zero. One bits will be filled in for the missing bits; this is mostly intended to be used when viewing values which are inverted in the logic and need to be inverted in the viewer.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Format-Zero</span> <span class="pre">Range</span> <span class="pre">Fill</span> <span class="pre">Off</span></code></dt><dd><p><em>Data Format-Zero Range Fill Off</em> will step through all highlighted traces and ensure that normal bitrange displays are used.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Show-Change</span> <span class="pre">All</span> <span class="pre">Highlighted</span></code></dt><dd><p><em>Show-Change All Highlighted</em> provides an easy means of changing trace attributes en masse. Various functions are provided in a Show-Change requester.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Show-Change</span> <span class="pre">First</span> <span class="pre">Highlighted</span></code></dt><dd><p><em>Show-Change First Highlighted</em> provides a means of changing trace attributes for the first highlighted trace. Various functions are provided in a Show-Change requester. When a function is applied, the trace will be unhighlighted.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Warp</span> <span class="pre">Marked</span></code></dt><dd><p><em>Warp Marked</em> offsets all highlighted traces by the amount of time entered in the requester. (Positive values will shift traces to the right.) Attempting to shift greater than the absolute value of total simulation time will cap the shift magnitude at the length of simulation. Note that you can also warp traces dynamically by holding down CTRL and dragging a group of highlighted traces to the left or right with the left mouse button pressed. When you release the mouse button, if CTRL is pressed, the drag warp commits, else it reverts to its pre-drag condition.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Unwarp</span> <span class="pre">Marked</span></code></dt><dd><p><em>Unwarp Marked</em> removes all offsets on all highlighted traces.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Unwarp</span> <span class="pre">All</span></code></dt><dd><p><em>Unwarp All</em> unconditionally removes all offsets on all traces.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Exclude</span></code></dt><dd><p><em>Exclude</em> causes the waveform data for all currently highlighted traces to be blanked out.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Show</span></code></dt><dd><p><em>Show</em> causes the waveform data for all currently highlighted traces to be displayed as normal if the exclude attribute is currently set on the highlighted traces.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Toggle</span> <span class="pre">Group</span></code></dt><dd><p><em>Toggle Group</em> toggles a group opened or closed. Double-clicking does the same action as selecting this menu option.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">Group</span></code></dt><dd><p><em>Create Group</em> creates a group of traces which may be opened or closed.  It is permitted for groups to be nested.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Highlight</span> <span class="pre">Regexp</span></code></dt><dd><p><em>Highlight Regexp</em> brings up a text requester that will ask for a regular expression that may contain text with POSIX regular expressions.  All traces meeting this criterion / these criteria will be highlighted.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">UnHighlight</span> <span class="pre">Regexp</span></code></dt><dd><p><em>UnHighlight Regexp</em> brings up a text requester that will ask for a regular expression that may contain text with POSIX regular expressions.  All traces meeting this criterion / these criteria will be unhighlighted if they are currently highlighted.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Highlight</span> <span class="pre">All</span></code></dt><dd><p><em>Highlight All</em> simply highlights all displayed traces.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">UnHighlight</span> <span class="pre">All</span></code></dt><dd><p><em>UnHighlight All</em> simply unhighlights all displayed traces.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Alphabetize</span> <span class="pre">All</span></code></dt><dd><p><em>Alphabetize All</em> alphabetizes all displayed traces. Blank traces are sorted to the bottom.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Alphabetize</span> <span class="pre">All</span> <span class="pre">(CaseIns)</span></code></dt><dd><p><em>Alphabetize All (CaseIns)</em> alphabetizes all displayed traces without regard to case. Blank traces are sorted to the bottom.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Sigsort</span> <span class="pre">All</span></code></dt><dd><p><em>Sigsort All</em> sorts all displayed traces with the numeric parts being taken into account. Blank traces are sorted to the bottom.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Reverse</span> <span class="pre">All</span></code></dt><dd><p><em>Reverse All</em> reverses all displayed traces unconditionally.</p>
+</dd>
+</dl>
+</section>
+<section id="search">
+<h2>Search<a class="headerlink" href="#search" title="Link to this heading">¶</a></h2>
+<p>The Search submenu is used to perform searches on net names and values.</p>
+<dl class="simple myst">
+<dt><code class="docutils literal notranslate"><span class="pre">Pattern</span> <span class="pre">Search</span></code></dt><dd><p><em>Pattern Search</em> only works when at least one trace is highlighted. A requester will appear that lists all the selected traces (maximum of 500) and allows various criteria to be specified for each trace.  Searches can go forward or backward from the primary (unnamed) marker.  If the primary marker has not been set, the search starts at the beginning of the displayed data (“From”) for a forwards search and starts at the end of the displayed data (“To”) for a backwards search.  “Mark” and “Clear” are used to modify the normal time vertical markings such that they can be used to indicate all the times that a specific pattern search condition is true (e.g., every upclock of a specific signal). The “Mark Count” field indicates how many times the specific pattern search condition was encountered. The “Marking Begins at” and “Marking Stops at” fields are used to limit the time over which marking is applied (but they have no effect on searching).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Signal</span> <span class="pre">Search</span> <span class="pre">Regexp</span></code></dt><dd><p><em>Signal Search Regexp</em> provides an easy means of adding traces to the display. Various functions are provided in the Signal Search requester which allow searching using POSIX regular expressions and bundling (coalescing individual bits into a single vector).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Signal</span> <span class="pre">Search</span> <span class="pre">Hierarchy</span></code></dt><dd><p><em>Signal Search Hierarchy</em> provides an easy means of adding traces to the display in a text based treelike fashion.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Signal</span> <span class="pre">Search</span> <span class="pre">Tree</span></code></dt><dd><p><em>Signal Search Tree</em> provides an easy means of adding traces to the display. Various functions are provided in the Signal Search Tree requester which allow searching a treelike hierarchy and bundling (coalescing individual bits into a single vector).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Autocoalesce</span></code></dt><dd><p><em>Autocoalesce</em> when enabled allows the wave viewer to reconstruct split vectors. Split vectors will be indicated by a “[]” prefix in the search requesters.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Autocoalesce</span> <span class="pre">Reversal</span></code></dt><dd><p><em>Autocoalesce Reversal</em> causes split vectors to be reconstructed in reverse order (only if autocoalesce is also active). This is necessary with some simulators. Split vectors will be indicated by a “[]” prefix in the search requesters.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Autoname</span> <span class="pre">Bundles</span></code></dt><dd><p><em>Autoname Bundles</em> when enabled modifies the bundle up/down operations in the hierarchy and tree searches such that a NULL bundle name is implicitly created which informs GTKWave to create bundle and signal names based on the position in the hierarchy. When disabled, it modifies the bundle up/down operations in the hierarchy and tree searches such that a NULL bundle name is not implicitly created. This informs GTKWave to create bundle and signal names based on the position in the hierarchy only if the user enters a zero-length bundle name. This behavior is the default.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Search</span> <span class="pre">Hierarchy</span> <span class="pre">Grouping</span></code></dt><dd><p><em>Search Hierarchy Grouping</em> when enabled ensures that new members added to the “Tree Search” and “Hierarchy Search” widgets are added alphanumerically: first hierarchy names as a group followed by signal names as a group. This is the default and is recommended. When disabled, hierarchy names and signal names are interleaved together in strict alphanumerical ordering. Note that due to the caching mechanism in “Tree Search”, dynamically changing this flag when the widget is active may not produce immediately obvious results. Closing the widget then opening it up again will ensure that it follows the behavior of this flag.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Set</span> <span class="pre">Pattern</span> <span class="pre">Search</span> <span class="pre">Repeat</span> <span class="pre">Count</span></code></dt><dd><p><em>Set Pattern Search Repeat Count</em> sets the number of times that both edge and pattern searches iterate forward or backward when marker forward/backward is selected. Default value is one. This can be used, for example, to skip forward 10 clock edges at a time rather than a single edge.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Scope</span></code></dt><dd><p><em>Open Scope</em> opens and selects the appropriate level of hierarchy in the SST for the first selected signal. This can be used to quickly move to a level of hierarchy in the SST frame, for example, when viewing signals across multiple units in a design.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Source</span> <span class="pre">Definition</span></code></dt><dd><p><em>Open Source Definition</em> opens and selects the appropriate level of hierarchy in the SST for the first selected signal and also invokes <code class="docutils literal notranslate"><span class="pre">$GTKWAVE_EDITOR</span></code> or gedit (if found) on the appropriate source unit.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Source</span> <span class="pre">Instantiation</span></code></dt><dd><p><em>Open Source Instantiation</em> opens and selects the appropriate level of hierarchy in the SST for the first selected signal and also invokes <code class="docutils literal notranslate"><span class="pre">$GTKWAVE_EDITOR</span></code> or gedit (if found) on the appropriate source unit.</p>
+</dd>
+</dl>
+</section>
+<section id="time">
+<h2>Time<a class="headerlink" href="#time" title="Link to this heading">¶</a></h2>
+<p>The Time submenu contains a superset of the functions performed by the Navigation and Status Panel button groups.</p>
+<dl class="simple myst">
+<dt><code class="docutils literal notranslate"><span class="pre">Move</span> <span class="pre">To</span> <span class="pre">Time</span></code></dt><dd><p><em>Move To Time</em> scrolls the waveform display such that the left border is the time entered in the requester. Use one of the letters A-Z to move to a named marker.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Zoom</span> <span class="pre">Amount</span></code></dt><dd><p><em>Zoom Amount</em> allows entry of zero or a negative value for the display zoom. Zero is no magnification.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Zoom</span> <span class="pre">Base</span></code></dt><dd><p><em>Zoom Base</em> allows entry of a zoom base for the zoom (magnification per integer step) Allowable values are 1.5 to 10.0. Default is 2.0.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Zoom</span> <span class="pre">In</span></code></dt><dd><p><em>Zoom In</em> is used to increase the zoom factor. ++alt+”Scrollwheel Down”++ also performs this function.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Zoom</span> <span class="pre">Out</span></code></dt><dd><p><em>Zoom Out</em> is used to decrease the zoom factor. ++alt+”Scrollwheel Up”++ also performs this function.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Zoom</span> <span class="pre">Full</span></code></dt><dd><p><em>Zoom Full</em> attempts a “best fit” to get the whole trace onscreen.  Note that the trace may be more or less than a whole screen since this isn’t a “perfect fit.”</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Zoom</span> <span class="pre">Best</span> <span class="pre">Fit</span></code></dt><dd><p><em>Zoom Best Fit</em> attempts a “best fit” to get the whole trace onscreen.  Note that the trace may be more or less than a whole screen since this isn’t a “perfect fit.” Also, if the middle button baseline marker is nailed down, the zoom instead of getting the whole trace onscreen will use the part of the trace between the primary marker and the baseline marker.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Zoom</span> <span class="pre">To</span> <span class="pre">Start</span></code></dt><dd><p><em>Zoom To Start</em> is used to jump scroll to the trace’s beginning.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Zoom</span> <span class="pre">To</span> <span class="pre">End</span></code></dt><dd><p><em>Zoom To End</em> is used to jump scroll to the trace’s end.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Zoom</span> <span class="pre">Undo</span></code></dt><dd><p><em>Zoom Undo</em> is used to revert to the previous zoom value used. Undo only works one level deep.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Fetch</span> <span class="pre">Size</span></code></dt><dd><p><em>Fetch Size</em> brings up a requester which allows input of the number of ticks used for fetch/discard operations. Default is 100.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Fetch</span> <span class="pre">Right</span></code></dt><dd><p><em>Fetch Right</em> increases the “To” time, which allows more of the trace to be displayed if the “From” and “To” times do not match the actual bounds of the trace.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Fetch</span> <span class="pre">Left</span></code></dt><dd><p><em>Fetch Left</em> decreases the “From” time, which allows more of the trace to be displayed if the “From” and “To” times do not match the actual bounds of the trace.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Discard</span> <span class="pre">Right</span></code></dt><dd><p><em>Discard Right</em> decreases the “To” time, which allows less of the trace to be displayed.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Discard</span> <span class="pre">Left</span></code></dt><dd><p><em>Discard Left</em> increases the “From” time, which allows less of the trace to be displayed.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Shift</span> <span class="pre">Right</span></code></dt><dd><p><em>Shift Right</em> scrolls the display window right one tick worth of data.  The net action is that the data scrolls left a tick. ++ctrl+”Scrollwheel Down”++ also performs this function.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Shift</span> <span class="pre">Left</span></code></dt><dd><p><em>Shift Left</em> scrolls the display window left one tick worth of data. The net action is that the data scrolls right a tick. ++ctrl+”Scrollwheel Up”++ also performs this function.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Page</span> <span class="pre">Right</span></code></dt><dd><p><em>Page Right</em> scrolls the display window right one page worth of data.  The net action is that the data scrolls left a page. ++”Scrollwheel Down”++ also performs this function.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Page</span> <span class="pre">Left</span></code></dt><dd><p><em>Page Left</em> scrolls the display window left one page worth of data. The net action is that the data scrolls right a page. ++”Scrollwheel Up”++ also performs this function.</p>
+</dd>
+</dl>
+</section>
+<section id="markers">
+<h2>Markers<a class="headerlink" href="#markers" title="Link to this heading">¶</a></h2>
+<p>The Markers submenu is used to perform various manipulations on the
+markers as well as control scrolling offscreen.</p>
+<dl class="simple myst">
+<dt><code class="docutils literal notranslate"><span class="pre">Show-Change</span> <span class="pre">Marker</span> <span class="pre">Data</span></code></dt><dd><p><em>Show-Change Marker Data</em> displays and allows the modification of the times for all 26 named markers by filling in the leftmost entry boxes.  In addition, optional marker text rather than a generic single letter name may be specified by filling in the rightmost entry boxes. Note that the time for each marker must be unique.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Drop</span> <span class="pre">Named</span> <span class="pre">Marker</span></code></dt><dd><p><em>Drop Named Marker</em> drops a named marker where the current primary (unnamed) marker is placed. A maximum of 26 named markers are allowed and the times for all must be different.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Collect</span> <span class="pre">Named</span> <span class="pre">Marker</span></code></dt><dd><p><em>Collect Named Marker</em> collects a named marker where the current primary (unnamed) marker is placed if there is a named marker at its position.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Collect</span> <span class="pre">All</span> <span class="pre">Named</span> <span class="pre">Markers</span></code></dt><dd><p><em>Collect All Named Markers</em> simply collects any and all named markers which have been dropped.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Delete</span> <span class="pre">Primary</span> <span class="pre">Marker</span></code></dt><dd><p><em>Delete Primary Marker</em> removes the primary marker from the display if present.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Wave</span> <span class="pre">Scrolling</span></code></dt><dd><p><em>Wave Scrolling</em> allows movement of the primary marker beyond screen boundaries which causes the wave window to scroll when enabled. When disabled, it disallows movement of the primary marker beyond screen boundaries.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Alternate</span> <span class="pre">Wheel</span> <span class="pre">Mode</span></code></dt><dd><p><em>Alternate Wheel Mode</em> makes the mouse wheel act how TomB expects it to.  Wheel alone will pan part of a page (so you can still see where you were). ++ctrl+”Wheel”++ will zoom around the cursor (not where the marker is), and ++alt+”Wheel”++ will edge left or right on the selected signal.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Copy</span> <span class="pre">Primary</span> <span class="pre">-&gt;</span> <span class="pre">B</span> <span class="pre">Marker</span></code></dt><dd><p><em>Copy Primary -&gt; B Marker</em> copies the primary marker position to the B marker (handy for measuring deltas).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Lock</span> <span class="pre">to</span> <span class="pre">Lesser</span> <span class="pre">Named</span> <span class="pre">Marker</span></code></dt><dd><p><em>Lock to Lesser Named Marker</em> locks the primary marker to a named marker.  If no named marker is currently selected, the last defined one is used, otherwise the marker selected will be one lower in the alphabet, scrolling through to the end of the alphabet on wrap. If no named marker exists, one is dropped down for ‘A’ and the primary marker is locked to it.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Lock</span> <span class="pre">to</span> <span class="pre">Greater</span> <span class="pre">Named</span> <span class="pre">Marker</span></code></dt><dd><p><em>Lock to Greater Named Marker</em> locks the primary marker to a named marker.  If no named marker is currently selected, the first defined one is used, otherwise the marker selected will be one higher in the alphabet, scrolling through to the beginning of the alphabet on wrap. If no named marker exists, one is dropped down for ‘A’ and the primary marker is locked to it.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Unlock</span> <span class="pre">from</span> <span class="pre">Named</span> <span class="pre">Marker</span></code></dt><dd><p><em>Unlock from Named Marker</em> unlocks the primary marker from the currently selected named marker.</p>
+</dd>
+</dl>
+</section>
+<section id="view">
+<h2>View<a class="headerlink" href="#view" title="Link to this heading">¶</a></h2>
+<p>The View submenu is used to control various attributes dealing with the
+graphical rendering of status items as well as values in the signal
+subwindow.</p>
+<dl class="simple myst">
+<dt><code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">Grid</span></code></dt><dd><p><em>Show Grid</em> toggles the drawing of gridlines in the waveform display.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">how</span> <span class="pre">Wave</span> <span class="pre">Highlight</span></code></dt><dd><p><em>Show Wave Highlight</em> toggles the drawing of highlighted waveforms (instead of gridlines) in the waveform display.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">Mouseover</span></code></dt><dd><p><em>Show Mouseover</em> toggles the dynamic tooltip for signal names and values which follow the marker
+on mouse button presses in the waveform display.  This is useful for examining the values of closely
+packed value changes without having to zoom outward and without having to refer to the signal name
+pane to the left. Note that an encoded string will be displayed next to the signal name that
+indicates what data format flags are currently active for that signal. Flags are as follows:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Flag</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">+</span></code></p></td>
+<td><p>Signed Decimal</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">X</span></code></p></td>
+<td><p>Hexadecimal</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">A</span></code></p></td>
+<td><p>ASCII</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">D</span></code></p></td>
+<td><p>Decimal</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">B</span></code></p></td>
+<td><p>Binary</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">O</span></code></p></td>
+<td><p>Octal</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">J</span></code></p></td>
+<td><p>Right Justify</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">~</span></code></p></td>
+<td><p>Invert</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">V</span></code></p></td>
+<td><p>Reverse</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
+<td><p>Analog Step+Interpolated</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">S</span></code></p></td>
+<td><p>Analog Step</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">I</span></code></p></td>
+<td><p>Analog Interpolated</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">R</span></code></p></td>
+<td><p>Real</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">r</span></code></p></td>
+<td><p>Real to Bits</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>Range Fill with 0s</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>Range Fill with 1s</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">G</span></code></p></td>
+<td><p>Binary to Gray</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">g</span></code></p></td>
+<td><p>Gray to Binary</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">F</span></code></p></td>
+<td><p>File Filter</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">P</span></code></p></td>
+<td><p>Process Filter</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">T</span></code></p></td>
+<td><p>Transaction Filter</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">p</span></code></p></td>
+<td><p>Population Count</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">s</span></code></p></td>
+<td><p>Fixed Point Shift (count)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Mouseover</span> <span class="pre">Copies</span> <span class="pre">To</span> <span class="pre">Clipboard</span></code></dt><dd><p><em>Mouseover Copies To Clipboard</em> toggles automatic copying to the clipboard of mouseover values. Requires that Show Mouseover is enabled.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">Base</span> <span class="pre">Symbols</span></code></dt><dd><p><em>Show Base Symbols</em> enables the display of leading base symbols (‘$’ for hex, ‘%’ for binary, ‘#’ for octal if they are turned off and disables the drawing of leading base symbols if they are turned on. Base symbols are displayed by default.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Standard</span> <span class="pre">Trace</span> <span class="pre">Select</span></code></dt><dd><p><em>Standard Trace Select</em> when enabled, keeps the currently selected traces from deselecting on mouse button press. This allows drag and drop to function more smoothly. As this behavior is not how GTK normally functions, it is by default disabled.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Dynamic</span> <span class="pre">Resize</span></code></dt><dd><p><em>Dynamic Resize</em> allows GTKWave to dynamically resize the signal window for you when toggled active. This can be helpful during numerous signal additions and/or deletions. This is the default behavior.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Center</span> <span class="pre">Zooms</span></code></dt><dd><p><em>Center Zooms</em> when enabled configures zoom in/out operations such that all zooms use the center of the display as the fixed zoom origin if the primary (unnamed) marker is not present, otherwise, the primary marker is used as the center origin. When disabled, it configures zoom in/out operations such that all zooms use the left margin of the display as the fixed zoom origin.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Toggle</span> <span class="pre">Delta-Frequency</span></code></dt><dd><p><em>Toggle Delta-Frequency</em> allows you to switch between the delta time and frequency display in the upper right corner of the main window when measuring distances between markers. Default behavior is that the delta time is displayed.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Toggle</span> <span class="pre">Max-Marker</span></code></dt><dd><p><em>Toggle Max-Marker</em> allows you to switch between the maximum time and marker time for display in the upper right corner of the main window.  Default behavior is that the maximum time is displayed.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Constant</span> <span class="pre">Marker</span> <span class="pre">Update</span></code></dt><dd><p><em>Constant Marker Update</em> when enabled, allows GTKWave to dynamically show the changing values of the traces under the primary marker while it is being dragged across the screen. This works best with dynamic resizing disabled. When disabled, it restricts GTKWave to only update the trace values when the left mouse button is initially pressed then again when it is released. This is the default behavior.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Draw</span> <span class="pre">Roundcapped</span> <span class="pre">Vectors</span></code></dt><dd><p><em>Draw Roundcapped Vectors</em> draws vector transitions that have sloping edges when enabled. Draws vector transitions that have sharp edges when disabled; this is the default.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Left</span> <span class="pre">Justify</span> <span class="pre">Signals</span></code></dt><dd><p><em>Left Justify Signals</em> draws signal names flushed to the left border of the signal window.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Right</span> <span class="pre">Justify</span> <span class="pre">Signals</span></code></dt><dd><p><em>Right Justify Signals</em> draws signal names flushed to the right (“equals”) side of the signal window.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Zoom</span> <span class="pre">Pow10</span> <span class="pre">Snap</span></code></dt><dd><p><em>Zoom Pow10 Snap</em> snaps time values to a power of ten boundary when active. Fractional zooms are internally stored, but what is actually displayed will be rounded up/down to the nearest power of 10. This only works when the ticks per frame is greater than 100 units.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Partial</span> <span class="pre">VCD</span> <span class="pre">Dynamic</span> <span class="pre">Zoom</span> <span class="pre">Full</span></code></dt><dd><p><em>Partial VCD Dynamic Zoom Full</em> causes the screen to be in full zoom mode while a VCD file is loading incrementally.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Partial</span> <span class="pre">VCD</span> <span class="pre">Dynamic</span> <span class="pre">Zoom</span> <span class="pre">To</span> <span class="pre">End</span></code></dt><dd><p><em>Partial VCD Dynamic Zoom To End</em> causes the screen to zoom to the end while a VCD file is loading incrementally.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Full</span> <span class="pre">Precision</span></code></dt><dd><p><em>Full Precision</em> does not round time values when the number of ticks per pixel onscreen is greater than 10 when active. The default is that this feature is disabled.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Define</span> <span class="pre">Time</span> <span class="pre">Ruler</span> <span class="pre">Marks</span></code></dt><dd><p><em>Define Time Ruler Marks</em> changes the ruler markings such that the Baseline marker defines the origin and the Primary marker distance from the Baseline marker defines the period. If either the Baseline marker or Primary marker are not present, the default ruler markers are used. If the Baseline marker and Primary marker have the same value, the default ruler markers are used.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Remove</span> <span class="pre">Pattern</span> <span class="pre">Marks</span></code></dt><dd><p><em>Remove Pattern Marks</em> removes any vertical traces on the display caused by the Mark feature in pattern search and reverts to the normal format.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Use</span> <span class="pre">Color</span></code></dt><dd><p><em>Use Color</em> draws signal names and trace data in color. This is normal operation.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Use</span> <span class="pre">Black</span> <span class="pre">and</span> <span class="pre">White</span></code></dt><dd><p><em>Use Black and White</em> draws signal names and trace data in black and white. This is intended for use in black and white screen dumps.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Scale</span> <span class="pre">To</span> <span class="pre">Time</span> <span class="pre">Dimension:</span> <span class="pre">None</span></code></dt><dd><p><em>Scale To Time Dimension: None</em> turns off time dimension conversion.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Scale</span> <span class="pre">To</span> <span class="pre">Time</span> <span class="pre">Dimension:</span> <span class="pre">sec</span></code></dt><dd><p><em>Scale To Time Dimension: sec</em> changes the time dimension conversion value to seconds.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Scale</span> <span class="pre">To</span> <span class="pre">Time</span> <span class="pre">Dimension:</span> <span class="pre">ms</span></code></dt><dd><p><em>Scale To Time Dimension: ms</em> changes the time dimension conversion value to milliseconds.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Scale</span> <span class="pre">To</span> <span class="pre">Time</span> <span class="pre">Dimension:</span> <span class="pre">us</span></code></dt><dd><p><em>Scale To Time Dimension: us</em> changes the time dimension conversion value to microseconds.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Scale</span> <span class="pre">To</span> <span class="pre">Time</span> <span class="pre">Dimension:</span> <span class="pre">ns</span></code></dt><dd><p><em>Scale To Time Dimension: ns</em> changes the time dimension conversion value to nanoseconds.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Scale</span> <span class="pre">To</span> <span class="pre">Time</span> <span class="pre">Dimension:</span> <span class="pre">ps</span></code></dt><dd><p><em>Scale To Time Dimension: ps</em> changes the time dimension conversion value to picoseconds.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Scale</span> <span class="pre">To</span> <span class="pre">Time</span> <span class="pre">Dimension:</span> <span class="pre">fs</span></code></dt><dd><p><em>Scale To Time Dimension: fs</em> changes the time dimension conversion value to femtoseconds.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">LXT</span> <span class="pre">Clock</span> <span class="pre">Compress</span> <span class="pre">to</span> <span class="pre">Z</span></code></dt><dd><p><em>LXT Clock Compress to Z</em> reduces memory usage when active as clocks compressed in LXT format are kept at Z in order to save memory. Traces imported with this are permanently kept at Z.</p>
+</dd>
+</dl>
+</section>
+<section id="help">
+<h2>Help<a class="headerlink" href="#help" title="Link to this heading">¶</a></h2>
+<p>The Help submenu contains options for enabling on-line help as well as
+displaying program version information.</p>
+<dl class="simple myst">
+<dt><code class="docutils literal notranslate"><span class="pre">Wave</span> <span class="pre">Help</span></code></dt><dd><p><em>Wave Help</em> brings up a help window that will show the function of any menu option when that option is selected. Closing the help window will turn off help and return back to normal menu function.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Wave</span> <span class="pre">Version</span></code></dt><dd><p><em>Wave Version</em> merely brings up a requester which indicates the current version of this program.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="tcl.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Tcl Command Syntax</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="user-interface.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">GTKWave User Interface</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, GTKWave Authors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">GTKWave Menu Functions</a><ul>
+<li><a class="reference internal" href="#file">File</a></li>
+<li><a class="reference internal" href="#edit">Edit</a></li>
+<li><a class="reference internal" href="#search">Search</a></li>
+<li><a class="reference internal" href="#time">Time</a></li>
+<li><a class="reference internal" href="#markers">Markers</a></li>
+<li><a class="reference internal" href="#view">View</a></li>
+<li><a class="reference internal" href="#help">Help</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=4e2eecee"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    </body>
+</html>

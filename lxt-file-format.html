@@ -1,0 +1,961 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="evcd2vcd" href="man/evcd2vcd.1.html" /><link rel="prev" title="VCD Recoding" href="vcd-recoding.html" />
+
+    <!-- Generated with Sphinx 7.3.7 and Furo 2024.04.27 -->
+        <title>LXT File Format - GTKWave documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=437aa6ec" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">GTKWave  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">GTKWave  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling and Installing GTKWave</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-interface.html">GTKWave User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="menu.html">GTKWave Menu Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tcl.html">Tcl Command Syntax</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="vcd-recoding.html">VCD Recoding</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">LXT File Format</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Man pages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="man/evcd2vcd.1.html">evcd2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/fst2vcd.1.html">fst2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/fstminer.1.html">fstminer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/gtkwave.1.html">gtkwave</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/gtkwaverc.5.html">gtkwaverc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/lxt2miner.1.html">lxt2miner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/lxt2vcd.1.html">lxt2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/rtlbrowse.1.html">rtlbrowse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/shmidcat.1.html">shmidcat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/twinwave.1.html">twinwave</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vcd2fst.1.html">vcd2fst</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vcd2lxt.1.html">vcd2lxt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vcd2lxt2.1.html">vcd2lxt2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vcd2vzt.1.html">vcd2vzt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vzt2vcd.1.html">vzt2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/vztminer.1.html">vztminer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="man/xml2stems.1.html">xml2stems</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="lxt-file-format">
+<h1>LXT File Format<a class="headerlink" href="#lxt-file-format" title="Link to this heading">¶</a></h1>
+<section id="lxt-framing">
+<h2>LXT Framing<a class="headerlink" href="#lxt-framing" title="Link to this heading">¶</a></h2>
+<p>The three most important values in an LXT(interLaced eXtensible Trace)
+file are the following:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define LT_HDRID (0x0138)</span>
+<span class="cp">#define LT_VERSION (0x0001)</span>
+<span class="cp">#define LT_TRLID (0xB4)</span>
+</pre></div>
+</div>
+<p>An LXT file starts with a two byte <code class="docutils literal notranslate"><span class="pre">LT_HDRID</span></code> with the two byte version
+number LT_VERSION concatenated onto it. The last byte in the file is the
+LT_TRLID. These five bytes are the only “absolutes” in an LXT file.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>01 38 00 01* ...file body... *B4
+</pre></div>
+</div>
+<p>As one may guess from the example above, <em>all</em> integer values
+represented in LXT files are stored in big endian order.</p>
+<p>Note that all constant definitions found in this appendix may be found
+in the header file <code class="docutils literal notranslate"><span class="pre">src/helpers/lxt_write.h</span></code>. Note that LXT2 files use a
+completely different file format as well as different constant values.</p>
+<section id="lxt-section-pointers">
+<h3>LXT Section Pointers<a class="headerlink" href="#lxt-section-pointers" title="Link to this heading">¶</a></h3>
+<p>Preceding the trailing ID byte <em>B4</em> is a series of tag bytes which
+themselves are preceded by 32-bit offsets into the file which indicate
+where the sections pointed to by the tags are located. The exception is
+tag <em>00</em> (LT_SECTION_END) which indicates that no more tags/sections are
+specified:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>00* ... offset_for_tag_2, tag_2, offset_for_tag_1, tag_1, *B4
+</pre></div>
+</div>
+<p>Currently defined tags are:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define LT_SECTION_END              (0)</span>
+<span class="cp">#define LT_SECTION_CHG              (1)</span>
+<span class="cp">#define LT_SECTION_SYNC_TABLE       (2)</span>
+<span class="cp">#define LT_SECTION_FACNAME          (3)</span>
+<span class="cp">#define LT_SECTION_FACNAME_GEOMETRY (4)</span>
+<span class="cp">#define LT_SECTION_TIMESCALE        (5)</span>
+<span class="cp">#define LT_SECTION_TIME_TABLE       (6)</span>
+<span class="cp">#define LT_SECTION_INITIAL_VALUE    (7)</span>
+<span class="cp">#define LT_SECTION_DOUBLE_TEST      (8)</span>
+<span class="cp">#define LT_SECTION_TIME_TABLE64     (9)</span>
+</pre></div>
+</div>
+<p>Let’s put this all together with an example:</p>
+<p>The first tag encountered is <em>08</em> (<em>LT_SECTION_DOUBLE_TEST</em>) at 339. Its
+offset value indicates the position of the double sized floating point
+comparison testword. Thus, the section location for the testword is at
+0309 from the beginning of the file.</p>
+<div class="highlight"><pre><code>
+00000300: XX XX XX XX XX XX XX XX XX 6e 86 1b f0 f9 21 09 .........n....!.
+00000310: 40 00 00 00 00 04 01 00 00 02 4b 02 00 00 00 be @.........K.....
+00000320: 03 00 00 01 4b 04 00 00 03 08 05 00 00 02 8b 06 ....K...........
+00000330: 00 00 03 07 07 <b><u>00 00 03 09</u> 08</b> b4 -- -- -- -- -- ...........*
+</code></pre></div>
+<p>The next tag encountered is <em>07</em> (<em>LT_SECTION_INITIAL_VALUE</em>) at 334.
+Its offset value indicates the position of the simulation initial value.
+Even though this value is a single byte, its own section is defined. The
+reasoning behind this is that older versions of LXT readers would be
+able to skip unknown sections without needing to know the size of the
+section, how it functions, etc.</p>
+<div class="highlight"><pre><code>
+00000300: XX XX XX XX XX XX XX XX XX 6e 86 1b f0 f9 21 09 .........n....!.
+00000310: 40 00 00 00 00 04 01 00 00 02 4b 02 00 00 00 be @.........K.....
+00000320: 03 00 00 01 4b 04 00 00 03 08 05 00 00 02 8b 06 ....K...........
+00000330: <b><u>00 00 03</u> 07</b> 07 00 00 03 09 08 b4 -- -- -- -- -- ...........
+</code></pre></div>
+<p>The next tag encountered is <em>06</em> (<em>LT_SECTION_TIME_TABLE</em>) at 32F. Its
+offset value (the underlined four byte number) indicates the position of
+the time table which stores the time value vs positional offset for the
+value change data.</p>
+<div class="highlight"><pre><code>
+00000300: XX XX XX XX XX XX XX XX XX 6e 86 1b f0 f9 21 09 .........n....!.
+00000310: 40 00 00 00 00 04 01 00 00 02 4b 02 00 00 00 be @.........K.....
+00000320: 03 00 00 01 4b 04 00 00 03 08 05 <b><u>00 00 02 8b</u> 06</b> ....K...........
+00000330: 00 00 03 07 07 00 00 03 09 08 b4 -- -- -- -- -- ...........
+</code></pre></div>
+<p>The next tag encountered is <em>05</em> (<em>LT_SECTION_TIMESCALE</em>) at 32A. Its
+offset value indicates the position of the timescale byte.</p>
+<div class="highlight"><pre><code>
+00000300: XX XX XX XX XX XX XX XX XX 6e 86 1b f0 f9 21 09 .........n....!.
+00000310: 40 00 00 00 00 04 01 00 00 02 4b 02 00 00 00 be @.........K.....
+00000320: 03 00 00 01 4b 04 <b><u>00 00 03 08</u> 05</b> 00 00 02 8b 06 ....K...........
+00000330: 00 00 03 07 07 00 00 03 09 08 b4 -- -- -- -- -- ...........
+</code></pre></div>
+<p>The next tag encountered is <em>04</em> (<em>LT_SECTION_FACNAME_GEOMETRY</em>) at 325.
+Its offset value indicates the geometry (array/msb/lsb/type/etc) of the
+dumped facilities (signals) in the file.</p>
+<div class="highlight"><pre><code>
+00000300: XX XX XX XX XX XX XX XX XX 6e 86 1b f0 f9 21 09 .........n....!.
+00000310: 40 00 00 00 00 04 01 00 00 02 4b 02 00 00 00 be @.........K.....
+00000320: 03 <b><u>00 00 01 4b</u> 04</b> 00 00 03 08 05 00 00 02 8b 06 ....K...........
+00000330: 00 00 03 07 07 00 00 03 09 08 b4 -- -- -- -- -- ...........
+</code></pre></div>
+<p>The next tag encountered is <em>03</em> (<em>LT_SECTION_FACNAME</em>) at 320. Its
+offset value indicates where the compressed facility names are stored.</p>
+<div class="highlight"><pre><code>
+00000300: XX XX XX XX XX XX XX XX XX 6e 86 1b f0 f9 21 09 .........n....!.
+00000310: 40 00 00 00 00 04 01 00 00 02 4b 02 <b><u>00 00 00 be</u></b> @.........K.....
+00000320: <b>03</b> 00 00 01 4b 04 00 00 03 08 05 00 00 02 8b 06 ....K...........
+00000330: 00 00 03 07 07 00 00 03 09 08 b4 -- -- -- -- -- ...........
+</code></pre></div>
+<p>The next tag encountered is <em>02</em> (<em>LT_SECTION_SYNC_TABLE</em>) at 31B. Its
+offset value points to a table where the final value changes for each
+facility may be found.</p>
+<div class="highlight"><pre><code>
+00000300: XX XX XX XX XX XX XX XX XX 6e 86 1b f0 f9 21 09 .........n....!.
+00000310: 40 00 00 00 00 04 01 <b><u>00 00 02 4b</u> 02</b> 00 00 00 be @.........K.....
+00000320: 03 00 00 01 4b 04 00 00 03 08 05 00 00 02 8b 06 ....K...........
+00000330: 00 00 03 07 07 00 00 03 09 08 b4 -- -- -- -- -- ...........
+</code></pre></div>
+<p>The next tag encountered is <em>01</em> (<em>LT_SECTION_CHG</em>) at 316. Its offset
+value points to the actual value changes in the file.</p>
+<div class="highlight"><pre><code>
+00000300: XX XX XX XX XX XX XX XX XX 6e 86 1b f0 f9 21 09 .........n....!.
+00000310: 40 00 <b><u>00 00 00 04</u> 01</b> 00 00 02 4b 02 00 00 00 be @.........K.....
+00000320: 03 00 00 01 4b 04 00 00 03 08 05 00 00 02 8b 06 ....K...........
+00000330: 00 00 03 07 07 00 00 03 09 08 b4 -- -- -- -- -- ...........
+</code></pre></div>
+<p>The final tag encountered is <em>00</em> at 311. It signifies that there are no
+more tags.</p>
+<div class="highlight"><pre><code>
+00000300: XX XX XX XX XX XX XX XX XX 6e 86 1b f0 f9 21 09 .........n....!.
+00000310: 40 <b>00</b> 00 00 00 04 01 00 00 02 4b 02 00 00 00 be @.........K.....
+00000320: 03 00 00 01 4b 04 00 00 03 08 05 00 00 02 8b 06 ....K...........
+00000330: 00 00 03 07 07 00 00 03 09 08 b4 -- -- -- -- -- ...........
+</code></pre></div>
+<p>Note that with the exception of the termination tag <em>00</em>, tags may be
+encountered in any order. The fact that they are encountered in
+monotonically decreasing order in the example above is an implementation
+detail of the lxt_write dumper. Code which processes LXT files should be
+able to handle tags which appear in any order. For tags which are
+defined multiple times, it is to be assumed that the tag instance
+closest to the termination tag is the one to be used unless each unique
+instantiation possesses a special meaning. Currently, repeated tags have
+no special semantics.</p>
+</section>
+</section>
+<section id="lxt-section-definitions">
+<h2>LXT Section Definitions<a class="headerlink" href="#lxt-section-definitions" title="Link to this heading">¶</a></h2>
+<p>The body of each section (as currently defined) will now be explained in
+detail.</p>
+<section id="lt-section-double-test">
+<h3>08: LT_SECTION_DOUBLE_TEST<a class="headerlink" href="#lt-section-double-test" title="Link to this heading">¶</a></h3>
+<p>This section is only present if double precision floating point data is
+to be found in the file. In order to resolve byte ordering issues across
+various platforms, a rounded version of pi (3.14159) is stored in eight
+consecutive bytes. This value was picked because each of its eight bytes
+are unique. It is the responsibility of an LXT reader to compare the
+byte ordering found in the LT_SECTION_DOUBLE_TEST section to that of the
+same rounded version of pi as represented by reader’s processor. By
+comparing the position on the host and in the file, it may be determined
+how the values stored in the LXT file need to be rearranged. The
+following bit of code shows one possible implementation for this:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">double_mas</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">double_is_native</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">create_double_endian_mask</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">pnt</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.14159</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">pnt</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">double_is_native</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">remote</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">here</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">p</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">here</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">remote</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">double_mask</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">j</span><span class="p">;</span>
+<span class="w">                    </span><span class="k">break</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If <em>double_is_native</em> is zero, the following function will then be
+needed to be called to rearrange the file byte ordering to match the
+host every time a double is encountered in the value change data:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">swab_double_via_mask</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">swapbuf</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pnt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="mi">8</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">));</span>
+<span class="w">    </span><span class="n">memcpy</span><span class="p">(</span><span class="n">swapbuf</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">pnt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">swapbuf</span><span class="p">[</span><span class="n">double_mask</span><span class="p">[</span><span class="n">i</span><span class="p">]];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">pnt</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="lt-section-initial-value">
+<h3>07: LT_SECTION_INITIAL_VALUE<a class="headerlink" href="#lt-section-initial-value" title="Link to this heading">¶</a></h3>
+<p>This section is used as a “shortcut” representation to flash all
+facilities in a dumpfile to a specific value at the initial time.
+Permissible values are ‘0’, ‘1’, ‘Z’, ‘X’, ‘H’, ‘U’, ‘W’,
+‘L’, and ‘-’ stored as the byte values 00 through 08 in the LXT
+file.</p>
+</section>
+<section id="lt-section-time-table-08-lt-section-time-table64">
+<h3>06: LT_SECTION_TIME_TABLE / 08: LT_SECTION_TIME_TABLE64<a class="headerlink" href="#lt-section-time-table-08-lt-section-time-table64" title="Link to this heading">¶</a></h3>
+<p>This section marks the time vs positional data for the LXT file. It is
+represented in the following format:</p>
+<p>4 bytes: <em>number of entries (n)</em><br />
+4 bytes: <em>min time in dump</em> (8 bytes for <em>LT_SECTION_TIME_TABLE64</em><br />
+4 bytes: <em>max time in dump</em> (8 bytes for <em>LT_SECTION_TIME_TABLE64</em></p>
+<p><em>n</em> 4-byte positional delta entries follow<br />
+<em>n</em> 4-byte time delta entries follow (8 byte entries for <em>LT_SECTION_TIME_TABLE64</em>)</p>
+<p>It is assumed that the delta values are represented as <em>current_value -
+previous_value</em>, which means that deltas should always be positive. In
+addition, the <em>previous_value</em> for delta number zero for both position
+and time is zero. This will allow for sanity checking between the time
+table and the min/max time fields if it is so desired or if the min/max
+fields are needed before the delta entries are traversed.</p>
+<p>Example:</p>
+<p><em>00000005</em> 5 entries are in the table<br />
+<em>00000000</em> Min time of simulation is 0<br />
+<em>00000004</em> Max time of simulation is 4.</p>
+<p><em>00000000</em> time[0]=0<br />
+<em>00000001</em> time[1]=1<br />
+<em>00000001</em> time[2]=2<br />
+<em>00000001</em> time[3]=3<br />
+<em>00000001</em> time[4]=4</p>
+<p><em>00000004</em> pos[0]=0x4<br />
+<em>00000010</em> pos[1]=0x14<br />
+<em>00000020</em> pos[2]=0x34<br />
+<em>00000002</em> pos[3]=0x36<br />
+<em>00000300</em> pos[4]=0x336</p>
+</section>
+<section id="lt-section-timescale">
+<h3>05: LT_SECTION_TIMESCALE<a class="headerlink" href="#lt-section-timescale" title="Link to this heading">¶</a></h3>
+<p>This section consists of a single signed byte. Its value (<em>x</em>) is the
+exponent of a base-10 timescale. Thus, each increment of ‘1’ in the
+time value table represented in the previous section represents
+10^x seconds. Use -9 for nanoseconds, -12 for picoseconds, etc. Any
+eight-bit signed value (-128 to +127) is permissible, but in actual
+practice only a handful are useful.</p>
+</section>
+<section id="lt-section-facname">
+<h3>03: LT_SECTION_FACNAME<a class="headerlink" href="#lt-section-facname" title="Link to this heading">¶</a></h3>
+<p>No, section <em>04: LT_SECTION_FACNAME_GEOMETRY</em> hasn’t been forgotten.
+It’s more logical to cover the facilities themselves before their
+geometries.</p>
+<p>4 bytes: <em>number of facilities (n)</em><br />
+4 bytes: <em>amount of memory required in bytes for the decompressed facilities</em></p>
+<p><em>n</em> compressed facilities follow, where a compressed facility consists
+of two values:</p>
+<p>2 bytes: <em>number of prefix bytes</em> (min=0, max=65535)<br />
+zero terminated string: <em>suffix bytes</em></p>
+<p>An example should clarify things (prefix lengths are in bold):</p>
+<div class="highlight"><pre><code>
+00000020: <u>00 00 00 04</u> <u>00 00 00 1d</u> <b>00 00</b> 61 6c 70 68 61 00 ..........alpha.
+00000030: <b>00 01</b> 70 70 6c 65 00 <b>00 04</b> 69 63 61 74 69 6f 6e ..pple...ication
+00000040: 00 <b>00 00</b> 7a 65 72 6f 00 00 00 00 01 00 00 00 00 ...zero.........
+</code></pre></div>
+<p>Four facilities (underlined) are defined and they occupy 0x0000001d
+bytes (second underlined value).</p>
+<p>This first prefix length is 0000 (offset 28).<br />
+The first suffix is “alpha”, therefore the first facility is “alpha”. This requires six bytes.</p>
+<p>The second prefix length is 0001 (offset 30).<br />
+The second suffix is “pple”, therefore the second facility is “apple”. This requires six bytes.</p>
+<p>The third prefix length is 0004 (offset 37).<br />
+The third suffix is “ication”, therefore the third facility is “application”. This requires twelve bytes.</p>
+<p>The fourth prefix length is 0000 (offset 41).<br />
+The fourth suffix is “zero”, therefore the fourth facility is “zero”. This requires five bytes.</p>
+<p>6 + 6 + 12 + 5 = 29 which indeed is 0x1d.</p>
+<p>It is suggested that the facilities are dumped out in alphabetically
+sorted order in order to increase the compression ratio of this section.</p>
+</section>
+<section id="lt-section-facname-geometry">
+<h3>04: LT_SECTION_FACNAME_GEOMETRY<a class="headerlink" href="#lt-section-facname-geometry" title="Link to this heading">¶</a></h3>
+<p>This section consists of a repeating series of sixteen byte entries.
+Each entry corresponds in order with a facility as defined in <em>03:
+LT_SECTION_FACNAME</em>. As such there is a 1:1 in-order correspondence
+between the two sections.</p>
+<p>4 bytes: <em>rows</em> (typically zero, only used when defining arrays: this indicates the max row value+1)<br />
+4 bytes: <em>msb</em><br />
+4 bytes: <em>lsb</em><br />
+4 bytes: <em>flags</em></p>
+<p><em>flags</em> are defined as follows:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define LT_SYM_F_BITS    (0)</span>
+<span class="cp">#define LT_SYM_F_INTEGER (1&lt;&lt;0)</span>
+<span class="cp">#define LT_SYM_F_DOUBLE  (1&lt;&lt;1)</span>
+<span class="cp">#define LT_SYM_F_STRING  (1&lt;&lt;2)</span>
+<span class="cp">#define LT_SYM_F_ALIAS   (1&lt;&lt;3)</span>
+</pre></div>
+</div>
+<p>When an <em>LT_SYM_F_ALIAS</em> is encountered, it indicates that the rows
+field instead means “alias this to facility number <em>rows</em>”, there the
+facility number corresponds to the definition order in <em>03: LT_SECTION_FACNAME</em>
+and starts from zero.</p>
+</section>
+<section id="lt-section-sync-table">
+<h3>02: LT_SECTION_SYNC_TABLE<a class="headerlink" href="#lt-section-sync-table" title="Link to this heading">¶</a></h3>
+<p>This section indicates where the final value change (as a four-byte
+offset from the beginning of the file) for every facility is to be
+found. Facilities which do not change value contain a value of zero for
+their final value change. This section is necessary as value changes are
+stored as a linked list of backward directed pointers. There is a 1:1
+in-order correspondence between this section and the definitions found
+in <em>LT_SECTION_FACNAME</em>.</p>
+<p>4 bytes: <em>final offset for facility</em> (repeated for each facility in order as they were defined)</p>
+</section>
+<section id="lt-section-chg">
+<h3>01: LT_SECTION_CHG<a class="headerlink" href="#lt-section-chg" title="Link to this heading">¶</a></h3>
+<p>This section is usually the largest section in a file as is composed of
+value changes, however its structure is set up such that individual
+facilities can be quickly accessed without the necessity of reading in
+the entire file. In spite of this format, this does not prevent one from
+stepping through the entire section <em>backwards</em> in order to process it
+in one pass. The method to achieve this will be described later.</p>
+<p>The final offset for a value change for a specific facility is found in
+<em>02: LT_SECTION_SYNC_TABLE</em>. Since value changes for a facility are
+linked together, one may follow pointers backward from the sync value
+offset for a facility in order to read in an entire trace. This is used
+to accelerate sparse reads of an LXT file’s change data such as those
+that a visualization tool such as a wave viewer would perform.</p>
+<p>The format for a value change is as follows:</p>
+<p><code class="docutils literal notranslate"><span class="pre">command_byte,</span> <span class="pre">delta_offset_of_previous_change[,</span> <span class="pre">[row_changed,]</span> <span class="pre">change_data</span> <span class="pre">]</span></code></p>
+<section id="command-bytes">
+<h4>Command Bytes<a class="headerlink" href="#command-bytes" title="Link to this heading">¶</a></h4>
+<p>The <em>command_byte</em> is broken into two (as currently defined) bitfields:
+bits [5:4] contain a byte count (minus one) required for the
+<em>delta_offset_of_previous_change</em> (thus a value from one to four bytes),
+and bits [3:0] contain the command used to determine the format of the
+change data (if any change data is necessary as dictated by the command
+byte).</p>
+<p>Bits [3:0] of the <em>command_byte</em> are defined as follows. Note that
+this portion of the <em>command_byte</em> is ignored for strings and doubles
+and typically x0 is placed in the dumpfile in those cases:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Value</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><em>0</em></p></td>
+<td><p>MVL_2 [or default (for datatype) value change follows]</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>1</em></p></td>
+<td><p>MVL_4</p></td>
+</tr>
+<tr class="row-even"><td><p><em>2</em></p></td>
+<td><p>MVL_9</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>3</em></p></td>
+<td><p>flash whole value to 0s</p></td>
+</tr>
+<tr class="row-even"><td><p><em>4</em></p></td>
+<td><p>flash whole value to 1s</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>5</em></p></td>
+<td><p>flash whole value to Zs</p></td>
+</tr>
+<tr class="row-even"><td><p><em>6</em></p></td>
+<td><p>flash whole value to Xs</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>7</em></p></td>
+<td><p>flash whole value to Hs</p></td>
+</tr>
+<tr class="row-even"><td><p><em>8</em></p></td>
+<td><p>flash whole value to Us</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>9</em></p></td>
+<td><p>flash whole value to Ws</p></td>
+</tr>
+<tr class="row-even"><td><p><em>A</em></p></td>
+<td><p>flash whole value to Ls</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>B</em></p></td>
+<td><p>flash whole value to -s</p></td>
+</tr>
+<tr class="row-even"><td><p><em>C</em></p></td>
+<td><p>clock compress use 1 byte repeat count</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>D</em></p></td>
+<td><p>clock compress use 2 byte repeat count</p></td>
+</tr>
+<tr class="row-even"><td><p><em>E</em></p></td>
+<td><p>clock compress use 3 byte repeat count</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>F</em></p></td>
+<td><p>clock compress use 4 byte repeat count</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Commands x3-xB only make sense for MVL_2/4/9 (and integer in the case
+for x3 and x4 when an integer is 0 or ~0) facilities. They are provided
+as a space saving device which obviates the need for dumping value
+change data when all the bits in a facility are set to the same exact
+value. For single bit facilities, these commands suffice in all cases.</p>
+<p>Command x0 is used when <em>change_data</em> can be stored as MVL_2. Bits
+defined in MVL_2 are ‘0’ and ‘1’ and as such, one bit of storage in
+an LXT file corresponds to one bit in the facility value.</p>
+<p>Command x1 is used when <em>change_data</em> can’t be stored as MVL_2 but can
+stored as MVL_4. Bits defined in MVL_4 are ‘0’, ‘1’, ‘Z’, and
+‘X’ are stored in an LXT file as the two-bit values 00, 01, 10, and
+11.</p>
+<p>Command x2 is used when change_data can’t be stored as either MVL_2 or
+MVL_4 but can be stored as MVL_9. Bits defined in MVL_9 are ‘0’,
+‘1’, ‘Z’, ‘X’, ‘H’, ‘U’, ‘W’, ‘L’, and ‘-’ corresponding
+to the four-bit values 0000 through 1000.</p>
+<p>Commands xC-xF are used to repeat a clock. It is assumed that at least
+two clock phase changes are present before the current command. Their
+time values are subtracted in order to obtain a delta. The delta is used
+as the change time between future phase changes with respect to the time
+value of the previous command which is used as a “base time” and
+“base value” for repeat_count+1 phase changes.</p>
+<p>Note that these repeat command nybbles <em>also</em> are applicable to
+multi-bit facilities which are 32-bits or less and MVL_2 in nature. In
+this case, the preceding two deltas are subtracted such that a
+recurrence equation can reconstruct any specific item of the compressed
+data:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">item_in_series_to_create</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">rle_delta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                   </span><span class="p">((</span><span class="n">j</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">rle_delta</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>For a sequence of: <em>7B 7C 7D 7E 7F 80 81 82</em> …</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>base = 82
+rle_delta[1] = 82 - 81 == 01
+rle_delta[0] = 81 - 80 == 01
+</pre></div>
+</div>
+<p>Two deltas are used in order to handle the case where a vector which
+changes value by a constant XOR. In that case, the <em>rle_delta</em> values
+will be different. In this way, one command encoding can handle both XOR
+and incrementer/decrementer type compression ops.</p>
+</section>
+<section id="delta-offsets">
+<h4>Delta Offsets<a class="headerlink" href="#delta-offsets" title="Link to this heading">¶</a></h4>
+<p>Delta offsets indicate where the preceding change may be found with
+respect to the beginning of the LXT file. In order to calculate where
+the preceding change for a facility is, take the offset of the
+<em>command_byte</em>, subtract the <em>delta_offset_of_previous_change</em> from it,
+then subtract 2 bytes more. As an example:</p>
+<p><em>00001000: 13 02 10</em> …</p>
+<p>The command byte is 13. Since bits [5:4] are “01”, this means that
+the <em>delta_offset_of_previous_change</em> is two bytes since 1 + 1 = 2.</p>
+<p>The next two bytes are 0210, so 1000 - 0210 - 2 = 0DEE. Hence, the
+preceding value change can be found at 0DEE. This process is to be
+continued until a value change offset of 0 is obtained. This is
+impossible because of the existence of the LXT header bytes.</p>
+</section>
+<section id="row-changed">
+<h4>Row Changed<a class="headerlink" href="#row-changed" title="Link to this heading">¶</a></h4>
+<p>This field is <em>only</em> present in value changes for arrays. The value is
+2, 3, or 4 bytes depending on the magnitude of the array size: greater
+than 16777215 rows requires 4 bytes, greater than 65535 requires 3
+bytes, and so on down to one byte. Note that any value type can be part
+of an array.</p>
+</section>
+<section id="change-data">
+<h4>Change Data<a class="headerlink" href="#change-data" title="Link to this heading">¶</a></h4>
+<p>This is only present for <em>command_byte</em>s x0-x2 for MVL_2, MVL_4, and
+MVL_9 data, and any <em>command_byte</em> for strings and doubles. Strings are
+stored in zero terminated format and doubles are stored as eight bytes
+in machine-native format with <em>08: LT_SECTION_DOUBLE_TEST</em> being used to
+resolve possible differences in endianness on the machine reading the
+LXT file.</p>
+<p>Values are stored left justified in big endian order and unused bits are
+zeroed out. Examples with “_” used to represent the boundary between
+consecutive bytes:</p>
+<p>MVL_2: “0101010110101010” (16 bits) is stored as 01010101_10101010<br />
+MVL_2: “011” (3 bits) is stored as 01100000<br />
+MVL_2: “11111110011” (11 bits) is stored as 11111110_01100000</p>
+<p>MVL_4: “01ZX01ZX” (8 bits) is stored as 00011011_00011011<br />
+MVL_4: “ZX1” (3 bits) is stored as 10110100<br />
+MVL_4: “XXXXZ” (5 bits) is stored as 11111111_10000000</p>
+<p>MVL_9: “01XZHUWL-” (9 bits) is stored as 00000001_00100011_01000101_01100111_10000000</p>
+</section>
+<section id="correlating-time-values-to-offsets">
+<h4>Correlating Time Values to Offsets<a class="headerlink" href="#correlating-time-values-to-offsets" title="Link to this heading">¶</a></h4>
+<p>This is what the purpose of <em>06: LT_SECTION_TIME_TABLE</em> is. Given the
+offset of a <em>command_byte</em>, <em>bsearch(3)</em> an array of ascending position
+values (not deltas) and pick out the maximum position value which is
+less than or equal to the offset of the <em>command_byte</em>. The following
+code sequence illustrates this given two arrays
+<em>positional_information[]</em> and <em>time_information[]</em>. Note that
+<em>total_cycles</em> corresponds to <em>number_of_entries</em> as defined in <em>06:
+LT_SECTION_TIME_TABLE</em>.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">max_compare_time_tc</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">max_compare_pos_tc</span><span class="p">;</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">compar_mvl_timechain</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">s1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">s2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rv</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">((</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">s1</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">((</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">s2</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">obj</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">obj</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">max_compare_time_tc</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">max_compare_time_tc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">obj</span><span class="p">;</span>
+<span class="w">        </span><span class="n">max_compare_pos_tc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">s2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">positional_information</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rv</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">delta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">obj</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">delta</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">delta</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">rv</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">bsearch_position_versus_time</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">max_compare_time_tc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">max_compare_pos_tc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">bsearch</span><span class="p">(</span><span class="o">&amp;</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">positional_information</span><span class="p">,</span><span class="w"> </span><span class="n">total_cycles</span><span class="p">,</span>
+<span class="w">            </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">),</span><span class="w"> </span><span class="n">compar_mvl_timechain</span><span class="p">);</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">max_compare_pos_tc</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">max_compare_time_tc</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">max_compare_pos_tc</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="cm">/* aix bsearch fix */</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">time_information</span><span class="p">[</span><span class="n">max_compare_pos_tc</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="reading-all-value-changes-in-one-pass">
+<h4>Reading All Value Changes in One Pass<a class="headerlink" href="#reading-all-value-changes-in-one-pass" title="Link to this heading">¶</a></h4>
+<p>This requires a little bit more work but it can be done. Basically what
+you have to do is the following:</p>
+<ol class="arabic simple">
+<li><p>Read in all the sync offsets from <em>02: LT_SECTION_SYNC_TABLE</em> and
+put each in a structure which contains the sync offset and the
+facility index. All of these structures will compose an array that
+is as large as the number of facilities which exist.</p></li>
+<li><p>Heapify the array such that the topmost element of the heap has the
+largest positional offset.</p></li>
+<li><p>Change the topmost element’s offset to its preceding offset (as
+determined by examining the <em>command_byte</em>, bits [5:4] and
+calculating the preceding offset by subtracting the
+<em>delta_offset_of_previous_change</em> then subtracting 2 bytes.</p></li>
+<li><p>Continue with step 2 until the topmost element’s offset is zero
+after performing a heapify().</p></li>
+</ol>
+</section>
+</section>
+<section id="lt-section-end">
+<h3>00: LT_SECTION_END<a class="headerlink" href="#lt-section-end" title="Link to this heading">¶</a></h3>
+<p>As a section pointer doesn’t exist for this, there’s no section body either.</p>
+</section>
+</section>
+<section id="the-lxt-write-api">
+<h2>The lxt_write API<a class="headerlink" href="#the-lxt-write-api" title="Link to this heading">¶</a></h2>
+<p>In order to facilitate the writing of LXT files, an API has been
+provided which does most of the hard work.</p>
+<dl class="simple myst">
+<dt><code class="code docutils literal highlight highlight-c"><span class="k">struct</span><span class="w"> </span><span class="nc">lt_trace</span><span class="w"> </span><span class="o">*</span><span class="n">lt_init</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="p">)</span></code></dt><dd><p>This opens an LXT file. The pointer returned by this function is NULL
+if unsuccessful. If successful, the pointer is to be used as a
+“context” for all the remaining functions in the API. In this way,
+multiple LXT files may be generated at once.</p>
+</dd>
+<dt><code class="code docutils literal highlight highlight-c"><span class="kt">void</span><span class="w"> </span><span class="n">lt_close</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">lt_trace</span><span class="w"> </span><span class="o">*</span><span class="n">lt</span><span class="p">)</span></code></dt><dd><p>This fixates and closes an LXT file. This is extremely important
+because if the file is not fixated, it will be impossible to use the
+value change data in it! For this reason, it is recommended that the
+function be placed in an <em>atexit(3)</em> handler in environments where trace
+generation can be interrupted through program crashes or external
+signals such as control-C.</p>
+</dd>
+<dt><code class="code docutils literal highlight highlight-c"><span class="k">struct</span><span class="w"> </span><span class="nc">lt_symbol</span><span class="w"> </span><span class="o">*</span><span class="n">lt_symbol_add</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">lt_trace</span><span class="w"> </span><span class="o">*</span><span class="n">lt</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">msb</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">lsb</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">flags</span><span class="p">)</span></code></dt><dd><p>This creates a facility. Since the facility and related tables are
+written out during fixation, one may arbitrarily add facilities up until
+the very moment that lt_close() is called. For facilities which are not
+arrays, a value of 0 or 1 for rows. As such, only values 2 and greater
+are used to signify arrays. Flags are defined above as in 04:
+LT_SECTION_FACNAME_GEOMETRY.</p>
+</dd>
+<dt><code class="code docutils literal highlight highlight-c"><span class="k">struct</span><span class="w"> </span><span class="nc">lt_symbol</span><span class="w"> </span><span class="o">*</span><span class="n">lt_symbol_find</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">lt_trace</span><span class="w"> </span><span class="o">*</span><span class="n">lt</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="p">)</span></code></dt><dd><p>This finds if a symbol has been previously defined. If returns non-NULL
+on success. It actually returns a symbol pointer, but you shouldn’t be
+dereferencing the fields inside it unless you know what you are doing.</p>
+</dd>
+<dt><code class="code docutils literal highlight highlight-c"><span class="k">struct</span><span class="w"> </span><span class="nc">lt_symbol</span><span class="w"> </span><span class="o">*</span><span class="n">lt_symbol_alias</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">lt_trace</span><span class="w"> </span><span class="o">*</span><span class="n">lt</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">existing_name</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">alias</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">msb</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">lsb</span><span class="p">)</span></code></dt><dd><p>This assigns an alias to an existing facility. This is to create
+signals which traverse multiple levels of hierarchy, but are the same
+net, possibly with different MSB and LSB values (though the distance
+between them will be the same).</p>
+</dd>
+<dt><code class="code docutils literal highlight highlight-c"><span class="kt">void</span><span class="w"> </span><span class="n">lt_symbol_bracket_stripping</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">lt_trace</span><span class="w"> </span><span class="o">*</span><span class="n">lt</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">doit</span><span class="p">)</span></code></dt><dd><p>This is to be used when facilities are defined in Verilog format such
+that exploded bitvectors are dumped as x[0], x[1], x[2], etc. If
+doit is set to a nonzero value, the bracketed values will be stripped
+off. In order to keep visualization and other tools from becoming
+confused, the MSB/LSB values must be unique for every bit. The tool
+<em>vcd2lxt</em> shows how this works and should be used. If vectors are dumped
+atomically, this function need not be called.</p>
+</dd>
+<dt><code class="code docutils literal highlight highlight-c"><span class="kt">void</span><span class="w"> </span><span class="n">lt_set_timescale</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">lt_trace</span><span class="w"> </span><span class="o">*</span><span class="n">lt</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">timescale</span><span class="p">)</span></code></dt><dd><p>This sets the simulation timescale to 10^timescale^ seconds where
+timescale is an 8-bit signed value. As such, negative values are the
+only useful ones.</p>
+</dd>
+<dt><code class="code docutils literal highlight highlight-c"><span class="kt">void</span><span class="w"> </span><span class="n">lt_set_initial_value</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">lt_trace</span><span class="w"> </span><span class="o">*</span><span class="n">lt</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">value</span><span class="p">)</span></code></dt><dd><p>This sets the initial value of every MVL (bitwise) facility to whatever
+the value is. Permissible values are ‘0’, ‘1’, ‘Z’, ‘X’, ‘H’,
+‘U’, ‘W’, ‘L’, and ‘-‘.</p>
+</dd>
+<dt><code class="code docutils literal highlight highlight-c"><span class="kt">int</span><span class="w"> </span><span class="n">lt_set_time</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">lt_trace</span><span class="w"> </span><span class="o">*</span><span class="n">lt</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">timeval</span><span class="p">)</span></code>, <code class="code docutils literal highlight highlight-c"><span class="kt">int</span><span class="w"> </span><span class="n">lt_inc_time_by_delta</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">lt_trace</span><span class="w"> </span><span class="o">*</span><span class="n">lt</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">timeval</span><span class="p">)</span></code>, <code class="code docutils literal highlight highlight-c"><span class="kt">int</span><span class="w"> </span><span class="n">lt_set_time64</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">lt_trace</span><span class="w"> </span><span class="o">*</span><span class="n">lt</span><span class="p">,</span><span class="w"> </span><span class="n">lxttime_t</span><span class="w"> </span><span class="n">timeval</span><span class="p">)</span></code>, <code class="code docutils literal highlight highlight-c"><span class="kt">int</span><span class="w"> </span><span class="n">lt_inc_time_by_delta64</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">lt_trace</span><span class="w"> </span><span class="o">*</span><span class="n">lt</span><span class="p">,</span><span class="w"> </span><span class="n">lxttime_t</span><span class="w"> </span><span class="n">timeval</span><span class="p">)</span></code></dt><dd><p>This is how time is dynamically updated in the LXT file. Note that for
+the non-delta functions, timeval changes are expected to be
+monotonically increasing. In addition, time values dumped to the LXT
+file are coalesced if there are no value changes for a specific time
+value. (Note: lxttime_t is defined as an unsigned long long.)</p>
+</dd>
+<dt><code class="code docutils literal highlight highlight-c"><span class="kt">void</span><span class="w"> </span><span class="n">lt_set_clock_compress</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">lt_trace</span><span class="w"> </span><span class="o">*</span><span class="n">lt</span><span class="p">)</span></code></dt><dd><p>Enables clock compression heuristics for the current trace.
+This cannot be turned off once it is on.</p>
+</dd>
+<dt><code class="code docutils literal highlight highlight-c"><span class="kt">int</span><span class="w"> </span><span class="n">lt_emit_value_int</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">lt_trace</span><span class="w"> </span><span class="o">*</span><span class="n">lt</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">lt_symbol</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span></code></dt><dd><p>This dumps an MVL_2 value for a specific facility which is 32-bits or less.
+Note that this does not work for strings or doubles.</p>
+</dd>
+<dt><code class="code docutils literal highlight highlight-c"><span class="kt">int</span><span class="w"> </span><span class="n">lt_emit_value_double</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">lt_trace</span><span class="w"> </span><span class="o">*</span><span class="n">lt</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">lt_symbol</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">value</span></code></dt><dd><p>This dumps a double value for a specific facility.
+Note that this only works for doubles.</p>
+</dd>
+<dt><code class="code docutils literal highlight highlight-c"><span class="kt">int</span><span class="w"> </span><span class="n">lt_emit_value_string</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">lt_trace</span><span class="w"> </span><span class="o">*</span><span class="n">lt</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">lt_symbol</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">value</span><span class="p">)</span></code></dt><dd><p>This dumps a string value for a specific facility.
+Note that this only works for strings.</p>
+</dd>
+<dt><code class="code docutils literal highlight highlight-c"><span class="kt">int</span><span class="w"> </span><span class="n">lt_emit_value_bit_string</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">lt_trace</span><span class="w"> </span><span class="o">*</span><span class="n">lt</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">lt_symbol</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">value</span><span class="p">)</span></code></dt><dd><p>This dumps an MVL_2, MVL_4, or MVL_9 value out to the LXT file for a
+specific facility. Note that the value is parsed in order to determine
+how to optimally represent it in the file. In addition, note that if the
+value’s string length is shorter than the facility length, it will be
+left justified with the rightmost character will be propagated to the
+right in order to pad the value string out to the correct length.
+Therefore, “10x” for 8-bits becomes “10xxxxxx” and “z” for 8-bits
+becomes “zzzzzzzz”.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="man/evcd2vcd.1.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">evcd2vcd</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="vcd-recoding.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">VCD Recoding</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, GTKWave Authors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">LXT File Format</a><ul>
+<li><a class="reference internal" href="#lxt-framing">LXT Framing</a><ul>
+<li><a class="reference internal" href="#lxt-section-pointers">LXT Section Pointers</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lxt-section-definitions">LXT Section Definitions</a><ul>
+<li><a class="reference internal" href="#lt-section-double-test">08: LT_SECTION_DOUBLE_TEST</a></li>
+<li><a class="reference internal" href="#lt-section-initial-value">07: LT_SECTION_INITIAL_VALUE</a></li>
+<li><a class="reference internal" href="#lt-section-time-table-08-lt-section-time-table64">06: LT_SECTION_TIME_TABLE / 08: LT_SECTION_TIME_TABLE64</a></li>
+<li><a class="reference internal" href="#lt-section-timescale">05: LT_SECTION_TIMESCALE</a></li>
+<li><a class="reference internal" href="#lt-section-facname">03: LT_SECTION_FACNAME</a></li>
+<li><a class="reference internal" href="#lt-section-facname-geometry">04: LT_SECTION_FACNAME_GEOMETRY</a></li>
+<li><a class="reference internal" href="#lt-section-sync-table">02: LT_SECTION_SYNC_TABLE</a></li>
+<li><a class="reference internal" href="#lt-section-chg">01: LT_SECTION_CHG</a><ul>
+<li><a class="reference internal" href="#command-bytes">Command Bytes</a></li>
+<li><a class="reference internal" href="#delta-offsets">Delta Offsets</a></li>
+<li><a class="reference internal" href="#row-changed">Row Changed</a></li>
+<li><a class="reference internal" href="#change-data">Change Data</a></li>
+<li><a class="reference internal" href="#correlating-time-values-to-offsets">Correlating Time Values to Offsets</a></li>
+<li><a class="reference internal" href="#reading-all-value-changes-in-one-pass">Reading All Value Changes in One Pass</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lt-section-end">00: LT_SECTION_END</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-lxt-write-api">The lxt_write API</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=4e2eecee"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    </body>
+</html>

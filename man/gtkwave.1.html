@@ -1,0 +1,538 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="gtkwaverc" href="gtkwaverc.5.html" /><link rel="prev" title="fstminer" href="fstminer.1.html" />
+
+    <!-- Generated with Sphinx 7.3.7 and Furo 2024.04.27 -->
+        <title>gtkwave - GTKWave documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=437aa6ec" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">GTKWave  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">GTKWave  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compiling.html">Compiling and Installing GTKWave</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-interface.html">GTKWave User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../menu.html">GTKWave Menu Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tcl.html">Tcl Command Syntax</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../vcd-recoding.html">VCD Recoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxt-file-format.html">LXT File Format</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Man pages</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="evcd2vcd.1.html">evcd2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fst2vcd.1.html">fst2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fstminer.1.html">fstminer</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">gtkwave</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtkwaverc.5.html">gtkwaverc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lxt2miner.1.html">lxt2miner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lxt2vcd.1.html">lxt2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rtlbrowse.1.html">rtlbrowse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shmidcat.1.html">shmidcat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="twinwave.1.html">twinwave</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vcd2fst.1.html">vcd2fst</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vcd2lxt.1.html">vcd2lxt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vcd2lxt2.1.html">vcd2lxt2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vcd2vzt.1.html">vcd2vzt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vzt2vcd.1.html">vzt2vcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vztminer.1.html">vztminer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xml2stems.1.html">xml2stems</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="gtkwave">
+<h1>gtkwave<a class="headerlink" href="#gtkwave" title="Link to this heading">¶</a></h1>
+<section id="name">
+<h2>NAME<a class="headerlink" href="#name" title="Link to this heading">¶</a></h2>
+<p>gtkwave - Visualization tool for VCD, LXT, LXT2, VZT, FST, and GHW files</p>
+</section>
+<section id="syntax">
+<h2>SYNTAX<a class="headerlink" href="#syntax" title="Link to this heading">¶</a></h2>
+<p>gtkwave [<em>option</em>]… [<em>DUMPFILE</em>] [<em>SAVEFILE</em>] [<em>RCFILE</em>]</p>
+</section>
+<section id="description">
+<h2>DESCRIPTION<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
+<p>Visualization tool for VCD, LXT, LXT2, VZT, FST, and GHW. VCD is an
+industry standard simulation dump format. LXT, LXT2, VZT, and FST have
+been designed specifically for use with gtkwave. GHW is the native VHDL
+format generated by GHDL. Native dumpers exist in Icarus Verilog and the
+open source version of VeriWell for the LXT formats so conversion with
+<em>vcd2lxt</em>(1) or <em>vcd2lxt2</em>(1) is not necessary to take direct advantage
+of LXT with those simulators. AET2 files can also be processed provided
+that libae2rw is available but this is only of interest to people who
+use IBM EDA toolsets.</p>
+</section>
+<section id="options">
+<h2>OPTIONS<a class="headerlink" href="#options" title="Link to this heading">¶</a></h2>
+<dl class="simple myst">
+<dt><strong>-n</strong>,<strong>–nocli</strong> &lt;<em>directory name</em>&gt;</dt><dd><p>Use file requester for dumpfile name.</p>
+</dd>
+<dt><strong>-f</strong>,<strong>–dump</strong> &lt;<em>filename</em>&gt;</dt><dd><p>Specify dumpfile name.</p>
+</dd>
+<dt><strong>-F</strong>,<strong>–fastload</strong></dt><dd><p>generate/use VCD recoder fastload files. This is similar to the
+<strong>-g</strong>,<strong>–giga</strong> option, however the spill file generated is not
+deleted. Reloading the VCD file another time (either through
+pressing the reload button or by re-invoking gtkwave at a later
+time) will use this generated spill file rather than read the value
+change section of the VCD file. This will speed up reloads on large
+files greatly as only the variable declaration section needs to be
+parsed. Note that the spill file contains the file size and
+modification date of the VCD file in order to detect if it is stale
+and needs to be regenerated.</p>
+</dd>
+<dt><strong>-o</strong>,<strong>–optimize</strong></dt><dd><p>optimize VCD to FST. This will automatically call <em>vcd2fst</em>(1) to
+perform the file conversion. This option is highly recommended with
+large VCD files in order to cut down on the memory usage required
+for file viewing. Can be used in conjunction with <strong>-v</strong>,<strong>–vcd</strong>.</p>
+</dd>
+<dt><strong>-a</strong>,<strong>–save</strong> &lt;<em>filename</em>&gt;</dt><dd><p>Specify savefile name. Useful suffixes for desktop integration are
+.gtkw and .sav (deprecated).</p>
+</dd>
+<dt><strong>-A</strong>,<strong>–autosavename</strong></dt><dd><p>Assume savefile is suffix modified dumpfile name (i.e., remove and
+replace with “.gtkw”).</p>
+</dd>
+<dt><strong>-r</strong>,<strong>–rcfile</strong> &lt;<em>filename</em>&gt;</dt><dd><p>Specify override <em>.gtkwaverc</em> filename.</p>
+</dd>
+<dt><strong>-l</strong>,<strong>–logfile</strong> &lt;<em>filename</em>&gt;</dt><dd><p>Specify simulation logfile name. Multiple logfiles may be specified
+by preceding each with the command flag. By selecting the numbers in
+the text widget, the marker will immediately zoom to the specific
+time value.</p>
+</dd>
+<dt><strong>-d</strong>,<strong>–defaultskip</strong></dt><dd><p>If there is not a <em>.gtkwaverc</em> file in the home directory or current
+directory and it is not explicitly specified on the command line,
+when this option is enabled, do not use an implicit configuration
+file and instead default to the old “whitescreen” behavior.</p>
+</dd>
+<dt><strong>-D</strong>,<strong>–dualid</strong> &lt;<em>which</em>&gt;</dt><dd><p>Specify multisession identifier information. The format of “which”
+is m+nnnnnnnn where m is the session number 0 or 1 and nnnnnnnn is a
+hexadecimal value indicating the shared memory ID of an array of two
+gtkwave_dual_ipc_t data structures. The intended use of this flag is
+for front ends such as <em>twinwave</em>(1).</p>
+</dd>
+<dt><strong>-s</strong>,<strong>–start</strong> &lt;<em>time</em>&gt;</dt><dd><p>Specify start time for LXT2/VZT block skip.</p>
+</dd>
+<dt><strong>-e</strong>,<strong>–end</strong> &lt;<em>time</em>&gt;</dt><dd><p>Specify end time for LXT2/VZT block skip.</p>
+</dd>
+<dt><strong>-t</strong>,<strong>–stems</strong> &lt;<em>filename</em>&gt;</dt><dd><p>Specify stems file for source code annotation. This will
+automatically launch the <em>rtlbrowse</em>(1) helper process. See
+<em>xml2stems</em>(1) for information on stems file generation.</p>
+</dd>
+<dt><strong>-c</strong>,<strong>–cpu</strong> &lt;<em>numcpus</em>&gt;</dt><dd><p>Specify number of CPUs available for parallelizable ops (e.g., block
+prefetching on VZT reads).</p>
+</dd>
+<dt><strong>-N</strong>,<strong>–nowm</strong></dt><dd><p>Disable window manager for most windows. The intended use of this is
+to be used in conjunction with the <strong>–script</strong> option, however
+this also can be used to reparent into an alternate window manager.</p>
+</dd>
+<dt><strong>-M</strong>,<strong>–nomenus</strong></dt><dd><p>Do not render menubar. This is mainly used for making a restricted
+applet that cannot initiate file I/O on its own, however it also can
+be used as a workaround in earlier versions of GTK+ that do not
+handle GTKSocket/GTKPlug focus interactions properly.</p>
+</dd>
+<dt><strong>-S</strong>,<strong>–script</strong> &lt;<em>filename</em>&gt;</dt><dd><p>Specify Tcl command script file for execution.</p>
+</dd>
+<dt><strong>-T</strong>,<strong>–tcl_init</strong> &lt;<em>filename</em>&gt;</dt><dd><p>Specify Tcl command script to be loaded on startup. Implies –wish
+command flag.</p>
+</dd>
+<dt><strong>-W</strong>,<strong>–wish</strong></dt><dd><p>Enable Tcl command line on stdio. All script commands can be typed
+in on stdin.</p>
+</dd>
+<dt><strong>-R</strong>,<strong>–repscript</strong> &lt;<em>filename</em>&gt;</dt><dd><p>Specify Tcl command script for periodic execution.</p>
+</dd>
+<dt><strong>-P</strong>,<strong>–repperiod</strong> &lt;<em>value</em>&gt;</dt><dd><p>Specifies delay in milliseconds between successive executions of the
+repscript. Default is 500.</p>
+</dd>
+<dt><strong>-X</strong>,<strong>–xid</strong> &lt;<em>XID</em>&gt;</dt><dd><p>Specify XID (in hexadecimal) of window for a GtkPlug to connect to.
+GTKWave does not directly render to a window but instead renders
+into a GtkPlug expecting a GtkSocket at the other end. Note that
+there are issues with accelerators working properly so menus are
+disabled in the componentized version of GTKWave when it functions
+as a plug-in.</p>
+</dd>
+<dt><strong>-1</strong>,<strong>–rpcid</strong> &lt;<em>RPCID</em>&gt;</dt><dd><p>Specify RPCID of GConf (or GSettings) session. This is a decimal
+value zero or greater and is the identifier used by GConf to know
+what update data to listen to. This option only works if
+<strong>–with-gconf</strong> (or <strong>–with-gsettings</strong>) was specified during
+<em>./configure</em>.</p>
+</dd>
+<dt><strong>-2</strong>,<strong>–chdir</strong> &lt;<em>DIRNAME</em>&gt;</dt><dd><p>Specify new current working directory. This is typically used in OSX
+to run gtkwave if it was compiled and placed in an .app bundle. Note
+that if the environment variable GTKWAVE_CHDIR is defined, the
+argument is a dummy argument. This is to support OSX in that the
+open command has difficulty in passing spaces as command line
+arguments and it is possible for <em>pwd</em>(1) to return spaces.</p>
+</dd>
+<dt><strong>-3</strong>,<strong>–restore</strong></dt><dd><p>Restore previous default (0) or <strong>–rpcid</strong> RPCID numbered session.
+This only works for one dumpfile, savefile, rcfile, and current
+working directory so it has the effect of restoring the most
+recently loaded file. If used in conjunction with the <strong>–rpcid</strong>
+option, that option must be specified earlier in the command line
+than the <strong>–restore</strong> option. If RPCID is not specified, then the
+default of 0 is used. This option only works if <strong>–with-gconf</strong>
+(or <strong>–with-gsettings</strong>) was specified during <em>./configure</em>. Note
+that for GSettings, limitations in its implementation allow it only
+to restore the previous session.</p>
+</dd>
+<dt><strong>-4</strong>,<strong>–rcvar</strong></dt><dd><p>Specify single rc variable values individually. These take effect
+after any other rc variables have been loaded from internal defaults
+or from configuration files.</p>
+</dd>
+<dt><strong>-5</strong>,<strong>–sstexclude</strong></dt><dd><p>Specify sst exclusion filter filename.</p>
+</dd>
+<dt><strong>-6</strong>,<strong>–dark</strong></dt><dd><p>Set gtk-application-prefer-dark-theme = TRUE.</p>
+</dd>
+<dt><strong>-7</strong>,<strong>–saveonexit</strong></dt><dd><p>At exit, a requester is brought up to prompt user to write a save
+file. Canceling the requester prevents from writing the file.</p>
+</dd>
+<dt><strong>-I</strong>,<strong>–interactive</strong></dt><dd><p>Specifies that “interactive” VCD mode is to be used which allows a
+viewer to navigate a VCD trace while GTKWave is processing the VCD
+file. When this option is used, the filename is overloaded such that
+it is the hexadecimal value for the shared memory ID of a writer.
+Note that the shared memory ID can be passed straight from stdin by
+using the <strong>–vcd</strong> option; see the manpage for <em>shmidcat</em>(1) for
+more details.</p>
+</dd>
+<dt><strong>-L</strong>,<strong>–legacy</strong></dt><dd><p>Specifies that the viewer should use legacy VCD mode rather than the
+VCD recoder. Note that using legacy mode will require considerably
+more memory than the recoder and its use is discouraged for very
+large traces.</p>
+</dd>
+<dt><strong>-g</strong>,<strong>–giga</strong></dt><dd><p>Specifies that the viewer should use gigabyte mempacking when
+recoding (possibly slower). This is equivalent to setting the
+vlist_spill and vlist_prepack flags in the rc file.</p>
+</dd>
+<dt><strong>-C</strong>,<strong>–comphier</strong></dt><dd><p>Specifies that the viewer should use compressed hierarchy names when
+loading the dumpfile (available for VCD recoder, LXT, LXT2, and
+VZT). This will use less memory at the expense of
+compression/decompression delay.</p>
+</dd>
+<dt><strong>-v</strong>,<strong>–vcd</strong></dt><dd><p>Use stdin as a VCD dumpfile.</p>
+</dd>
+<dt><strong>-O,–output</strong> &lt;<em>filename</em>&gt;</dt><dd><p>Specify filename for stdout/stderr redirect. To disable messages to
+the console, use /dev/null as the filename.</p>
+</dd>
+<dt><strong>-z</strong>,<strong>–slider-zoom</strong></dt><dd><p>Enable slider stretch zoom for the horizontal time slider. Clicking
+then dragging the very left or right edge of the slider can be used
+to provide fine-grained real-time zooming.</p>
+</dd>
+<dt><strong>-V</strong>,<strong>–version</strong></dt><dd><p>Display version banner then exit.</p>
+</dd>
+<dt><strong>-h</strong>,<strong>–help</strong></dt><dd><p>Display help then exit.</p>
+</dd>
+<dt><strong>-x</strong>,<strong>–exit</strong></dt><dd><p>Exit after loading trace (for loader benchmarking).</p>
+</dd>
+</dl>
+</section>
+<section id="files">
+<h2>FILES<a class="headerlink" href="#files" title="Link to this heading">¶</a></h2>
+<p><em>~/.gtkwaverc</em> (see manpage <em>gtkwaverc</em>(5))</p>
+</section>
+<section id="examples">
+<h2>EXAMPLES<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<dl class="simple myst">
+<dt>To run this program the standard way type:</dt><dd><p>gtkwave dumpfile.vcd</p>
+</dd>
+<dt>Alternatively you can run it with a save file as:</dt><dd><p>gtkwave dumpfile.vcd dumpfile.gtkw</p>
+</dd>
+<dt>To run interactively using shared memory handle 0x00050003:</dt><dd><p>gtkwave -I 00050003 dumpfile.gtkw</p>
+</dd>
+<dt>To pick up a dumpfile automatically from a save file (e.g., when launching from an icon):</dt><dd><p>gtkwave –save dumpfile.gtkw</p>
+</dd>
+<dt>To run from the app bundle gtkwave.app in OSX using /bin/sh:</dt><dd><p>GTKWAVE_CHDIR=`pwd`;export GTKWAVE_CHDIR;open -n -W -a gtkwave
+–args –chdir dummy –dump des.vzt –save des.gtkw</p>
+</dd>
+</dl>
+<p>Alternatively, run the following Perl script gtkwave.app/Contents/Resources/bin/gtkwave to process command line arguments from OSX shell scripts.</p>
+<p>:</p>
+<p>Note that to pass non-flag items which start with a dash, that it is required to specify – in order to turn off flag parsing. A second – will disable parsing of any following arguments such that they can be passed on to Tcl scripts and retrieved via gtkwave::getArgv.</p>
+<p>:</p>
+<p>Command line options are not necessary for representing the dumpfile,
+savefile, and rcfile names. They are merely provided to allow specifying
+them out of order.</p>
+</section>
+<section id="bugs">
+<h2>BUGS<a class="headerlink" href="#bugs" title="Link to this heading">¶</a></h2>
+<p>AIX requires -bmaxdata:0x80000000 (-bmaxdata:0xd0000000/dsa for AIX 5.3) to be added to your list of compiler flags for xlc if you want GTKWave to be able to access more than 256MB of virtual memory. The value shown allows the VMM to use up to 2GB (3.25GB AIX5.3). This may be necessary for very large traces.</p>
+<p>:</p>
+<p>Shift and Page operations using the wave window hscrollbar may be nonfunctional as you move away from the dump start for very large traces. A trace that goes out to 45 billion ticks has been known to exhibit this problem. This stems from using the gfloat element of the horizontal slider to encode the time value for the left margin. The result is a loss of precision for very large values. Use the hotkeys or buttons at the top of the screen if this is a problem.</p>
+<p>:</p>
+<p>When running under Cygwin, it is required to enable Cygserver if shared memory IPC is being used. Specifically, this occurs when <em>rtlbrowse</em>(1) is launched as a helper process. See the Cygwin documentation for more information on how to enable Cygserver.</p>
+<p>:</p>
+</section>
+<section id="authors">
+<h2>AUTHORS<a class="headerlink" href="#authors" title="Link to this heading">¶</a></h2>
+<p>Anthony Bybell &lt;bybell&#64;rocketmail.com&gt;</p>
+</section>
+<section id="see-also">
+<h2>SEE ALSO<a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h2>
+<p><em>gtkwaverc</em>(5) <em>lxt2vcd</em>(1) <em>vcd2lxt</em>(1) <em>vcd2lxt2</em>(1) <em>vzt2vcd</em>(1)
+<em>vcd2vzt</em>(1) <em>xml2stems</em>(1) <em>rtlbrowse</em>(1) <em>twinwave</em>(1) <em>shmidcat</em>(1)</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="gtkwaverc.5.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">gtkwaverc</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="fstminer.1.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">fstminer</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, GTKWave Authors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">gtkwave</a><ul>
+<li><a class="reference internal" href="#name">NAME</a></li>
+<li><a class="reference internal" href="#syntax">SYNTAX</a></li>
+<li><a class="reference internal" href="#description">DESCRIPTION</a></li>
+<li><a class="reference internal" href="#options">OPTIONS</a></li>
+<li><a class="reference internal" href="#files">FILES</a></li>
+<li><a class="reference internal" href="#examples">EXAMPLES</a></li>
+<li><a class="reference internal" href="#bugs">BUGS</a></li>
+<li><a class="reference internal" href="#authors">AUTHORS</a></li>
+<li><a class="reference internal" href="#see-also">SEE ALSO</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=4e2eecee"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    </body>
+</html>
